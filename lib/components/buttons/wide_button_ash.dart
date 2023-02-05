@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/components/buttons/wide_button.dart';
 
 class WideButtonAsh extends StatelessWidget {
   const WideButtonAsh({Key? key, required this.label}) : super(key: key);
@@ -7,23 +7,10 @@ class WideButtonAsh extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 56,
-      child: ElevatedButton(
-        child: Text(
-          label,
-          style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Sora'),
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: app_colors.buttonAsh,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5)),
-        ), onPressed: () {},
-      ),
+    return WideButton(
+      label: label,
+      isDisabled: true,
+      onPressedCallback: null,
     );
   }
 }

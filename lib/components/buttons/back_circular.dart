@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/utils/dimensions.dart';
 
 class BackCircular extends StatelessWidget {
   const BackCircular({Key? key, required this.onPressed}) : super(key: key);
@@ -8,22 +9,22 @@ class BackCircular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 50,
-      left: 16,
+      top: Dimensions.d50,
+      left: Dimensions.d16,
       child: InkWell(
         onTap: onPressed,
         child: Container(
-          height: 48,
-          width: 48,
+          height: Dimensions.d48,
+          width: Dimensions.d48,
           decoration: const BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
           ),
-          child: const FittedBox(
+          child: FittedBox(
             fit: BoxFit.none,
             child: SizedBox(
-              height: 18,
-              child: ImageIcon(
+              height: Dimensions.d18,
+              child: const ImageIcon(
                 AssetImage('images/back.png'),
                 color: app_colors.black,
               ),

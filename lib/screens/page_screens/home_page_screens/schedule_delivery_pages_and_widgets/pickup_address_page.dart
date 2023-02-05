@@ -3,10 +3,10 @@ import 'package:pikkup/components/address_card.dart';
 import 'package:pikkup/components/app_check_box.dart';
 import 'package:pikkup/components/buttons/view_all_button.dart';
 import 'package:pikkup/components/text_field_boxes/pickup_address_box.dart';
-import 'package:pikkup/components/texts/description_text_blue.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/page_next_button.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/home_page_view_models/send_a_package_view_model.dart';
 import 'package:pikkup/widgets/send_a_package_bottomsheet.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,10 @@ class PickupAddressPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const HeaderTextVerySmall(text: 'Address Information'),
+            const HeaderText(
+              text: 'Address Information',
+              headerTextSize: HeaderTextSize.verySmall,
+            ),
             const SizedBox(height: 32),
             PickupAddressBoxWidget(textController: _pickupAddressController),
             const SizedBox(height: 24),
@@ -86,7 +89,10 @@ class SavePickupAddressBox extends StatelessWidget {
           },
         ),
         const SizedBox(width: 10),
-        const DescriptionTextBlue(text: 'Save address')
+        const BodyText(
+          text: 'Save address',
+          color: app_colors.primaryBlue,
+        ),
       ],
     );
   }

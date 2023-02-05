@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/models/fund_wallet_options_model.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/bank_transfer_screen.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/payment_cards_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar_blue.dart';
 import 'package:provider/provider.dart';
@@ -166,7 +166,7 @@ class MoneyTextField extends StatelessWidget {
         Provider.of<EnterAmountViewModel>(context).formatter,
       ],
       onChanged: onChangedCallback,
-      decoration: kMoneyTextFieldDecoration,
+      decoration: moneyTextFieldDecoration,
     );
   }
 }

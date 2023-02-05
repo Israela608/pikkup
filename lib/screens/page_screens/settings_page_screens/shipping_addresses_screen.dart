@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/address_card.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/settings_page_view_models/shipping_addresses_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 import 'package:provider/provider.dart';

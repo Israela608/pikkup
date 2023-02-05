@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pikkup/components/spacers/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 
 class PasswordBox extends StatelessWidget {
   const PasswordBox({
@@ -27,7 +29,7 @@ class PasswordBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlainText(text: text),
-        const SizedBox(height: 10),
+        const SpacerTitleBox(),
         TextFormField(
             //expands: true,
             //minLines: null,
@@ -38,9 +40,9 @@ class PasswordBox extends StatelessWidget {
             validator: validatorCallback,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             cursorColor: app_colors.primaryBlack,
-            style: const TextStyle(color: app_colors.primaryBlack),
+            style: textFieldText,
             onChanged: onChangedCallback,
-            decoration: kTextFieldDecoration.copyWith(
+            decoration: textFieldDecoration.copyWith(
               prefixIcon: const Icon(
                 Icons.lock,
                 color: app_colors.iconAsh,

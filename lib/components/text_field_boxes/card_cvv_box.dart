@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
+import 'package:pikkup/components/spacers/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 
 class CardCvvBox extends StatelessWidget {
   const CardCvvBox({
@@ -22,7 +24,7 @@ class CardCvvBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'CVV'),
-        const SizedBox(height: 10),
+        const SpacerTitleBox(),
         TextFormField(
             controller: textController,
             keyboardType: TextInputType.phone,
@@ -32,15 +34,11 @@ class CardCvvBox extends StatelessWidget {
               MaskedInputFormatter('###', allowedCharMatcher: RegExp('[0-9]'))
             ],
             cursorColor: app_colors.primaryBlack,
-            style: const TextStyle(color: app_colors.primaryBlack),
+            style: textFieldText,
             onChanged: onChangedCallback,
-            decoration: kTextFieldDecoration.copyWith(
+            decoration: textFieldDecoration.copyWith(
               hintText: '000',
-              hintStyle: const TextStyle(
-                color: app_colors.hintAsh,
-                fontSize: 12,
-                fontFamily: 'Inter',
-              ),
+              hintStyle: textFieldHintText,
             )),
       ],
     );

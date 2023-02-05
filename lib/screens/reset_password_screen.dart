@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
-import 'package:pikkup/components/texts/description_text.dart';
+import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/dialog_screen/reset_password_successful_dialog_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/reset_password_view_model.dart';
 import 'package:pikkup/widgets/blended_app_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../components/text_field_boxes/password_box.dart';
-import '../utils/constants.dart';
+import '../config/themes/decorations.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     const SizedBox(height: 24),
                     const HeaderText(text: 'Reset Password'),
                     const SizedBox(height: 8),
-                    const DescriptionText(
+                    const BodyText(
                         text:
                             'Enter your new password you would like to use for your account'),
                     const SizedBox(height: 26),

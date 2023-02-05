@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
-import 'package:pikkup/components/clickable_texts/clickable_text_bold.dart';
-import 'package:pikkup/components/texts/description_text.dart';
+import 'package:pikkup/components/clickable_texts/clickable_text.dart';
+import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/login_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/verify_number_view_model.dart';
 import 'package:pikkup/widgets/blended_app_bar.dart';
 import 'package:pikkup/widgets/error_message.dart';
@@ -159,7 +159,7 @@ class MixedTextOne extends StatelessWidget {
         children: [
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
-            child: DescriptionText(text: 'Enter the code sent to '),
+            child: BodyText(text: 'Enter the code sent to '),
           ),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
@@ -191,12 +191,13 @@ class MixedTextTwo extends StatelessWidget {
         children: [
           const WidgetSpan(
             alignment: PlaceholderAlignment.middle,
-            child: DescriptionText(text: 'Didn\'t receive any code?'),
+            child: BodyText(text: 'Didn\'t receive any code?'),
           ),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
-            child: ClickableTextBold(
+            child: ClickableText(
               text: ' Resend ',
+              isBold: true,
               onPressed: () {
                 debugPrint('Resending the code');
                 //Resend the code

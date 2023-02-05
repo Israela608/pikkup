@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/view_all_button.dart';
-import 'package:pikkup/components/texts/description_text_centered.dart';
-import 'package:pikkup/components/texts/description_text_small_grey.dart';
-import 'package:pikkup/components/texts/description_text_small_white.dart';
-import 'package:pikkup/components/texts/header_text_small_white.dart';
-import 'package:pikkup/components/texts/money_text_white.dart';
-import 'package:pikkup/components/texts/plain_text_black.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/components/texts/money_text.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/fund_wallet_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({Key? key}) : super(key: key);
@@ -20,7 +18,10 @@ class WalletPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: app_colors.background,
       appBar: AppBar(
-        title: const HeaderTextSmallWhite(text: 'Wallet'),
+        title: const HeaderText(
+            text: 'Wallet',
+            headerTextSize: HeaderTextSize.small,
+            color: app_colors.white),
         centerTitle: true,
         toolbarHeight: kStandardAppBarHeight,
         backgroundColor: app_colors.primaryBlue,
@@ -61,9 +62,13 @@ class FundBox extends StatelessWidget {
             children: [
               Column(
                 children: const [
-                  DescriptionTextSmallWhite(text: 'Balance'),
+                  BodyText(
+                    text: 'Balance',
+                    isSmall: true,
+                    color: app_colors.white,
+                  ),
                   SizedBox(height: 8),
-                  MoneyTextWhite(amount: '1,700'),
+                  MoneyText(amount: '1,700'),
                 ],
               ),
               const SizedBox(height: 33),
@@ -129,8 +134,10 @@ class FundingHistory extends StatelessWidget {
             image: AssetImage('images/no_transactions.png'),
           ),
           SizedBox(height: 36),
-          DescriptionTextCentered(
-              text: 'You haven’t made any transactions yet'),
+          BodyText(
+            text: 'You haven’t made any transactions yet',
+            isCentered: true,
+          ),
         ],
       );
     } else {
@@ -190,8 +197,15 @@ class FundingHistoryTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      PlainTextBlack(text: 'Debit Card'),
-                      DescriptionTextSmallGrey(text: '5069 **** **** **63'),
+                      PlainText(
+                        text: 'Debit Card',
+                        isBlackColor: true,
+                      ),
+                      BodyText(
+                        text: '5069 **** **** **63',
+                        isSmall: true,
+                        color: app_colors.textGrey,
+                      ),
                     ],
                   ),
                 ),
@@ -227,7 +241,11 @@ class FundingHistoryTile extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const DescriptionTextSmallGrey(text: '12/01/2022'),
+                      const BodyText(
+                        text: '12/01/2022',
+                        isSmall: true,
+                        color: app_colors.textGrey,
+                      ),
                     ],
                   ),
                 ),

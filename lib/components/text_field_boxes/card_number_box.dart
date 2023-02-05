@@ -1,9 +1,12 @@
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:pikkup/components/spacers/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
 
 class CardNumberBox extends StatelessWidget {
   const CardNumberBox({
@@ -25,7 +28,7 @@ class CardNumberBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Card Number'),
-        const SizedBox(height: 10),
+        const SpacerTitleBox(),
         TextFormField(
           controller: textController,
           keyboardType: TextInputType.phone,
@@ -37,18 +40,14 @@ class CardNumberBox extends StatelessWidget {
                 allowedCharMatcher: RegExp('[0-9]'))
           ],
           cursorColor: app_colors.primaryBlack,
-          style: const TextStyle(color: app_colors.primaryBlack),
+          style: textFieldText,
           onChanged: onChangedCallback,
-          decoration: kTextFieldDecoration.copyWith(
+          decoration: textFieldDecoration.copyWith(
             //counter: const Offstage(), //Prevents the counter from showing
             suffixIcon: cardTypeIcon(context: context),
             suffixIconColor: Colors.transparent,
             hintText: 'XXXX XXXX XXXX XXXX',
-            hintStyle: const TextStyle(
-              color: app_colors.hintAsh,
-              fontSize: 12,
-              fontFamily: 'Inter',
-            ),
+            hintStyle: textFieldHintText,
           ),
         ),
       ],
@@ -59,16 +58,16 @@ class CardNumberBox extends StatelessWidget {
     Widget iconWidget;
 
     if (cardType == CreditCardType.mastercard) {
-      iconWidget = const Image(
-        image: AssetImage('images/mastercard.png'),
-        width: 32.63,
-        height: 20,
+      iconWidget = Image(
+        image: const AssetImage('images/mastercard.png'),
+        width: Dimensions.d32 + (Dimensions.d1 * 0.63),
+        height: Dimensions.d20,
       );
     } else if (cardType == CreditCardType.visa) {
-      iconWidget = const Image(
-        image: AssetImage('images/visa.png'),
-        width: 36,
-        height: 23,
+      iconWidget = Image(
+        image: const AssetImage('images/visa.png'),
+        width: Dimensions.d36,
+        height: Dimensions.d23,
       );
     } else {
       iconWidget = const ImageIcon(

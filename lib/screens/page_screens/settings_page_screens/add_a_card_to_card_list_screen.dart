@@ -6,8 +6,8 @@ import 'package:pikkup/components/text_field_boxes/card_cvv_box.dart';
 import 'package:pikkup/components/text_field_boxes/card_expiry_date_box.dart';
 import 'package:pikkup/components/text_field_boxes/card_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/settings_page_view_models/add_a_card_to_card_list_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +58,10 @@ class _AddACardToCardListScreenState extends State<AddACardToCardListScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 29),
-                    const HeaderTextVerySmall(text: 'Add card'),
+                    const HeaderText(
+                      text: 'Add card',
+                      headerTextSize: HeaderTextSize.verySmall,
+                    ),
                     const SizedBox(height: 32),
                     CardNameBoxWidget(textController: _cardNameController),
                     const SizedBox(height: 24),

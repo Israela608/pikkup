@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
 
 const double kStandardAppBarHeight = 68;
 const double kBlendedAppBarHeight = 96;
@@ -10,32 +12,42 @@ const double kTextFieldBoxSpace = 24;
 const EdgeInsetsGeometry kScreenHorizontalPadding =
     EdgeInsets.symmetric(horizontal: kStandardPaddingSize);
 
-const kTextFieldDecoration = InputDecoration(
-  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+/*
+TextInputDecorations
+*/
+
+final textFieldDecoration = InputDecoration(
+  contentPadding: EdgeInsets.all(Dimensions.d15),
   border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    borderRadius: BorderRadius.circular(Dimensions.d10),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: app_colors.primaryBlueDark, width: 1.0),
-    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    borderSide:
+        BorderSide(color: app_colors.primaryBlueDark, width: Dimensions.d1),
+    borderRadius: BorderRadius.circular(Dimensions.d10),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: app_colors.primaryBlueDark, width: 2.0),
-    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    borderSide:
+        BorderSide(color: app_colors.primaryBlueDark, width: Dimensions.d2),
+    borderRadius: BorderRadius.circular(Dimensions.d10),
   ),
 );
 
-const kMoneyTextFieldDecoration = InputDecoration(
+final moneyTextFieldDecoration = InputDecoration(
   filled: true,
   fillColor: app_colors.fillAsh,
-  counter: Offstage(), //Prevents the counter from showing
+  counter: const Offstage(), //Prevents the counter from showing
   hintText: '\u{20A6}0.00',
-  hintStyle: TextStyle(
-    fontSize: 27,
+  hintStyle: textFieldHintText.copyWith(
+    fontSize: Dimensions.d27,
+    fontWeight: FontWeight.bold,
+  ),
+  /* hintStyle: TextStyle(
+    fontSize: Dimensions.d27,
     fontWeight: FontWeight.bold,
     fontFamily: 'Inter',
     color: app_colors.hintAsh,
-  ),
+  ),*/
   // prefixIcon: FittedBox(
   //   fit: BoxFit.scaleDown,
   //   alignment: Alignment.center,
@@ -50,17 +62,19 @@ const kMoneyTextFieldDecoration = InputDecoration(
   //   ),
   // ),
   // contentPadding: EdgeInsets.only(top: 32, bottom: 32, left: 4, right: 32),
-  contentPadding: EdgeInsets.all(32),
+  contentPadding: EdgeInsets.all(Dimensions.d32),
   border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+    borderRadius: BorderRadius.all(Radius.circular(Dimensions.d4)),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: app_colors.iconAsh, width: 1.0),
-    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+    borderSide: BorderSide(color: app_colors.iconAsh, width: Dimensions.d1),
+    borderRadius: BorderRadius.all(Radius.circular(Dimensions.d4)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: app_colors.primaryBlue, width: 1.5),
-    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+    borderSide: BorderSide(
+        color: app_colors.primaryBlue,
+        width: Dimensions.d1 + (Dimensions.d1 / 2)),
+    borderRadius: BorderRadius.all(Radius.circular(Dimensions.d4)),
   ),
 );
 
@@ -89,3 +103,23 @@ const kMoneyTextFieldDecoration = InputDecoration(
 //     borderRadius: BorderRadius.all(Radius.circular(10.0)),
 //   ),
 // );
+
+/*
+BoxDecorations
+*/
+
+final borderedCardDecoration = BoxDecoration(
+  borderRadius: BorderRadius.circular(Dimensions.d8),
+  color: app_colors.tileBlue,
+  border: Border.all(
+      width: Dimensions.d1, color: app_colors.primaryBlue.withOpacity(0.15)),
+);
+
+final smallBorderedCardDecoration = borderedCardDecoration.copyWith(
+  borderRadius: BorderRadius.circular(Dimensions.d4),
+);
+
+final progressLineDecoration = BoxDecoration(
+  borderRadius: BorderRadius.circular(Dimensions.d10),
+  color: app_colors.borderAsh,
+);

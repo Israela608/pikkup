@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/address_progress_line_green_small.dart';
+import 'package:pikkup/components/address_progress_line.dart';
 import 'package:pikkup/components/buttons/back_circular.dart';
-import 'package:pikkup/components/destination_ring_small.dart';
-import 'package:pikkup/components/pickup_ring_small.dart';
+import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/pin.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PickupToDestinationRouteMapScreen extends StatelessWidget {
@@ -202,9 +201,12 @@ class AddressBox extends StatelessWidget {
             children: [
               Column(
                 children: const [
-                  PickupRingSmall(),
+                  LocationRing(
+                    locationRingType: LocationRingType.pickup,
+                    locationRingSize: LocationRingSize.small,
+                  ),
                   SizedBox(height: 2),
-                  AddressProgressLineGreenSmall()
+                  AddressProgressLine(isSmall: true, isCompleted: true)
                 ],
               ),
               const SizedBox(width: 10),
@@ -240,7 +242,10 @@ class AddressBox extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const DestinationRingSmall(),
+              const LocationRing(
+                locationRingType: LocationRingType.destination,
+                locationRingSize: LocationRingSize.small,
+              ),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(

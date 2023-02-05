@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/clickable_texts/clickable_text.dart';
-import 'package:pikkup/components/texts/description_text.dart';
+import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
-import 'package:pikkup/components/texts/header_text_blue.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/welcome_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 
 class OnboardingScreen extends StatefulWidget {
   OnboardingScreen({Key? key}) : super(key: key);
@@ -52,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   pages: [
                     PageViewModel(
                       titleWidget: firstTitle,
-                      bodyWidget: const DescriptionText(
+                      bodyWidget: const BodyText(
                         text:
                             'Get your parcels delivered with minimal effort anywhere you are.',
                       ),
@@ -61,7 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     PageViewModel(
                       titleWidget: secondTitle,
-                      bodyWidget: const DescriptionText(
+                      bodyWidget: const BodyText(
                         text:
                             'Track your parcels live and receive regular updates on your shipment',
                       ),
@@ -70,7 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     PageViewModel(
                       titleWidget: thirdTitle,
-                      bodyWidget: const DescriptionText(
+                      bodyWidget: const BodyText(
                           text:
                               'Perfect for individuals, small businesses and pretty much anyone who need to deliver a package'),
                       image: _buildImage('onboarding_3.png'),
@@ -134,7 +133,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         text: const TextSpan(
           children: [
             WidgetSpan(
-              child: HeaderTextBlue(text: 'Fast delivery '),
+              child: HeaderText(
+                text: 'Fast delivery ',
+                color: app_colors.primaryBlue,
+              ),
             ),
             WidgetSpan(
               child: HeaderText(text: 'at your service'),
@@ -155,7 +157,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: HeaderText(text: 'Real time '),
             ),
             WidgetSpan(
-              child: HeaderTextBlue(text: 'Tracking'),
+              child: HeaderText(
+                text: 'Tracking',
+                color: app_colors.primaryBlue,
+              ),
             ),
           ],
         ),
@@ -170,7 +175,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         text: const TextSpan(
           children: [
             WidgetSpan(
-              child: HeaderTextBlue(text: 'Service '),
+              child: HeaderText(
+                text: 'Service ',
+                color: app_colors.primaryBlue,
+              ),
             ),
             WidgetSpan(
               child: HeaderText(text: 'to everyone'),

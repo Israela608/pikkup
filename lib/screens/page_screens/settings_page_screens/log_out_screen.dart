@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 
 class LogOutScreen extends StatelessWidget {

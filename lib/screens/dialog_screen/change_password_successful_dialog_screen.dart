@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pikkup/components/buttons/wide_button.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/home_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/home_view_model.dart';
 import 'package:pikkup/widgets/blended_app_bar.dart';
 import 'package:provider/provider.dart';
-
-import '../../components/buttons/wide_outlined_button.dart';
-import '../../components/texts/header_text_small_centered.dart';
 
 class ChangePasswordSuccessfulDialogScreen extends StatelessWidget {
   const ChangePasswordSuccessfulDialogScreen({Key? key}) : super(key: key);
@@ -40,11 +39,15 @@ class ChangePasswordSuccessfulDialogScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 0.085 * screenHeight),
-              const HeaderTextSmallCentered(
-                  text: 'You’ve changed your password'),
+              const HeaderText(
+                text: 'You’ve changed your password',
+                headerTextSize: HeaderTextSize.small,
+                isCentered: true,
+              ),
               SizedBox(height: 0.14 * screenHeight),
-              WideOutlinedButton(
+              WideButton(
                 label: 'Back to settings',
+                isOutlined: true,
                 onPressedCallback: () {
                   Navigator.pushNamed(context, HomeScreen.id);
                   Provider.of<HomeViewModel>(context, listen: false)

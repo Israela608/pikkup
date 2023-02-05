@@ -4,18 +4,18 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/clickable_texts/clickable_text.dart';
-import 'package:pikkup/components/clickable_texts/clickable_text_bold.dart';
 import 'package:pikkup/components/text_field_boxes/email_box.dart';
 import 'package:pikkup/components/text_field_boxes/password_box.dart';
 import 'package:pikkup/components/text_field_boxes/phone_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
-import 'package:pikkup/components/texts/description_text.dart';
+import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/login_screen.dart';
 import 'package:pikkup/screens/verify_number_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/create_account_view_model.dart';
 import 'package:pikkup/widgets/blended_app_bar.dart';
 import 'package:pikkup/widgets/error_message.dart';
@@ -78,7 +78,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     children: [
                       const HeaderText(text: 'Create an account'),
                       const SizedBox(height: 8),
-                      const DescriptionText(
+                      const BodyText(
                           text:
                               'Enter your personal details to help setup your account'),
                       const SizedBox(height: 26),
@@ -260,17 +260,12 @@ class MixedTextFirst extends StatelessWidget {
     return RichText(
       text: TextSpan(
         children: [
-          const WidgetSpan(child: DescriptionText(text: 'By clicking ')),
-          const TextSpan(
+          const WidgetSpan(child: BodyText(text: 'By clicking ')),
+          TextSpan(
             text: '“Create Account”, ',
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.bold,
-              color: app_colors.description,
-            ),
+            style: interNormalBoldText.copyWith(color: app_colors.description),
           ),
-          const WidgetSpan(child: DescriptionText(text: ' you agree to the ')),
+          const WidgetSpan(child: BodyText(text: ' you agree to the ')),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
             child: ClickableText(
@@ -281,7 +276,8 @@ class MixedTextFirst extends StatelessWidget {
             ),
           ),
           const WidgetSpan(
-            child: DescriptionText(text: ' and '),
+            alignment: PlaceholderAlignment.middle,
+            child: BodyText(text: ' and '),
           ),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
@@ -312,8 +308,9 @@ class MixedTextSecond extends StatelessWidget {
           ),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
-            child: ClickableTextBold(
+            child: ClickableText(
               text: ' Log in ',
+              isBold: true,
               onPressed: () {
                 debugPrint('Log in');
                 Navigator.pushNamed(context, LoginScreen.id);

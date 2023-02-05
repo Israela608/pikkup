@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
 
 class ReceiverInfoCard extends StatelessWidget {
   const ReceiverInfoCard(
@@ -15,33 +18,21 @@ class ReceiverInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+      padding: EdgeInsets.all(Dimensions.d16),
+      decoration: smallBorderedCardDecoration.copyWith(
         color: backgroundColor ?? app_colors.tileBlue,
-        border: Border.all(
-            width: 1, color: app_colors.primaryBlue.withOpacity(0.15)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             name,
-            style: const TextStyle(
-              fontSize: 13,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w600,
-              color: app_colors.primaryBlack,
-            ),
+            style: interNormalBoldText,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: Dimensions.d8),
           Text(
             phoneNumber,
-            style: const TextStyle(
-              fontSize: 10,
-              fontFamily: 'Inter',
-              color: app_colors.primaryBlack,
-            ),
+            style: interSmallText,
           ),
         ],
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/back_circular.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
-import 'package:pikkup/components/destination_ring_big.dart';
+import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/pin.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ChooseLocationOnMapScreen extends StatelessWidget {
@@ -204,8 +204,13 @@ class AddressTextBox extends StatelessWidget {
         // model.updateDestinationPageNextButton();
       },
       decoration: InputDecoration(
-        prefixIcon:
-            const FittedBox(fit: BoxFit.none, child: DestinationRingBig()),
+        prefixIcon: const FittedBox(
+          fit: BoxFit.none,
+          child: LocationRing(
+            locationRingType: LocationRingType.destination,
+            locationRingSize: LocationRingSize.big,
+          ),
+        ),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
         border: OutlineInputBorder(

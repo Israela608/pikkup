@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 
 class StandardBottomSheet extends StatelessWidget {
   const StandardBottomSheet(

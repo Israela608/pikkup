@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/texts/description_text.dart';
-import 'package:pikkup/components/texts/header_text_small.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/settings_page_screens/change_password_one_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/log_out_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/my_profile_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/payment_cards_list_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/receiver_details_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/shipping_addresses_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -17,7 +17,10 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: app_colors.background,
       appBar: AppBar(
-        title: const HeaderTextSmall(text: 'Settings'),
+        title: const HeaderText(
+          text: 'Settings',
+          headerTextSize: HeaderTextSize.small,
+        ),
         centerTitle: true,
         toolbarHeight: 68,
         backgroundColor: app_colors.background,
@@ -130,7 +133,7 @@ class SettingsTile extends StatelessWidget {
                 children: [
                   ImageIcon(AssetImage('images/$icon')),
                   const SizedBox(width: 16),
-                  DescriptionText(text: text)
+                  BodyText(text: text)
                 ],
               ),
               const ImageIcon(AssetImage('images/forward.png')),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/buttons/back_white.dart';
-import 'package:pikkup/components/texts/header_text_small_white.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/components/buttons/back.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 
 class StandardAppBarBlue extends StatelessWidget with PreferredSizeWidget {
   StandardAppBarBlue({Key? key, required this.label, this.onBackPressed})
@@ -13,10 +13,14 @@ class StandardAppBarBlue extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: BackWhite(
+      leading: Back(
         onPressed: onBackPressed ?? () => Navigator.pop(context),
+        isWhiteColor: true,
       ),
-      title: HeaderTextSmallWhite(text: label),
+      title: HeaderText(
+          text: label,
+          headerTextSize: HeaderTextSize.small,
+          color: app_colors.white),
       centerTitle: true,
       toolbarHeight: kStandardAppBarHeight,
       backgroundColor: app_colors.primaryBlue,

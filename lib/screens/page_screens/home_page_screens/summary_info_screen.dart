@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/address_progress_line_green.dart';
+import 'package:pikkup/components/address_progress_line.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
-import 'package:pikkup/components/destination_ring.dart';
-import 'package:pikkup/components/pickup_ring.dart';
+import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/receiver_info_card.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/pickup_to_destination_route_map_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 
 class SummaryInfoScreen extends StatelessWidget {
@@ -27,7 +26,10 @@ class SummaryInfoScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 32),
-              const HeaderTextVerySmall(text: 'Summary Information'),
+              const HeaderText(
+                text: 'Summary Information',
+                headerTextSize: HeaderTextSize.verySmall,
+              ),
               const SizedBox(height: 8),
               const DeliveryTypeCard(),
               const SizedBox(height: 24),
@@ -141,9 +143,12 @@ class AddressBox extends StatelessWidget {
             children: [
               Column(
                 children: const [
-                  PickupRing(),
+                  LocationRing(
+                    locationRingType: LocationRingType.pickup,
+                    locationRingSize: LocationRingSize.normal,
+                  ),
                   SizedBox(height: 2),
-                  AddressProgressLineGreen()
+                  AddressProgressLine(isCompleted: true)
                 ],
               ),
               const SizedBox(width: 12),
@@ -177,7 +182,10 @@ class AddressBox extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const DestinationRing(),
+              const LocationRing(
+                locationRingType: LocationRingType.destination,
+                locationRingSize: LocationRingSize.normal,
+              ),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

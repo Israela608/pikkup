@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
-import 'package:pikkup/components/texts/header_text_white.dart';
+import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/time_date_circle.dart';
 import 'package:pikkup/components/tracking_progress_line.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/tracking_map_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/home_page_view_models/tracking_view_model.dart';
 import 'package:pikkup/widgets/dispatcher_panel.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
@@ -86,7 +85,12 @@ class IdBox extends StatelessWidget {
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 27.5),
-        child: const Center(child: HeaderTextWhite(text: '458748500AF')),
+        child: const Center(
+          child: HeaderText(
+            text: '458748500AF',
+            color: app_colors.white,
+          ),
+        ),
       ),
     );
   }
@@ -100,7 +104,10 @@ class LiveUpdatesHeaderWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const HeaderTextVerySmall(text: 'Live updates'),
+        const HeaderText(
+          text: 'Live updates',
+          headerTextSize: HeaderTextSize.verySmall,
+        ),
         ViewOnMapButton(
           onPressed: () {
             Navigator.pushNamed(context, TrackingMapScreen.id);

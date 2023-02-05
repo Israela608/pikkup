@@ -1,17 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/address_progress_line.dart';
-import 'package:pikkup/components/completed_box.dart';
-import 'package:pikkup/components/destination_ring.dart';
-import 'package:pikkup/components/pending_box.dart';
-import 'package:pikkup/components/pickup_ring.dart';
-import 'package:pikkup/components/texts/description_text_centered.dart';
-import 'package:pikkup/components/texts/description_text_small_grey.dart';
-import 'package:pikkup/components/texts/header_text_small.dart';
-import 'package:pikkup/components/texts/header_text_small_centered.dart';
+import 'package:pikkup/components/location_ring.dart';
+import 'package:pikkup/components/product_status_box.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/history_page_screens/full_history_card_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 
 enum CardType { pending, completed }
 
@@ -25,7 +21,10 @@ class HistoryPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: app_colors.background,
       appBar: AppBar(
-        title: const HeaderTextSmall(text: 'History'),
+        title: const HeaderText(
+          text: 'History',
+          headerTextSize: HeaderTextSize.small,
+        ),
         centerTitle: true,
         toolbarHeight: 68,
         backgroundColor: app_colors.background,
@@ -57,11 +56,16 @@ class NoHistory extends StatelessWidget {
           ),
         ),
         SizedBox(height: 0.0403 * screenHeight),
-        const HeaderTextSmallCentered(
-            text: 'You haven’t made any delivery yet'),
+        const HeaderText(
+          text: 'You haven’t made any delivery yet',
+          headerTextSize: HeaderTextSize.small,
+          isCentered: true,
+        ),
         SizedBox(height: 0.005924 * screenHeight),
-        const DescriptionTextCentered(
-            text: 'Send a package, your orders will appear here..'),
+        const BodyText(
+          text: 'Send a package, your orders will appear here..',
+          isCentered: true,
+        ),
       ],
     );
   }
@@ -225,9 +229,13 @@ class HistoryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 cardType == CardType.pending
-                    ? const PendingBox()
-                    : const CompletedBox(),
-                const DescriptionTextSmallGrey(text: '23/02/2022'),
+                    ? const ProductStatusBox()
+                    : const ProductStatusBox(isCompleted: true),
+                const BodyText(
+                  text: '23/02/2022',
+                  isSmall: true,
+                  color: app_colors.textGrey,
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -314,7 +322,10 @@ class AddressBox extends StatelessWidget {
           children: [
             Column(
               children: const [
-                PickupRing(),
+                LocationRing(
+                  locationRingType: LocationRingType.pickup,
+                  locationRingSize: LocationRingSize.normal,
+                ),
                 SizedBox(height: 2),
                 AddressProgressLine(),
               ],
@@ -350,7 +361,10 @@ class AddressBox extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const DestinationRing(),
+            const LocationRing(
+              locationRingType: LocationRingType.destination,
+              locationRingSize: LocationRingSize.normal,
+            ),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/pages/history_page.dart';
 import 'package:pikkup/screens/pages/home_page.dart';
 import 'package:pikkup/screens/pages/settings_page.dart';
 import 'package:pikkup/screens/pages/wallet_page.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/home_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return SafeArea(
       child: Scaffold(
-        body: IndexedStack(//This will keep the state of the individual screens while switched
+        body: IndexedStack(
+          //This will keep the state of the individual screens while switched
           index: model.currentIndex,
           children: screens,
         ),

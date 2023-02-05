@@ -3,10 +3,10 @@ import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/text_field_boxes/password_box.dart';
-import 'package:pikkup/components/texts/description_text.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/dialog_screen/change_password_successful_dialog_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/settings_page_view_models/change_password_two_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
@@ -78,7 +78,7 @@ class _ChangePasswordTwoScreenState extends State<ChangePasswordTwoScreen> {
                       ),
                     ),
                     const SizedBox(height: 46),
-                    const DescriptionText(
+                    const BodyText(
                         text:
                             'Enter your new password you would like to use for your account'),
                     const SizedBox(height: 20),

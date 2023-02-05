@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
-import 'package:pikkup/components/buttons/wide_outlined_button.dart';
-import 'package:pikkup/components/texts/description_text.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/create_account_screen.dart';
 import 'package:pikkup/screens/login_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -39,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const DescriptionText(text: 'How do you wish to continue?'),
+              const BodyText(text: 'How do you wish to continue?'),
               const SizedBox(height: 60),
               WideButton(
                 label: 'Create an Account',
@@ -48,8 +47,9 @@ class WelcomeScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 20),
-              WideOutlinedButton(
+              WideButton(
                 label: 'Log in',
+                isOutlined: true,
                 onPressedCallback: () {
                   Navigator.pushNamed(context, LoginScreen.id);
                 },

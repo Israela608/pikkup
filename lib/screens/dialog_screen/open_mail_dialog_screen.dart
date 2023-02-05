@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/components/buttons/wide_button.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/widgets/blended_app_bar.dart';
-
-import '../../components/buttons/wide_outlined_button.dart';
-import '../../components/texts/description_text_centered.dart';
-import '../../components/texts/header_text_small_centered.dart';
 
 class OpenMailDialogScreen extends StatelessWidget {
   const OpenMailDialogScreen({Key? key}) : super(key: key);
@@ -33,14 +32,21 @@ class OpenMailDialogScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const HeaderTextSmallCentered(text: 'We\'ve sent you a mail'),
+              const HeaderText(
+                text: 'We\'ve sent you a mail',
+                headerTextSize: HeaderTextSize.small,
+                isCentered: true,
+              ),
               const SizedBox(height: 8),
-              const DescriptionTextCentered(
-                  text:
-                      'Check your mail and follow the instructions to reset your password.'),
+              const BodyText(
+                text:
+                    'Check your mail and follow the instructions to reset your password.',
+                isCentered: true,
+              ),
               const SizedBox(height: 114),
-              WideOutlinedButton(
+              WideButton(
                 label: 'Open Mail app',
+                isOutlined: true,
                 onPressedCallback: () {},
               )
             ],

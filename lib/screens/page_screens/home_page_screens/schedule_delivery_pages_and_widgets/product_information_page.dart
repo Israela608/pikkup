@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/text_field_boxes/number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
-import 'package:pikkup/components/texts/description_text.dart';
-import 'package:pikkup/components/texts/header_text_blue.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/page_next_button.dart';
 import 'package:pikkup/view_models/home_page_view_models/send_a_package_view_model.dart';
 import 'package:provider/provider.dart';
@@ -23,9 +23,12 @@ class ProductInformationPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const HeaderTextVerySmall(text: 'Product Information'),
+            const HeaderText(
+              text: 'Product Information',
+              headerTextSize: HeaderTextSize.verySmall,
+            ),
             const SizedBox(height: 8),
-            const DescriptionText(
+            const BodyText(
                 text:
                     'Make sure the information you are providing is as accurate as possible'),
             const SizedBox(height: 32),
@@ -34,7 +37,10 @@ class ProductInformationPage extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               height: 94,
-              child: const HeaderTextBlue(text: 'WeightBox'),
+              child: const HeaderText(
+                text: 'WeightBox',
+                color: app_colors.primaryBlue,
+              ),
             ),
             const SizedBox(height: 24),
             QuantityBoxWidget(textController: _quantityController),

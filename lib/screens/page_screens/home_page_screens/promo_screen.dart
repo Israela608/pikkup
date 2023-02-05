@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
-import 'package:pikkup/components/texts/description_text_small.dart';
-import 'package:pikkup/components/texts/header_text_small.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/view_models/home_page_view_models/promo_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -132,9 +132,15 @@ class PromoCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        HeaderTextSmall(text: label),
+                        HeaderText(
+                          text: label,
+                          headerTextSize: HeaderTextSize.small,
+                        ),
                         const SizedBox(height: 8),
-                        DescriptionTextSmall(text: description)
+                        BodyText(
+                          text: description,
+                          isSmall: true,
+                        ),
                       ],
                     ),
                   ),

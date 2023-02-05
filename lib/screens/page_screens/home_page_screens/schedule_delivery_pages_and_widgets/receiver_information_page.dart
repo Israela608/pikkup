@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pikkup/components/app_check_box.dart';
 import 'package:pikkup/components/buttons/view_all_button.dart';
-import 'package:pikkup/components/receiver_info_card.dart';
 import 'package:pikkup/components/text_field_boxes/phone_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
-import 'package:pikkup/components/texts/plain_text_black.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/page_next_button.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/home_page_view_models/send_a_package_view_model.dart';
 import 'package:pikkup/widgets/send_a_package_bottomsheet.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +27,10 @@ class ReceiverInformationPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const HeaderTextVerySmall(text: 'Receiver’s Information'),
+            const HeaderText(
+              text: 'Receiver’s Information',
+              headerTextSize: HeaderTextSize.verySmall,
+            ),
             const SizedBox(height: 24),
             NameBoxWidget(textController: _nameController),
             const SizedBox(height: 24),
@@ -118,7 +120,10 @@ class SaveReceiverDetailsBox extends StatelessWidget {
           },
         ),
         const SizedBox(width: 10),
-        const PlainTextBlack(text: 'Save details')
+        const PlainText(
+          text: 'Save details',
+          isBlackColor: true,
+        ),
       ],
     );
   }
@@ -210,7 +215,7 @@ class ReceiverPageListView extends StatelessWidget {
         //String phoneNumber = '09061870986';
         return InkWell(
           onTap: () {
-            nameController.value = TextEditingValue(
+            /* nameController.value = TextEditingValue(
               text: name,
               selection: TextSelection.fromPosition(
                 TextPosition(offset: name.length),
@@ -226,15 +231,15 @@ class ReceiverPageListView extends StatelessWidget {
             model.setName(name: name);
             model.setPhoneNumber(number: phoneNumber);
             //model.setPhoneNumber(phoneNumber: phoneNumber);
-            model.updateReceiverPageNextButton();
+            model.updateReceiverPageNextButton();*/
           },
           child: Container(
             margin: const EdgeInsets.only(bottom: 16),
-            child: ReceiverInfoCard(
+            /*child: ReceiverInfoCard(
               name: name,
               phoneNumber: phoneNumber,
               backgroundColor: app_colors.tileAsh,
-            ),
+            ),*/
           ),
         );
       },
@@ -265,7 +270,7 @@ class ReceiverBottomSheetListView extends StatelessWidget {
         String phoneNumber = '09061870986';
         return InkWell(
           onTap: () {
-            nameController.value = TextEditingValue(
+            /* nameController.value = TextEditingValue(
               text: name,
               selection: TextSelection.fromPosition(
                 TextPosition(offset: name.length),
@@ -281,15 +286,15 @@ class ReceiverBottomSheetListView extends StatelessWidget {
             model.setName(name: name);
             model.setPhoneNumber(phoneNumber: phoneNumber);
             model.updateReceiverPageNextButton();
-            Navigator.pop(context);
+            Navigator.pop(context);*/
           },
           child: Container(
             margin: const EdgeInsets.symmetric(vertical: 8),
-            child: ReceiverInfoCard(
+            /*  child: ReceiverInfoCard(
               name: name,
               phoneNumber: phoneNumber,
               backgroundColor: app_colors.tileAsh,
-            ),
+            ),*/
           ),
         );
       },

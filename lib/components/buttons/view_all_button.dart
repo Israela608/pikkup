@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/utils/dimensions.dart';
 
 class ViewAllButton extends StatelessWidget {
   const ViewAllButton({Key? key, required this.onPressed}) : super(key: key);
@@ -10,16 +11,17 @@ class ViewAllButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: app_colors.tileBlue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        backgroundColor: app_colors.tileBlue,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimensions.d4)),
         minimumSize: Size.zero,
         elevation: 0.4,
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.all(Dimensions.d8),
       ),
-      child: const Text(
+      child: Text(
         'view all',
         style: TextStyle(
-          fontSize: 10,
+          fontSize: Dimensions.d10,
           fontFamily: 'Inter',
           color: app_colors.primaryBlue,
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/utils/dimensions.dart';
 
 class AppCheckBox extends StatelessWidget {
   const AppCheckBox(
@@ -11,12 +12,13 @@ class AppCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 24,
-      width: 24,
+      height: Dimensions.d24,
+      width: Dimensions.d24,
       child: Checkbox(
         activeColor: app_colors.primaryBlue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        side: const BorderSide(width: 2.0, color: app_colors.checkBoxAsh),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimensions.d4)),
+        side: BorderSide(width: Dimensions.d2, color: app_colors.checkBoxAsh),
         value: isChecked,
         onChanged: onChangedCallback,
       ),

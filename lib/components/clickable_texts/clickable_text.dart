@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/texts/description_text.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
 
 class ClickableText extends StatelessWidget {
-  const ClickableText({Key? key, required this.text, required this.onPressed}) : super(key: key);
+  const ClickableText({
+    Key? key,
+    required this.text,
+    this.isNormalBlack = false,
+    this.isBold = false,
+    required this.onPressed,
+  }) : super(key: key);
+
   final String text;
+  final bool isNormalBlack;
+  final bool isBold;
+
   final dynamic onPressed;
 
   @override
@@ -12,18 +22,17 @@ class ClickableText extends StatelessWidget {
     return TextButton(
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 12,
-          fontFamily: 'Inter',
-          color: app_colors.primaryBlue,
-        ),
+        style: !isBold
+            ? interNormalText.copyWith(
+                color: isNormalBlack
+                    ? app_colors.primaryBlack
+                    : app_colors.primaryBlue,
+              )
+            : interNormalBoldText.copyWith(
+                color: app_colors.primaryBlue,
+              ),
       ),
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        alignment: Alignment.centerLeft,
-        minimumSize: Size.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      ),
+      style: clickableText,
       onPressed: onPressed,
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pikkup/components/buttons/back_circular.dart';
 import 'package:pikkup/components/pin.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/widgets/dispatcher_panel.dart';
 
 class TrackingMapScreen extends StatelessWidget {

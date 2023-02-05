@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/buttons/wide_outlined_button.dart';
-import 'package:pikkup/components/texts/description_text_small_white.dart';
-import 'package:pikkup/components/texts/header_text_white.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/components/buttons/wide_button.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar_blue.dart';
 import 'package:provider/provider.dart';
@@ -31,9 +31,10 @@ class BankTransferScreen extends StatelessWidget {
             const BankDetailsCard(),
             const Spacer(),
             //SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
-            WideOutlinedButton(
+            WideButton(
               label: 'I’ve sent the money',
               onPressedCallback: () {},
+              isOutlined: true,
             ),
             const SizedBox(height: 62),
           ],
@@ -126,17 +127,28 @@ class BankDetailsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const DescriptionTextSmallWhite(text: 'FIRST BANK'),
+              const BodyText(
+                text: 'FIRST BANK',
+                isSmall: true,
+                color: app_colors.white,
+              ),
               const SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const HeaderTextWhite(text: '4658603005'),
+                  const HeaderText(
+                    text: '4658603005',
+                    color: app_colors.white,
+                  ),
                   copyAccountNumber(),
                 ],
               ),
               const SizedBox(height: 12),
-              const DescriptionTextSmallWhite(text: 'DANIEL OSAKWE'),
+              const BodyText(
+                text: 'DANIEL OSAKWE',
+                isSmall: true,
+                color: app_colors.white,
+              ),
             ],
           )),
     );

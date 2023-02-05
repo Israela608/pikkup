@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:pikkup/components/spacers/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 
 class PhoneNumberBox extends StatelessWidget {
   const PhoneNumberBox({
@@ -25,7 +27,7 @@ class PhoneNumberBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Phone number'),
-        const SizedBox(height: 10),
+        const SpacerTitleBox(),
         InternationalPhoneNumberInput(
             onInputChanged: onChangedCallback,
             onInputValidated: onValidatedCallback,
@@ -51,7 +53,7 @@ class PhoneNumberBox extends StatelessWidget {
             ignoreBlank: false,
             autoValidateMode: AutovalidateMode.onUserInteraction,
             cursorColor: app_colors.primaryBlack,
-            selectorTextStyle: const TextStyle(color: app_colors.primaryBlack),
+            selectorTextStyle: textFieldText,
             initialValue: number,
             textFieldController: numberController,
             formatInput: false,
@@ -61,7 +63,7 @@ class PhoneNumberBox extends StatelessWidget {
             onSaved: (PhoneNumber number) {
               debugPrint('On Saved: $number');
             },
-            inputDecoration: kTextFieldDecoration),
+            inputDecoration: textFieldDecoration),
 
         /*
         ElevatedButton(

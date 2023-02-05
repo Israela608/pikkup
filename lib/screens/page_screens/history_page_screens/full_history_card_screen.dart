@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/address_progress_line.dart';
-import 'package:pikkup/components/destination_ring.dart';
-import 'package:pikkup/components/pending_box.dart';
-import 'package:pikkup/components/pickup_ring.dart';
+import 'package:pikkup/components/location_ring.dart';
+import 'package:pikkup/components/product_status_box.dart';
 import 'package:pikkup/components/receiver_info_card.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/pickup_to_destination_route_map_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 
 class FullHistoryCardScreen extends StatelessWidget {
@@ -31,7 +30,7 @@ class FullHistoryCardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   TitleValueBox(title: 'Tracking ID', value: '458748500AF'),
-                  PendingBox(),
+                  ProductStatusBox(),
                 ],
               ),
               const SizedBox(height: 24),
@@ -71,7 +70,10 @@ class AddressBox extends StatelessWidget {
             children: [
               Column(
                 children: const [
-                  PickupRing(),
+                  LocationRing(
+                    locationRingType: LocationRingType.pickup,
+                    locationRingSize: LocationRingSize.normal,
+                  ),
                   SizedBox(height: 2),
                   AddressProgressLine()
                 ],
@@ -107,7 +109,10 @@ class AddressBox extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const DestinationRing(),
+              const LocationRing(
+                locationRingType: LocationRingType.destination,
+                locationRingSize: LocationRingSize.normal,
+              ),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

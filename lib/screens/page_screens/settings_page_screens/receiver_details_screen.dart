@@ -5,7 +5,7 @@ import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/receiver_info_card.dart';
 import 'package:pikkup/components/text_field_boxes/phone_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/settings_page_view_models/receiver_details_view_model.dart';
 import 'package:pikkup/widgets/send_a_package_bottomsheet.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';

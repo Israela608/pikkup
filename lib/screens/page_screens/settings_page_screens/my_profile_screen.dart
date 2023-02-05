@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pikkup/components/texts/description_text_small.dart';
-import 'package:pikkup/components/texts/plain_text_black_bold.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/settings_page_screens/edit_profile_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 import 'package:pikkup/widgets/standard_app_bar.dart';
 
 File? imageFile;
@@ -208,9 +208,9 @@ class DetailsTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DescriptionTextSmall(text: title),
+        BodyText(text: title, isSmall: true),
         const SizedBox(height: 8),
-        PlainTextBlackBold(text: value),
+        PlainText(text: value, isBlackColor: true, isBold: true),
       ],
     );
   }

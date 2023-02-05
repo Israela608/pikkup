@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
-import 'package:pikkup/components/texts/description_text_small_white.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
-import 'package:pikkup/components/texts/money_text_white.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/components/texts/money_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/models/fund_wallet_options_model.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/enter_amount_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/fund_wallet_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar_blue.dart';
@@ -44,7 +44,10 @@ class _FundWalletScreenState extends State<FundWalletScreen> {
               SizedBox(height: 40),
               FundBalanceBox(),
               SizedBox(height: 44),
-              HeaderTextVerySmall(text: 'Fund wallet with'),
+              HeaderText(
+                text: 'Fund wallet with',
+                headerTextSize: HeaderTextSize.verySmall,
+              ),
               SizedBox(height: 39),
               FundingOptionList(),
               SizedBox(height: 169),
@@ -77,9 +80,13 @@ class FundBalanceBox extends StatelessWidget {
             children: [
               Column(
                 children: const [
-                  DescriptionTextSmallWhite(text: 'Balance'),
+                  BodyText(
+                    text: 'Balance',
+                    isSmall: true,
+                    color: app_colors.white,
+                  ),
                   SizedBox(height: 8),
-                  MoneyTextWhite(amount: '1,700'),
+                  MoneyText(amount: '1,700'),
                 ],
               ),
               // const SizedBox(height: 33),

@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
-import 'package:pikkup/components/texts/header_text_small_centered.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
-import 'package:pikkup/components/texts/plain_text_black.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/add_a_card_to_card_list_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/settings_page_view_models/payment_cards_list_view_model.dart';
 import 'package:pikkup/widgets/payment_card_tile.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
@@ -59,7 +58,11 @@ class NoCardsWidget extends StatelessWidget {
           image: AssetImage('images/cards_image.png'),
         ),
         const SizedBox(height: 41),
-        const HeaderTextSmallCentered(text: 'No cards have been added'),
+        const HeaderText(
+          text: 'No cards have been added',
+          headerTextSize: HeaderTextSize.small,
+          isCentered: true,
+        ),
         const SizedBox(height: 8),
         const Text(
           'Add cards now for smooth and easy transaction ',
@@ -98,7 +101,10 @@ class PaymentCardsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 29),
-          const HeaderTextVerySmall(text: 'My cards'),
+          const HeaderText(
+            text: 'My cards',
+            headerTextSize: HeaderTextSize.verySmall,
+          ),
           const SizedBox(height: 22),
           ListView(
             shrinkWrap: true,
@@ -190,7 +196,10 @@ class AddNewCardWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-          const PlainTextBlack(text: 'Add new card')
+          const PlainText(
+            text: 'Add new card',
+            isBlackColor: true,
+          ),
         ],
       ),
     );

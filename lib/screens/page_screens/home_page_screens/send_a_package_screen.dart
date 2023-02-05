@@ -1,12 +1,12 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/utils/unfocuser.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/destination_address_page.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/pickup_address_page.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/product_information_page.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/receiver_information_page.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/home_page_view_models/send_a_package_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 import 'package:provider/provider.dart';

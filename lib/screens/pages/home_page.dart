@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:pikkup/components/texts/description_text.dart';
-import 'package:pikkup/components/texts/description_text_small.dart';
-import 'package:pikkup/components/texts/description_text_small_white.dart';
-import 'package:pikkup/components/texts/header_text_small.dart';
-import 'package:pikkup/components/texts/header_text_small_blue.dart';
-import 'package:pikkup/components/texts/header_text_white.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/home_page_screens/delivery_option_screen.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/promo_screen.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/track_shipment_screen.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/fund_wallet_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -63,10 +59,11 @@ class NameCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                HeaderTextSmall(
+                HeaderText(
                   text: 'Hi Moses 🖐',
+                  headerTextSize: HeaderTextSize.small,
                 ),
-                DescriptionText(text: 'What would you like to do today?'),
+                BodyText(text: 'What would you like to do today?'),
               ],
             )),
       ),
@@ -106,10 +103,16 @@ class SendPackageCard extends StatelessWidget {
                     'images/delivery_bus.png',
                     width: 55,
                   ),
-                  const HeaderTextWhite(text: 'Send a package'),
-                  const DescriptionTextSmallWhite(
-                      text:
-                          'Deliver desired parcels to destination of your choice'),
+                  const HeaderText(
+                    text: 'Send a package',
+                    color: app_colors.white,
+                  ),
+                  const BodyText(
+                    text:
+                        'Deliver desired parcels to destination of your choice',
+                    isSmall: true,
+                    color: app_colors.white,
+                  ),
                 ],
               )),
         ),
@@ -211,9 +214,13 @@ class OthersCard extends StatelessWidget {
                     width: 24,
                   ),
                   const SizedBox(height: 16),
-                  HeaderTextSmallBlue(text: label),
+                  HeaderText(
+                    text: label,
+                    headerTextSize: HeaderTextSize.small,
+                    color: app_colors.primaryBlue,
+                  ),
                   const SizedBox(height: 8),
-                  DescriptionTextSmall(text: description),
+                  BodyText(text: description, isSmall: true),
                 ],
               )),
         ),

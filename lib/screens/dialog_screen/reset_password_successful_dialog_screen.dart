@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pikkup/components/buttons/wide_button.dart';
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/login_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
-
-import '../../components/buttons/wide_outlined_button.dart';
-import '../../components/texts/description_text_centered.dart';
-import '../../components/texts/header_text_small_centered.dart';
 
 class ResetPasswordSuccessfulDialogScreen extends StatelessWidget {
   const ResetPasswordSuccessfulDialogScreen({Key? key}) : super(key: key);
@@ -32,14 +31,21 @@ class ResetPasswordSuccessfulDialogScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const HeaderTextSmallCentered(text: 'Password reset successful'),
+              const HeaderText(
+                text: 'Password reset successful',
+                headerTextSize: HeaderTextSize.small,
+                isCentered: true,
+              ),
               const SizedBox(height: 8),
-              const DescriptionTextCentered(
-                  text:
-                      'Your password has been successfully reset.\nYou can now login to your account to continue.'),
+              const BodyText(
+                text:
+                    'Your password has been successfully reset.\nYou can now login to your account to continue.',
+                isCentered: true,
+              ),
               const SizedBox(height: 114),
-              WideOutlinedButton(
+              WideButton(
                 label: 'Go to Login',
+                isOutlined: true,
                 onPressedCallback: () {
                   Navigator.pushNamed(context, LoginScreen.id);
                 },

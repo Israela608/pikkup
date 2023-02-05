@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/texts/plain_text_black.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 
 class PaymentCardTile extends StatelessWidget {
   const PaymentCardTile({
@@ -45,7 +45,7 @@ class PaymentCardTile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PlainTextBlack(text: cardNumber),
+              PlainText(text: cardNumber, isBlackColor: true),
               const SizedBox(height: 8),
               Text(
                 expiryDate,

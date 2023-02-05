@@ -4,11 +4,11 @@ import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/text_field_boxes/parcel_id_box.dart';
-import 'package:pikkup/components/texts/header_text_very_small.dart';
-import 'package:pikkup/components/texts/plain_text_black.dart';
+import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/tracking_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
-import 'package:pikkup/utils/constants.dart';
 import 'package:pikkup/view_models/home_page_view_models/track_shipment_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
@@ -54,11 +54,16 @@ class _TrackShipmentScreenState extends State<TrackShipmentScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 32),
-                  const HeaderTextVerySmall(text: 'Enter your Parcel ID'),
+                  const HeaderText(
+                    text: 'Enter your Parcel ID',
+                    headerTextSize: HeaderTextSize.verySmall,
+                  ),
                   const SizedBox(height: 8),
-                  const PlainTextBlack(
-                      text:
-                          'Input the parcel ID of the shipment you wish to track'),
+                  const PlainText(
+                    text:
+                        'Input the parcel ID of the shipment you wish to track',
+                    isBlackColor: true,
+                  ),
                   const SizedBox(height: 26),
                   ParcelIDBoxWidget(textController: _parcelIdController),
                   const SizedBox(height: 10),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/texts/description_text.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
+import 'package:pikkup/components/texts/body_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 
 class AddressCard extends StatelessWidget {
   const AddressCard({Key? key, required this.text, required this.onPressed})
@@ -11,21 +14,16 @@ class AddressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: app_colors.tileBlue,
-        border: Border.all(
-            width: 1, color: app_colors.primaryBlue.withOpacity(0.15)),
-      ),
+      margin: EdgeInsets.symmetric(vertical: Dimensions.d8),
+      decoration: borderedCardDecoration,
       child: Material(
         color: app_colors.tileAsh,
         child: InkWell(
           onTap: onPressed,
           child: Container(
             color: Colors.transparent,
-            padding: const EdgeInsets.all(16),
-            child: DescriptionText(text: text),
+            padding: UIParameters.standardPadding,
+            child: BodyText(text: text),
           ),
         ),
       ),

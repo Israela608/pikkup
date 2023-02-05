@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
-import 'package:pikkup/components/clickable_texts/clickable_text_black.dart';
-import 'package:pikkup/components/clickable_texts/clickable_text_bold.dart';
-import 'package:pikkup/components/texts/description_text.dart';
+import 'package:pikkup/components/clickable_texts/clickable_text.dart';
+import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
+import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/create_account_screen.dart';
 import 'package:pikkup/screens/forgot_password_screen.dart';
 import 'package:pikkup/screens/home_screen.dart';
-import 'package:pikkup/utils/app_colors.dart' as app_colors;
 import 'package:pikkup/widgets/blended_app_bar.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:provider/provider.dart';
 
 import '../components/text_field_boxes/email_box.dart';
 import '../components/text_field_boxes/password_box.dart';
-import '../utils/constants.dart';
 import '../view_models/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -68,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 24),
                     const HeaderText(text: 'Log in to your account'),
                     const SizedBox(height: 8),
-                    const DescriptionText(
+                    const BodyText(
                         text:
                             'You are one step away from accessing your pikkup account'),
                     const SizedBox(height: 26),
@@ -157,8 +156,9 @@ class ForgotPassword extends StatelessWidget {
     return RichText(
       text: TextSpan(children: [
         WidgetSpan(
-          child: ClickableTextBlack(
+          child: ClickableText(
             text: 'Forgot your Password?',
+            isNormalBlack: true,
             onPressed: () {
               Navigator.pushNamed(context, ForgotPasswordScreen.id);
             },
@@ -183,8 +183,9 @@ class MixedText extends StatelessWidget {
           ),
           WidgetSpan(
             alignment: PlaceholderAlignment.middle,
-            child: ClickableTextBold(
+            child: ClickableText(
               text: ' Create account ',
+              isBold: true,
               onPressed: () {
                 Navigator.pushNamed(context, CreateAccountScreen.id);
               },
