@@ -5,8 +5,9 @@ import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/home_page_screens/delivery_option_screen.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/promo_screen.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/track_shipment_screen.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/fund_wallet_screen.dart';
+import 'package:pikkup/screens/tracking/track_shipment_screen.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,12 +16,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: UIParameters.screenHorizontalPadding,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: const [
-            SizedBox(height: 16),
+            SizedBox(height: 70),
             NameCard(),
             SizedBox(height: 24),
             SendPackageCard(),

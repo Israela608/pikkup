@@ -5,8 +5,8 @@ import 'package:pikkup/components/text_field_boxes/email_box.dart';
 import 'package:pikkup/components/text_field_boxes/phone_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/my_profile_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/settings_page_view_models/edit_profile_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +32,7 @@ class EditProfileScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: app_colors.background,
-        appBar: StandardAppBar(label: 'Edit Profile'),
+        appBar: StandardAppBar(title: 'Edit Profile'),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: SingleChildScrollView(
@@ -56,7 +56,7 @@ class EditProfileScreen extends StatelessWidget {
                       model.setName(name: value);
                     },
                   ),
-                  const SizedBox(height: kTextFieldBoxSpace),
+                  SizedBox(height: Dimensions.standardSpacing),
                   EmailBox(
                     emailController: _emailController,
                     validatorCallback: (value) {
@@ -68,7 +68,7 @@ class EditProfileScreen extends StatelessWidget {
                       model.setEmail(email: value);
                     },
                   ),
-                  const SizedBox(height: kTextFieldBoxSpace),
+                  SizedBox(height: Dimensions.standardSpacing),
                   PhoneNumberBox(
                     numberController: _phoneNumberController,
                     onValidatedCallback: (bool value) {

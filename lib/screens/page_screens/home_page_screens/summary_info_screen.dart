@@ -18,7 +18,7 @@ class SummaryInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: app_colors.background,
-      appBar: StandardAppBar(label: 'Send a Package'),
+      appBar: StandardAppBar(title: 'Send a Package'),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),

@@ -27,8 +27,8 @@ class Dimensions {
 
   //Spacing
   static double titleBoxSpacing = d8;
-  static double textFieldBoxSpacing = d24;
-  static double standardAppBarHeight = d60 + d8;
+  static double standardSpacing = d24;
+  static double standardAppBarHeight = d60 + d5;
   static double blendedAppBarHeight = d80 + d16;
   static double standardScreenPaddingSize = d16;
 

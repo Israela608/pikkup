@@ -6,9 +6,9 @@ import 'package:pikkup/components/time_date_circle.dart';
 import 'package:pikkup/components/tracking_progress_line.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/tracking_map_screen.dart';
+import 'package:pikkup/screens/tracking/dispatcher_panel.dart';
+import 'package:pikkup/screens/tracking/tracking_map_screen.dart';
 import 'package:pikkup/view_models/home_page_view_models/tracking_view_model.dart';
-import 'package:pikkup/widgets/dispatcher_panel.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +21,7 @@ class TrackingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: app_colors.background,
-      appBar: StandardAppBar(label: 'Track Shipment'),
+      appBar: StandardAppBar(title: 'Track Shipment'),
       body: const DispatcherPanel(
         body: BodyWidget(),
       ),

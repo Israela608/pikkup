@@ -6,11 +6,9 @@ import 'package:pikkup/utils/dimensions.dart';
 const double kStandardAppBarHeight = 68;
 const double kBlendedAppBarHeight = 96;
 const double kStandardPaddingSize = 16;
-const double kTextFieldBoxSpace = 24;
 
-//Padding
-const EdgeInsetsGeometry kScreenHorizontalPadding =
-    EdgeInsets.symmetric(horizontal: kStandardPaddingSize);
+EdgeInsetsGeometry get kScreenHorizontalPadding =>
+    const EdgeInsets.symmetric(horizontal: 16);
 
 /*
 TextInputDecorations

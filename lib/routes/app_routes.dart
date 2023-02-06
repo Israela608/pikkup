@@ -1,11 +1,14 @@
 import 'package:flutter/widgets.dart';
-import 'package:pikkup/screens/create_account_screen.dart';
-import 'package:pikkup/screens/dialog_screen/change_password_successful_dialog_screen.dart';
-import 'package:pikkup/screens/dialog_screen/open_mail_dialog_screen.dart';
-import 'package:pikkup/screens/dialog_screen/reset_password_successful_dialog_screen.dart';
-import 'package:pikkup/screens/forgot_password_screen.dart';
-import 'package:pikkup/screens/home_screen.dart';
-import 'package:pikkup/screens/login_screen.dart';
+import 'package:pikkup/screens/auth/create_account_screen.dart';
+import 'package:pikkup/screens/auth/forgot_password_screen.dart';
+import 'package:pikkup/screens/auth/login_screen.dart';
+import 'package:pikkup/screens/auth/reset_password_screen.dart';
+import 'package:pikkup/screens/auth/verify_number_screen.dart';
+import 'package:pikkup/screens/auth/welcome_screen.dart';
+import 'package:pikkup/screens/dialog/change_password_successful_dialog_screen.dart';
+import 'package:pikkup/screens/dialog/open_mail_dialog_screen.dart';
+import 'package:pikkup/screens/dialog/reset_password_successful_dialog_screen.dart';
+import 'package:pikkup/screens/home/home_screen.dart';
 import 'package:pikkup/screens/onboarding_screen.dart';
 import 'package:pikkup/screens/page_screens/history_page_screens/full_history_card_screen.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/choose_location_on_map_screen.dart';
@@ -15,9 +18,6 @@ import 'package:pikkup/screens/page_screens/home_page_screens/promo_screen.dart'
 import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_screen.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/send_a_package_screen.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/summary_info_screen.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/track_shipment_screen.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/tracking_map_screen.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/tracking_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/add_a_card_to_card_list_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/change_password_one_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/change_password_two_screen.dart';
@@ -32,9 +32,9 @@ import 'package:pikkup/screens/page_screens/wallet_page_screens/bank_transfer_sc
 import 'package:pikkup/screens/page_screens/wallet_page_screens/enter_amount_screen.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/fund_wallet_screen.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/payment_cards_screen.dart';
-import 'package:pikkup/screens/reset_password_screen.dart';
-import 'package:pikkup/screens/verify_number_screen.dart';
-import 'package:pikkup/screens/welcome_screen.dart';
+import 'package:pikkup/screens/tracking/track_shipment_screen.dart';
+import 'package:pikkup/screens/tracking/tracking_map_screen.dart';
+import 'package:pikkup/screens/tracking/tracking_screen.dart';
 
 class AppRoutes {
   // static const String onboarding = OnboardingScreen.id;
@@ -42,7 +42,7 @@ class AppRoutes {
   // static const String login = LoginScreen.id;
 
   static Map<String, WidgetBuilder> routes(BuildContext context) => {
-        OnboardingScreen.id: (context) => OnboardingScreen(),
+        OnboardingScreen.id: (context) => const OnboardingScreen(),
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
         ResetPasswordScreen.id: (context) => const ResetPasswordScreen(),

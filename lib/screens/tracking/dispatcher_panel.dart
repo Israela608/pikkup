@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/screens/home_screen.dart';
+import 'package:pikkup/screens/home/home_screen.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 late double _driverProfilePadding;

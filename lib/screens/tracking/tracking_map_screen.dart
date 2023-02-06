@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:pikkup/components/buttons/back_circular.dart';
 import 'package:pikkup/components/pin.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/widgets/dispatcher_panel.dart';
+import 'package:pikkup/screens/tracking/dispatcher_panel.dart';
 
 class TrackingMapScreen extends StatelessWidget {
   const TrackingMapScreen({Key? key}) : super(key: key);

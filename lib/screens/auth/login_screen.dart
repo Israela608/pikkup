@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/clickable_texts/clickable_text.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
-import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/create_account_screen.dart';
-import 'package:pikkup/screens/forgot_password_screen.dart';
-import 'package:pikkup/screens/home_screen.dart';
-import 'package:pikkup/widgets/blended_app_bar.dart';
+import 'package:pikkup/screens/auth/create_account_screen.dart';
+import 'package:pikkup/screens/auth/forgot_password_screen.dart';
+import 'package:pikkup/screens/home/home_screen.dart';
 import 'package:pikkup/widgets/error_message.dart';
+import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 import 'package:provider/provider.dart';
 
-import '../components/text_field_boxes/email_box.dart';
-import '../components/text_field_boxes/password_box.dart';
-import '../view_models/login_view_model.dart';
+import '../../components/text_field_boxes/email_box.dart';
+import '../../components/text_field_boxes/password_box.dart';
+import '../../view_models/login_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -51,45 +48,32 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<LoginViewModel>(context);
-    return Unfocuser(
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: app_colors.background,
-          appBar: BlendedAppBar(),
-          body: Container(
-            padding: kScreenHorizontalPadding,
-            child: SingleChildScrollView(
-              child: Form(
-                key: model.formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(height: 24),
-                    const HeaderText(text: 'Log in to your account'),
-                    const SizedBox(height: 8),
-                    const BodyText(
-                        text:
-                            'You are one step away from accessing your pikkup account'),
-                    const SizedBox(height: 26),
-                    EmailBoxWidget(textController: _emailController),
-                    const SizedBox(height: 24),
-                    PasswordBoxWidget(textController: _passwordController),
-                    const SizedBox(height: 20),
-                    ErrorMessage(errorMessage: model.errorMessage),
-                    const SizedBox(height: 4),
-                    const ForgotPassword(),
-                    const SizedBox(height: 32),
-                    const LoginButton(),
-                    const SizedBox(height: 48),
-                    const MixedText(),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
+    return PlainScaffold(
+        child: Form(
+      key: model.formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 24),
+          const HeaderText(text: 'Log in to your account'),
+          const SizedBox(height: 8),
+          const BodyText(
+              text: 'You are one step away from accessing your pikkup account'),
+          const SizedBox(height: 26),
+          EmailBoxWidget(textController: _emailController),
+          const SizedBox(height: 24),
+          PasswordBoxWidget(textController: _passwordController),
+          const SizedBox(height: 20),
+          ErrorMessage(errorMessage: model.errorMessage),
+          const SizedBox(height: 4),
+          const ForgotPassword(),
+          const SizedBox(height: 32),
+          const LoginButton(),
+          const SizedBox(height: 48),
+          const MixedText(),
+        ],
       ),
-    );
+    ));
   }
 }
 

@@ -40,7 +40,7 @@ class _ReceiverDetailsScreenState extends State<ReceiverDetailsScreen> {
       child: Scaffold(
         backgroundColor: app_colors.background,
         appBar: StandardAppBar(
-          label: 'Receiver’s details',
+          title: 'Receiver’s details',
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),

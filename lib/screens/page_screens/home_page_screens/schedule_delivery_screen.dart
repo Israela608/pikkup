@@ -19,7 +19,7 @@ class ScheduleDeliveryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: app_colors.background,
-      appBar: StandardAppBar(label: 'Schedule delivery'),
+      appBar: StandardAppBar(title: 'Schedule delivery'),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),

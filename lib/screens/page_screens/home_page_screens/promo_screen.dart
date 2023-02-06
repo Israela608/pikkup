@@ -29,7 +29,7 @@ class _PromoScreenState extends State<PromoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: app_colors.background,
-      appBar: StandardAppBar(label: 'Promos & Special offers'),
+      appBar: StandardAppBar(title: 'Promos & Special offers'),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
         child: Column(

@@ -6,7 +6,8 @@ import 'package:pikkup/components/text_field_boxes/password_box.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/dialog_screen/change_password_successful_dialog_screen.dart';
+import 'package:pikkup/screens/dialog/change_password_successful_dialog_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/settings_page_view_models/change_password_two_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
@@ -51,7 +52,7 @@ class _ChangePasswordTwoScreenState extends State<ChangePasswordTwoScreen> {
         child: Scaffold(
           backgroundColor: app_colors.background,
           appBar: StandardAppBar(
-            label: 'Change Password',
+            title: 'Change Password',
           ),
           body: Container(
             padding: kScreenHorizontalPadding,
@@ -84,7 +85,7 @@ class _ChangePasswordTwoScreenState extends State<ChangePasswordTwoScreen> {
                     const SizedBox(height: 20),
                     NewPasswordBoxWidget(
                         textController: _newPasswordController),
-                    const SizedBox(height: kTextFieldBoxSpace),
+                    SizedBox(height: Dimensions.standardSpacing),
                     ConfirmPasswordBoxWidget(
                         textController: _confirmPasswordController),
                     const SizedBox(height: 10),

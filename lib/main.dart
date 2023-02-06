@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/routes/app_routes.dart';
 import 'package:pikkup/routes/providers.dart';
-import 'package:pikkup/screens/onboarding_screen.dart';
+import 'package:pikkup/screens/home/home_screen.dart';
 import 'package:pikkup/utils/dimensions.dart';
 import 'package:provider/provider.dart';
 
@@ -17,11 +16,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    /* SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: app_colors.background,
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: app_colors.background,
-        systemNavigationBarIconBrightness: Brightness.dark));
+        systemNavigationBarIconBrightness: Brightness.dark));*/
+
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      //statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.transparent,
+      //systemNavigationBarIconBrightness: Brightness.dark,
+    ));
 
     // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
     //     statusBarIconBrightness: Brightness.dark,
@@ -56,14 +62,16 @@ class MyApp extends StatelessWidget {
           );
         },
 
-        //initialRoute: HomeScreen.id,
+        initialRoute: HomeScreen.id,
+        //initialRoute: ResetPasswordSuccessfulDialogScreen.id,
         //initialRoute: OpenMailDialogScreen.id,
         //initialRoute: BankTransferScreen.id,
         //initialRoute: PaymentOptionScreen.id,
         //initialRoute: PromoScreen.id,
         //initialRoute: AddACardScreen.id,
         //initialRoute: EnterAmountScreen.id,
-        initialRoute: OnboardingScreen.id,
+        //initialRoute: OnboardingScreen.id,
+        //initialRoute: WelcomeScreen.id,
         //initialRoute: SendAPackageScreen.id,
         //initialRoute: ResetPasswordScreen.id,
         //initialRoute: PaymentCardsScreen.id,

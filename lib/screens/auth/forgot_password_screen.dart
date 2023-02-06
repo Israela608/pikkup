@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/text_field_boxes/email_box.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
-import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/screens/dialog_screen/open_mail_dialog_screen.dart';
-import 'package:pikkup/widgets/blended_app_bar.dart';
+import 'package:pikkup/screens/dialog/open_mail_dialog_screen.dart';
+import 'package:pikkup/view_models/forgot_password_view_model.dart';
+import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 import 'package:provider/provider.dart';
-
-import '../config/themes/decorations.dart';
-import '../view_models/forgot_password_view_model.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -41,34 +37,22 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Unfocuser(
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: app_colors.background,
-          appBar: BlendedAppBar(),
-          body: Container(
-            padding: kScreenHorizontalPadding,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 24),
-                  const HeaderText(text: 'Forgot Password'),
-                  const SizedBox(height: 8),
-                  const BodyText(
-                      text:
-                          'Enter the email used in registration to reset your password, we will send you instructions'),
-                  const SizedBox(height: 26),
-                  EmailBoxWidget(textController: _emailController),
-                  const SizedBox(height: 80),
-                  const ConfirmEmailButton(),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+    return PlainScaffold(
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: 24),
+        const HeaderText(text: 'Forgot Password'),
+        const SizedBox(height: 8),
+        const BodyText(
+            text:
+                'Enter the email used in registration to reset your password, we will send you instructions'),
+        const SizedBox(height: 26),
+        EmailBoxWidget(textController: _emailController),
+        const SizedBox(height: 80),
+        const ConfirmEmailButton(),
+      ],
+    ));
   }
 }
 

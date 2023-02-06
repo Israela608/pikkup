@@ -15,6 +15,6 @@ class SpacerTextFieldBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: Dimensions.textFieldBoxSpacing);
+    return SizedBox(height: Dimensions.standardSpacing);
   }
 }

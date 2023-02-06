@@ -32,7 +32,7 @@ class _DeliveryOptionScreenState extends State<DeliveryOptionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: app_colors.background,
-      appBar: StandardAppBar(label: 'Send a package'),
+      appBar: StandardAppBar(title: 'Send a package'),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),

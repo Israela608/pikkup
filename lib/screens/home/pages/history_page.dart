@@ -8,6 +8,7 @@ import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/history_page_screens/full_history_card_screen.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 enum CardType { pending, completed }
 
@@ -16,21 +17,11 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final screenHeight = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: AppBar(
-        title: const HeaderText(
-          text: 'History',
-          headerTextSize: HeaderTextSize.small,
-        ),
-        centerTitle: true,
-        toolbarHeight: 68,
-        backgroundColor: app_colors.background,
-        elevation: 1,
-      ),
-      body: Container(
+    return StandardScaffold(
+      title: 'History',
+      isScrollable: false,
+      isBackButtonPresent: false,
+      child: Container(
         padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
         child: History(history: true),
       ),

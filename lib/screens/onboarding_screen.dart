@@ -7,10 +7,11 @@ import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/screens/welcome_screen.dart';
+import 'package:pikkup/screens/auth/welcome_screen.dart';
+import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   static const String id = 'onboarding_screen';
 
@@ -25,8 +26,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-
     const pageDecoration = PageDecoration(
       pageColor: app_colors.background,
       imagePadding: EdgeInsets.zero,
@@ -35,89 +34,83 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       titlePadding: EdgeInsets.only(top: 24.0, bottom: 16.0),
     );
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: app_colors.background,
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 60),
-              Expanded(
-                child: IntroductionScreen(
-                  key: introKey,
-                  globalBackgroundColor: app_colors.background,
-                  pages: [
-                    PageViewModel(
-                      titleWidget: firstTitle,
-                      bodyWidget: const BodyText(
-                        text:
-                            'Get your parcels delivered with minimal effort anywhere you are.',
-                      ),
-                      image: _buildImage('onboarding_1.png'),
-                      decoration: pageDecoration,
-                    ),
-                    PageViewModel(
-                      titleWidget: secondTitle,
-                      bodyWidget: const BodyText(
-                        text:
-                            'Track your parcels live and receive regular updates on your shipment',
-                      ),
-                      image: _buildImage('onboarding_2.png'),
-                      decoration: pageDecoration,
-                    ),
-                    PageViewModel(
-                      titleWidget: thirdTitle,
-                      bodyWidget: const BodyText(
-                          text:
-                              'Perfect for individuals, small businesses and pretty much anyone who need to deliver a package'),
-                      image: _buildImage('onboarding_3.png'),
-                      decoration: pageDecoration,
-                    ),
-                  ],
-                  onChange: (page) {
-                    setState(() {
-                      pageNumber = page;
-                    });
-                  },
-                  showDoneButton: false,
-                  showNextButton: false,
-                  showSkipButton: false,
-                  showBackButton: true,
-                  back: const CircleAvatar(
-                    backgroundColor: app_colors.primaryBlue,
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
+    return PlainScaffold(
+      isBackButtonPresent: false,
+      isScrollable: false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 70),
+          Expanded(
+            child: IntroductionScreen(
+              key: introKey,
+              globalBackgroundColor: app_colors.background,
+              pages: [
+                PageViewModel(
+                  titleWidget: firstTitle,
+                  bodyWidget: const BodyText(
+                    text:
+                        'Get your parcels delivered with minimal effort anywhere you are.',
                   ),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  dotsDecorator: const DotsDecorator(
-                    size: Size(12.0, 5.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    ),
-                    color: Color(0xFFBDBDBD),
-                    activeColor: app_colors.primaryBlue,
-                    activeSize: Size(20.0, 5.0),
-                    activeShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    ),
+                  image: _buildImage('onboarding_1.png'),
+                  decoration: pageDecoration,
+                ),
+                PageViewModel(
+                  titleWidget: secondTitle,
+                  bodyWidget: const BodyText(
+                    text:
+                        'Track your parcels live and receive regular updates on your shipment',
                   ),
+                  image: _buildImage('onboarding_2.png'),
+                  decoration: pageDecoration,
+                ),
+                PageViewModel(
+                  titleWidget: thirdTitle,
+                  bodyWidget: const BodyText(
+                      text:
+                          'Perfect for individuals, small businesses and pretty much anyone who need to deliver a package'),
+                  image: _buildImage('onboarding_3.png'),
+                  decoration: pageDecoration,
+                ),
+              ],
+              onChange: (page) {
+                setState(() {
+                  pageNumber = page;
+                });
+              },
+              showDoneButton: false,
+              showNextButton: false,
+              showSkipButton: false,
+              showBackButton: true,
+              back: const CircleAvatar(
+                backgroundColor: app_colors.primaryBlue,
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 40),
-              wideButton(context: context),
-              const SizedBox(height: 20),
-              Container(
-                  alignment: Alignment.centerRight,
-                  height: 50,
-                  child: skipText()),
-              const SizedBox(height: 20),
-            ],
+              curve: Curves.fastLinearToSlowEaseIn,
+              dotsDecorator: const DotsDecorator(
+                size: Size(12.0, 5.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                ),
+                color: Color(0xFFBDBDBD),
+                activeColor: app_colors.primaryBlue,
+                activeSize: Size(20.0, 5.0),
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                ),
+              ),
+            ),
           ),
-        ),
+          const SizedBox(height: 40),
+          wideButton(context: context),
+          const SizedBox(height: 20),
+          Container(
+              alignment: Alignment.centerRight, height: 50, child: skipText()),
+          const SizedBox(height: 20),
+        ],
       ),
     );
   }

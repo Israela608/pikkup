@@ -22,7 +22,7 @@ class MyProfileScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: app_colors.background,
         appBar: StandardAppBar(
-          label: 'My Profile',
+          title: 'My Profile',
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),

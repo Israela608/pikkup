@@ -16,7 +16,7 @@ class LogOutScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: app_colors.background,
       appBar: StandardAppBar(
-        label: 'Logout',
+        title: 'Logout',
       ),
       body: SafeArea(
         child: Container(

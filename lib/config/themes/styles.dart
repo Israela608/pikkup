@@ -85,6 +85,15 @@ final wideButtonOutlined = OutlinedButton.styleFrom(
   ),
 );
 
+final elevatedButton = ElevatedButton.styleFrom(
+  backgroundColor: app_colors.tileBlue,
+  shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(Dimensions.d4)),
+  minimumSize: Size.zero,
+  elevation: 0.4,
+  padding: EdgeInsets.all(Dimensions.d8),
+);
+
 /*
 Clickable Text Button Styles
 */

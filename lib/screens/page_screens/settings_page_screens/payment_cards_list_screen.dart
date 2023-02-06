@@ -32,7 +32,7 @@ class _PaymentCardsListScreenState extends State<PaymentCardsListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: app_colors.background,
-      appBar: StandardAppBar(label: 'Payment cards'),
+      appBar: StandardAppBar(title: 'Payment cards'),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
         child: PaymentCardsWidget(

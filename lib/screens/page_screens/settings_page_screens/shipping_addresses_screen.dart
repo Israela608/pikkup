@@ -18,7 +18,7 @@ class ShippingAddressesScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: app_colors.background,
         appBar: StandardAppBar(
-          label: 'Shipping addresses',
+          title: 'Shipping addresses',
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),

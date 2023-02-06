@@ -47,7 +47,7 @@ class _ChangePasswordOneScreenState extends State<ChangePasswordOneScreen> {
         child: Scaffold(
           backgroundColor: app_colors.background,
           appBar: StandardAppBar(
-            label: 'Change Password',
+            title: 'Change Password',
           ),
           body: Container(
             padding: kScreenHorizontalPadding,

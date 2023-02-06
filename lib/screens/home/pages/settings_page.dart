@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/texts/body_text.dart';
-import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/page_screens/settings_page_screens/change_password_one_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/log_out_screen.dart';
@@ -8,72 +7,63 @@ import 'package:pikkup/screens/page_screens/settings_page_screens/my_profile_scr
 import 'package:pikkup/screens/page_screens/settings_page_screens/payment_cards_list_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/receiver_details_screen.dart';
 import 'package:pikkup/screens/page_screens/settings_page_screens/shipping_addresses_screen.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: AppBar(
-        title: const HeaderText(
-          text: 'Settings',
-          headerTextSize: HeaderTextSize.small,
-        ),
-        centerTitle: true,
-        toolbarHeight: 68,
-        backgroundColor: app_colors.background,
-        elevation: 2,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SettingsHeader(text: 'Account settings'),
-            SettingsTile(
-              icon: 'profile.png',
-              text: 'My Profile',
-              onPressed: () => Navigator.pushNamed(context, MyProfileScreen.id),
-            ),
-            SettingsTile(
-              icon: 'lock.png',
-              text: 'Change Password',
-              onPressed: () =>
-                  Navigator.pushNamed(context, ChangePasswordOneScreen.id),
-            ),
-            const SettingsHeader(text: 'Saved items'),
-            SettingsTile(
-              icon: 'card.png',
-              text: 'Payment Cards',
-              onPressed: () =>
-                  Navigator.pushNamed(context, PaymentCardsListScreen.id),
-            ),
-            SettingsTile(
-              icon: 'location.png',
-              text: 'Shipping Addresses',
-              onPressed: () =>
-                  Navigator.pushNamed(context, ShippingAddressesScreen.id),
-            ),
-            SettingsTile(
-              icon: 'details.png',
-              text: 'Receiver\'s details',
-              onPressed: () =>
-                  Navigator.pushNamed(context, ReceiverDetailsScreen.id),
-            ),
-            const SettingsHeader(text: 'Support'),
-            SettingsTile(
-                icon: 'notification.png',
-                text: 'Notifications',
-                onPressed: () {}),
-            SettingsTile(
-              icon: 'log_out.png',
-              text: 'Log out',
-              onPressed: () => Navigator.pushNamed(context, LogOutScreen.id),
-            ),
-            SettingsTile(icon: 'help.png', text: 'Help', onPressed: () {}),
-          ],
-        ),
+    return StandardScaffold(
+      title: 'Settings',
+      isBackButtonPresent: false,
+      isPaddingPresent: false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SettingsHeader(text: 'Account settings'),
+          SettingsTile(
+            icon: 'profile.png',
+            text: 'My Profile',
+            onPressed: () => Navigator.pushNamed(context, MyProfileScreen.id),
+          ),
+          SettingsTile(
+            icon: 'lock.png',
+            text: 'Change Password',
+            onPressed: () =>
+                Navigator.pushNamed(context, ChangePasswordOneScreen.id),
+          ),
+          const SettingsHeader(text: 'Saved items'),
+          SettingsTile(
+            icon: 'card.png',
+            text: 'Payment Cards',
+            onPressed: () =>
+                Navigator.pushNamed(context, PaymentCardsListScreen.id),
+          ),
+          SettingsTile(
+            icon: 'location.png',
+            text: 'Shipping Addresses',
+            onPressed: () =>
+                Navigator.pushNamed(context, ShippingAddressesScreen.id),
+          ),
+          SettingsTile(
+            icon: 'details.png',
+            text: 'Receiver\'s details',
+            onPressed: () =>
+                Navigator.pushNamed(context, ReceiverDetailsScreen.id),
+          ),
+          const SettingsHeader(text: 'Support'),
+          SettingsTile(
+              icon: 'notification.png',
+              text: 'Notifications',
+              onPressed: () {}),
+          SettingsTile(
+            icon: 'log_out.png',
+            text: 'Log out',
+            onPressed: () => Navigator.pushNamed(context, LogOutScreen.id),
+          ),
+          SettingsTile(icon: 'help.png', text: 'Help', onPressed: () {}),
+        ],
       ),
     );
   }

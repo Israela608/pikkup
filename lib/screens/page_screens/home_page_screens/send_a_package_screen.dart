@@ -42,7 +42,7 @@ class _SendAPackageScreenState extends State<SendAPackageScreen> {
       child: Scaffold(
         backgroundColor: app_colors.background,
         appBar: StandardAppBar(
-          label: 'Send a package',
+          title: 'Send a package',
           onBackPressed: () {
             model.currentPosition == 0
                 ? Navigator.pop(context)

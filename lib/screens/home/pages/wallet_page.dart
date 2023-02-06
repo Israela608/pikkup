@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/view_all_button.dart';
 import 'package:pikkup/components/texts/body_text.dart';
-import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/money_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/wallet_page_screens/fund_wallet_screen.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({Key? key}) : super(key: key);
@@ -15,31 +14,18 @@ class WalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //final screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: AppBar(
-        title: const HeaderText(
-            text: 'Wallet',
-            headerTextSize: HeaderTextSize.small,
-            color: app_colors.white),
-        centerTitle: true,
-        toolbarHeight: kStandardAppBarHeight,
-        backgroundColor: app_colors.primaryBlue,
-        elevation: 2,
-      ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              SizedBox(height: 40),
-              FundBox(),
-              SizedBox(height: 32),
-              FundingHistory(history: true),
-            ],
-          ),
-        ),
+    return StandardScaffold(
+      isBackButtonPresent: false,
+      isBlueAppBar: true,
+      title: 'Wallet',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          SizedBox(height: 40),
+          FundBox(),
+          SizedBox(height: 32),
+          FundingHistory(history: true),
+        ],
       ),
     );
   }

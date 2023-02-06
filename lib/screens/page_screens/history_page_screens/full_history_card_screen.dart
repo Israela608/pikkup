@@ -5,9 +5,8 @@ import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/product_status_box.dart';
 import 'package:pikkup/components/receiver_info_card.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/page_screens/home_page_screens/pickup_to_destination_route_map_screen.dart';
-import 'package:pikkup/widgets/standard_app_bar.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class FullHistoryCardScreen extends StatelessWidget {
   const FullHistoryCardScreen({Key? key}) : super(key: key);
@@ -16,38 +15,32 @@ class FullHistoryCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: StandardAppBar(label: 'History'),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  TitleValueBox(title: 'Tracking ID', value: '458748500AF'),
-                  ProductStatusBox(),
-                ],
-              ),
-              const SizedBox(height: 24),
-              const AddressBox(),
-              const SizedBox(height: 24),
-              const HistoryHeader(text: 'Product Info'),
-              const ProductInfoCard(),
-              const SizedBox(height: 24),
-              const HistoryHeader(text: 'Receiver Info'),
-              const ReceiverInfoCard(
-                  name: 'Adamu James', phoneNumber: '09061870986'),
-              const SizedBox(height: 24),
-              const DeliveryPriceCard(),
-              const SizedBox(height: 24),
+    return StandardScaffold(
+      title: 'History',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              TitleValueBox(title: 'Tracking ID', value: '458748500AF'),
+              ProductStatusBox(),
             ],
           ),
-        ),
+          const SizedBox(height: 24),
+          const AddressBox(),
+          const SizedBox(height: 24),
+          const HistoryHeader(text: 'Product Info'),
+          const ProductInfoCard(),
+          const SizedBox(height: 24),
+          const HistoryHeader(text: 'Receiver Info'),
+          const ReceiverInfoCard(
+              name: 'Adamu James', phoneNumber: '09061870986'),
+          const SizedBox(height: 24),
+          const DeliveryPriceCard(),
+          const SizedBox(height: 24),
+        ],
       ),
     );
   }

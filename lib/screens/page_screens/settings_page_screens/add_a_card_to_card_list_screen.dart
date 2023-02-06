@@ -48,7 +48,7 @@ class _AddACardToCardListScreenState extends State<AddACardToCardListScreen> {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: app_colors.background,
-          appBar: StandardAppBar(label: 'Payment cards'),
+          appBar: StandardAppBar(title: 'Payment cards'),
           body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: SingleChildScrollView(

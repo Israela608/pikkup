@@ -7,11 +7,10 @@ import 'package:pikkup/components/clickable_texts/clickable_text.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/login_screen.dart';
+import 'package:pikkup/screens/auth/login_screen.dart';
 import 'package:pikkup/view_models/verify_number_view_model.dart';
-import 'package:pikkup/widgets/blended_app_bar.dart';
 import 'package:pikkup/widgets/error_message.dart';
+import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
@@ -43,34 +42,25 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<VerifyNumberViewModel>(context);
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: app_colors.background,
-        appBar: BlendedAppBar(),
-        body: Container(
-          padding: kScreenHorizontalPadding,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 30),
-                const HeaderText(text: 'Verify your Email'),
-                const SizedBox(height: 8),
-                const MixedTextOne(),
-                const SizedBox(height: 37),
-                PinCodeWidget(errorController: _errorController),
-                const SizedBox(height: 20),
-                ErrorMessage(errorMessage: model.errorMessage),
-                const SizedBox(height: 20),
-                const MixedTextTwo(),
-                const SizedBox(height: 125),
-                CompletedWideButton(
-                  errorController: _errorController,
-                ),
-              ],
-            ),
+    return PlainScaffold(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 30),
+          const HeaderText(text: 'Verify your Email'),
+          const SizedBox(height: 8),
+          const MixedTextOne(),
+          const SizedBox(height: 37),
+          PinCodeWidget(errorController: _errorController),
+          const SizedBox(height: 20),
+          ErrorMessage(errorMessage: model.errorMessage),
+          const SizedBox(height: 20),
+          const MixedTextTwo(),
+          const SizedBox(height: 125),
+          CompletedWideButton(
+            errorController: _errorController,
           ),
-        ),
+        ],
       ),
     );
   }

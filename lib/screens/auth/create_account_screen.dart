@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
@@ -12,13 +11,12 @@ import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/config/themes/styles.dart';
-import 'package:pikkup/screens/login_screen.dart';
-import 'package:pikkup/screens/verify_number_screen.dart';
+import 'package:pikkup/screens/auth/login_screen.dart';
+import 'package:pikkup/screens/auth/verify_number_screen.dart';
 import 'package:pikkup/view_models/create_account_view_model.dart';
-import 'package:pikkup/widgets/blended_app_bar.dart';
 import 'package:pikkup/widgets/error_message.dart';
+import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccountScreen extends StatefulWidget {
@@ -61,55 +59,43 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Unfocuser(
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: app_colors.background,
-          appBar: BlendedAppBar(),
-          body: Container(
-            padding: kScreenHorizontalPadding,
-            child: SingleChildScrollView(
-              child: Consumer<CreateAccountViewModel>(
-                  builder: (BuildContext context, model, Widget? child) {
-                return Form(
-                  key: model.formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const HeaderText(text: 'Create an account'),
-                      const SizedBox(height: 8),
-                      const BodyText(
-                          text:
-                              'Enter your personal details to help setup your account'),
-                      const SizedBox(height: 26),
-                      NameBoxWidget(textController: _nameController),
-                      const SizedBox(height: 24),
-                      EmailBoxWidget(textController: _emailController),
-                      const SizedBox(height: 24),
-                      PhoneNumberBoxWidget(
-                          textController: _phoneNumberController),
-                      const SizedBox(height: 24),
-                      PasswordBoxWidget(textController: _passwordController),
-                      const SizedBox(height: 24),
-                      ConfirmPasswordBoxWidget(
-                          textController: _confirmPasswordController),
-                      const SizedBox(height: 20),
-                      ErrorMessage(errorMessage: model.errorMessage),
-                      const SizedBox(height: 20),
-                      const MixedTextFirst(),
-                      const SizedBox(height: 48),
-                      const CreateAccountButton(),
-                      const SizedBox(height: 32),
-                      const MixedTextSecond(),
-                      const SizedBox(height: 42),
-                    ],
-                  ),
-                );
-              }),
-            ),
+    return PlainScaffold(
+      child: Consumer<CreateAccountViewModel>(
+          builder: (BuildContext context, model, Widget? child) {
+        return Form(
+          key: model.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const HeaderText(text: 'Create an account'),
+              const SizedBox(height: 8),
+              const BodyText(
+                  text:
+                      'Enter your personal details to help setup your account'),
+              const SizedBox(height: 26),
+              NameBoxWidget(textController: _nameController),
+              const SizedBox(height: 24),
+              EmailBoxWidget(textController: _emailController),
+              const SizedBox(height: 24),
+              PhoneNumberBoxWidget(textController: _phoneNumberController),
+              const SizedBox(height: 24),
+              PasswordBoxWidget(textController: _passwordController),
+              const SizedBox(height: 24),
+              ConfirmPasswordBoxWidget(
+                  textController: _confirmPasswordController),
+              const SizedBox(height: 20),
+              ErrorMessage(errorMessage: model.errorMessage),
+              const SizedBox(height: 20),
+              const MixedTextFirst(),
+              const SizedBox(height: 48),
+              const CreateAccountButton(),
+              const SizedBox(height: 32),
+              const MixedTextSecond(),
+              const SizedBox(height: 42),
+            ],
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

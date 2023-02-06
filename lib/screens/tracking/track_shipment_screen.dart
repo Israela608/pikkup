@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/text_field_boxes/parcel_id_box.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
-import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/tracking_screen.dart';
+import 'package:pikkup/screens/tracking/tracking_screen.dart';
 import 'package:pikkup/view_models/home_page_view_models/track_shipment_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
-import 'package:pikkup/widgets/standard_app_bar.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class TrackShipmentScreen extends StatefulWidget {
@@ -40,44 +36,31 @@ class _TrackShipmentScreenState extends State<TrackShipmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Unfocuser(
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: app_colors.background,
-          appBar: StandardAppBar(
-            label: 'Track Shipment',
+    return StandardScaffold(
+      title: 'Track Shipment',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 32),
+          const HeaderText(
+            text: 'Enter your Parcel ID',
+            headerTextSize: HeaderTextSize.verySmall,
           ),
-          body: Container(
-            padding: kScreenHorizontalPadding,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 32),
-                  const HeaderText(
-                    text: 'Enter your Parcel ID',
-                    headerTextSize: HeaderTextSize.verySmall,
-                  ),
-                  const SizedBox(height: 8),
-                  const PlainText(
-                    text:
-                        'Input the parcel ID of the shipment you wish to track',
-                    isBlackColor: true,
-                  ),
-                  const SizedBox(height: 26),
-                  ParcelIDBoxWidget(textController: _parcelIdController),
-                  const SizedBox(height: 10),
-                  Consumer<TrackShipmentViewModel>(
-                      builder: (BuildContext context, model, Widget? child) {
-                    return ErrorMessage(errorMessage: model.errorMessage);
-                  }),
-                  const SizedBox(height: 129),
-                  const TrackShipmentButton(),
-                ],
-              ),
-            ),
+          const SizedBox(height: 8),
+          const PlainText(
+            text: 'Input the parcel ID of the shipment you wish to track',
+            isBlackColor: true,
           ),
-        ),
+          const SizedBox(height: 26),
+          ParcelIDBoxWidget(textController: _parcelIdController),
+          const SizedBox(height: 10),
+          Consumer<TrackShipmentViewModel>(
+              builder: (BuildContext context, model, Widget? child) {
+            return ErrorMessage(errorMessage: model.errorMessage);
+          }),
+          const SizedBox(height: 129),
+          const TrackShipmentButton(),
+        ],
       ),
     );
   }
