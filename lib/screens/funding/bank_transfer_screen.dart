@@ -3,9 +3,8 @@ import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
-import 'package:pikkup/widgets/standard_app_bar_blue.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class BankTransferScreen extends StatelessWidget {
@@ -15,30 +14,26 @@ class BankTransferScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: StandardAppBarBlue(label: 'Payment'),
-      body:
-          //You can put a SingleChildScrollView here
-          Container(
-        padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 32),
-            const PaymentDescriptionCard(),
-            const SizedBox(height: 24),
-            const BankDetailsCard(),
-            const Spacer(),
-            //SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
-            WideButton(
-              label: 'I’ve sent the money',
-              onPressedCallback: () {},
-              isOutlined: true,
-            ),
-            const SizedBox(height: 62),
-          ],
-        ),
+    return StandardScaffold(
+      title: 'Payment',
+      isScrollable: false,
+      isBlueAppBar: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 32),
+          const PaymentDescriptionCard(),
+          const SizedBox(height: 24),
+          const BankDetailsCard(),
+          const Spacer(),
+          //SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
+          WideButton(
+            label: 'I’ve sent the money',
+            onPressedCallback: () {},
+            isOutlined: true,
+          ),
+          const SizedBox(height: 62),
+        ],
       ),
     );
   }

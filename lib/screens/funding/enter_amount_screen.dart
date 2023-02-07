@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/models/fund_wallet_options_model.dart';
-import 'package:pikkup/screens/page_screens/wallet_page_screens/bank_transfer_screen.dart';
-import 'package:pikkup/screens/page_screens/wallet_page_screens/payment_cards_screen.dart';
+import 'package:pikkup/screens/funding/bank_transfer_screen.dart';
+import 'package:pikkup/screens/funding/payment_cards_screen.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
-import 'package:pikkup/widgets/standard_app_bar_blue.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class EnterAmountScreen extends StatefulWidget {
@@ -31,29 +30,21 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Unfocuser(
-      child: Scaffold(
-        backgroundColor: app_colors.background,
-        appBar: StandardAppBarBlue(label: 'Wallet'),
-        body: SingleChildScrollView(
-          child: Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 32),
-                const DescriptionBox(),
-                const SizedBox(height: 32),
-                AmountBox(
-                  textController: widget._textController,
-                ),
-                const SizedBox(height: 158),
-                const ContinueButton(),
-              ],
-            ),
+    return StandardScaffold(
+      title: 'Wallet',
+      isBlueAppBar: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 32),
+          const DescriptionBox(),
+          const SizedBox(height: 32),
+          AmountBox(
+            textController: widget._textController,
           ),
-        ),
+          const SizedBox(height: 158),
+          const ContinueButton(),
+        ],
       ),
     );
   }

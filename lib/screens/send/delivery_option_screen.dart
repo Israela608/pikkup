@@ -2,46 +2,65 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
-import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/screens/send/schedule_delivery_screen.dart';
+import 'package:pikkup/screens/send/send_a_package_screen.dart';
 import 'package:pikkup/view_models/home_page_view_models/delivery_option_view_model.dart';
-import 'package:pikkup/widgets/standard_app_bar.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
-class ScheduleDeliveryScreen extends StatelessWidget {
-  const ScheduleDeliveryScreen({Key? key}) : super(key: key);
+class DeliveryOptionScreen extends StatefulWidget {
+  const DeliveryOptionScreen({Key? key}) : super(key: key);
 
-  static const String id = 'schedule_delivery_screen';
+  static const String id = 'delivery_option_screen';
+
+  @override
+  State<DeliveryOptionScreen> createState() => _DeliveryOptionScreenState();
+}
+
+class _DeliveryOptionScreenState extends State<DeliveryOptionScreen> {
+  @override
+  void initState() {
+    Provider.of<DeliveryOptionViewModel>(context, listen: false)
+        .setDeliveryTypeAsNull();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: StandardAppBar(title: 'Schedule delivery'),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              SizedBox(height: 23),
-              BodyText(
-                  text:
-                      'Choose the specific date and time your package will be picked up for delivery.'),
-              SizedBox(height: 29),
-
-              SizedBox(height: 32),
-
-              SizedBox(height: 82),
-
-              //SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
-
-              SizedBox(height: 31),
-            ],
+    return StandardScaffold(
+      title: 'Send a package',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 32),
+          const Text(
+            'Delivery option',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Sora',
+              color: app_colors.primaryBlack,
+            ),
           ),
-        ),
+          const SizedBox(height: 8),
+          const Text(
+            'Choose the option that best fits what you need to deliver your package',
+            style: TextStyle(
+              fontSize: 11,
+              fontFamily: 'Inter',
+              color: app_colors.description,
+            ),
+          ),
+          const SizedBox(height: 21),
+          const InstantDelivery(),
+          const SizedBox(height: 21),
+          const ScheduledDelivery(),
+          SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
+          const NextButton(),
+          const SizedBox(height: 31),
+        ],
       ),
     );
   }
@@ -176,7 +195,12 @@ class NextButton extends StatelessWidget {
         : WideButton(
             label: 'Next',
             onPressedCallback: () {
-              //model.selectedDeliveryType == DeliveryType.instant ? Navigator.pushNamed(context, HomeScreen.id) : Navigator.pushNamed(context, HomeScreen.id);
+              model.selectedDeliveryType == DeliveryType.instant
+                  ? Navigator.pushNamed(context, SendAPackageScreen.id)
+                  : Navigator.pushNamed(context, ScheduleDeliveryScreen.id);
+              //model.selectedDeliveryType == DeliveryType.scheduled ? Navigator.pushNamed(context, ScheduleDeliveryScreen.id) : null;
+              model.setDeliveryTypeAsNull();
+              model.notifyListeners();
             },
           );
   }

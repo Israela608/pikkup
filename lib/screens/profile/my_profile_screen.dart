@@ -5,8 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/screens/page_screens/settings_page_screens/edit_profile_screen.dart';
-import 'package:pikkup/widgets/standard_app_bar.dart';
+import 'package:pikkup/screens/profile/edit_profile_screen.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 File? imageFile;
 
@@ -18,32 +18,21 @@ class MyProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final model = Provider.of<ForgotPasswordViewModel>(context);
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: app_colors.background,
-        appBar: StandardAppBar(
-          title: 'My Profile',
-        ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          //we reduced 8 from the left padding, because all the components of the Column below have left padding of 8
-          child: SingleChildScrollView(
-            child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                SizedBox(height: 32),
-                ProfileImage(),
-                SizedBox(height: 32),
-                ProfileName(),
-                SizedBox(height: 48),
-                EditProfileButton(),
-                SizedBox(height: 16),
-                DetailsBox(),
-                SizedBox(height: 32),
-              ],
-            ),
-          ),
-        ),
+    return StandardScaffold(
+      title: 'My Profile',
+      child: Column(
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          SizedBox(height: 32),
+          ProfileImage(),
+          SizedBox(height: 32),
+          ProfileName(),
+          SizedBox(height: 48),
+          EditProfileButton(),
+          SizedBox(height: 16),
+          DetailsBox(),
+          SizedBox(height: 32),
+        ],
       ),
     );
   }

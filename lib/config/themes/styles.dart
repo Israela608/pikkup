@@ -20,6 +20,27 @@ final soraNormalText = TextStyle(
   color: app_colors.primaryBlack,
 );
 
+final soraSubtitleText = TextStyle(
+  fontSize: Dimensions.standardTextSize,
+  fontFamily: 'Sora',
+  color: app_colors.primaryBlack,
+);
+
+final soraSmallText = TextStyle(
+  fontSize: Dimensions.verySmallTextSize,
+  fontWeight: FontWeight.w700,
+  fontFamily: 'Sora',
+  color: app_colors.primaryBlack,
+);
+
+final soraSmallSubtitleText = soraSubtitleText.copyWith(
+  fontSize: Dimensions.smallTextSize,
+);
+
+final soraExtremelySmallText = soraSmallText.copyWith(
+  fontSize: Dimensions.extremelySmallTextSize,
+);
+
 final interNormalText = TextStyle(
   fontSize: Dimensions.standardTextSize,
   fontFamily: 'Inter',

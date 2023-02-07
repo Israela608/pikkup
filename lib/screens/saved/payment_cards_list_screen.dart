@@ -1,48 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
-import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/page_screens/wallet_page_screens/add_a_card_screen.dart';
-import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
-import 'package:pikkup/view_models/wallet_page_view_models/payment_cards_view_model.dart';
+import 'package:pikkup/screens/saved/add_a_card_to_card_list_screen.dart';
+import 'package:pikkup/view_models/settings_page_view_models/payment_cards_list_view_model.dart';
 import 'package:pikkup/widgets/payment_card_tile.dart';
-import 'package:pikkup/widgets/standard_app_bar_blue.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
-class PaymentCardsScreen extends StatefulWidget {
-  const PaymentCardsScreen({Key? key}) : super(key: key);
+class PaymentCardsListScreen extends StatefulWidget {
+  const PaymentCardsListScreen({Key? key}) : super(key: key);
 
-  static const String id = 'payment_cards_screen';
+  static const String id = 'payment_cards_list_screen';
 
   @override
-  State<PaymentCardsScreen> createState() => _PaymentCardsScreenState();
+  State<PaymentCardsListScreen> createState() => _PaymentCardsListScreenState();
 }
 
-class _PaymentCardsScreenState extends State<PaymentCardsScreen> {
+class _PaymentCardsListScreenState extends State<PaymentCardsListScreen> {
   @override
   void initState() {
-    Provider.of<PaymentCardsViewModel>(context, listen: false).instantiate();
+    Provider.of<PaymentCardsListViewModel>(context, listen: false)
+        .instantiate();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: StandardAppBarBlue(label: 'Payment'),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-          child: PaymentCardsWidget(
-              isCardPresent:
-                  Provider.of<PaymentCardsViewModel>(context, listen: false)
-                      .isCardPresent),
-        ),
-      ),
+    return StandardScaffold(
+      title: 'Payment cards',
+      isScrollable: false,
+      child: PaymentCardsWidget(
+          isCardPresent:
+              Provider.of<PaymentCardsListViewModel>(context, listen: false)
+                  .isCardPresent),
     );
   }
 }
@@ -81,7 +74,7 @@ class NoCardsWidget extends StatelessWidget {
         WideButton(
           label: 'Add a card',
           onPressedCallback: () {
-            Navigator.pushNamed(context, AddACardScreen.id);
+            Navigator.pushNamed(context, AddACardToCardListScreen.id);
           },
         ),
         const SizedBox(height: 52),
@@ -118,9 +111,9 @@ class PaymentCardsWidget extends StatelessWidget {
             ],
           ),
           // const SizedBox(height: 21),
-          SizedBox(height: 0.4 * MediaQuery.of(context).size.height),
-          const PayButton(),
-          const SizedBox(height: 31),
+          //SizedBox(height: 0.4 * MediaQuery.of(context).size.height),
+          //const PayButton(),
+          //const SizedBox(height: 31),
         ],
       );
     }
@@ -132,7 +125,8 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PaymentCardsViewModel>(builder: (context, model, child) {
+    return Consumer<PaymentCardsListViewModel>(
+        builder: (context, model, child) {
       return ListView.builder(
         shrinkWrap: true,
         itemBuilder: (context, index) {
@@ -140,21 +134,17 @@ class CardList extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 16),
             child: Material(
               borderRadius: BorderRadius.circular(4),
-              color: model.isSelected(index: index)
-                  ? app_colors.fillAsh
-                  : app_colors.cardBlue,
+              color: app_colors.tileBlue,
               child: InkWell(
-                onTap: () => model.setSelectedCard(index: index),
+                onTap: () {},
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     color: Colors.transparent,
                     border: Border.all(
-                      width: 1.5,
-                      color: model.isSelected(index: index)
-                          ? app_colors.primaryBlue
-                          : app_colors.cardAsh,
+                      width: 1,
+                      color: app_colors.buttonAsh,
                     ),
                   ),
                   child: PaymentCardTile(
@@ -181,7 +171,7 @@ class AddNewCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, AddACardScreen.id),
+      onTap: () => Navigator.pushNamed(context, AddACardToCardListScreen.id),
       child: Row(
         children: [
           Container(
@@ -209,36 +199,5 @@ class AddNewCardWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class PayButton extends StatelessWidget {
-  const PayButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final model = Provider.of<PaymentCardsViewModel>(context);
-    final String amount =
-        Provider.of<EnterAmountViewModel>(context, listen: false)
-            .amount
-            .toString();
-    return !model.isPayButtonActivated
-        ? WideButtonAsh(label: 'Pay N$amount')
-        : WideButton(
-            label: 'Pay N$amount',
-            onPressedCallback: () {
-              /*if (model.selectedOption.paymentId == PaymentId.wallet) {
-                //Navigator.pushNamed(context, SendAPackageScreen.id);
-              } else if (model.selectedOption.paymentId ==
-                  PaymentId.debitCard) {
-                //Navigator.pushNamed(context, ScheduleDeliveryScreen.id);
-              } else if (model.selectedOption.paymentId ==
-                  PaymentId.bankTransfer) {
-                //Navigator.pushNamed(context, PromoScreen.id);
-              }
-              model.instantiate();
-              model.notifyListener();*/
-            },
-          );
   }
 }

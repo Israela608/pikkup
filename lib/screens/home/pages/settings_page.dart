@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/screens/page_screens/settings_page_screens/change_password_one_screen.dart';
-import 'package:pikkup/screens/page_screens/settings_page_screens/log_out_screen.dart';
-import 'package:pikkup/screens/page_screens/settings_page_screens/my_profile_screen.dart';
-import 'package:pikkup/screens/page_screens/settings_page_screens/payment_cards_list_screen.dart';
-import 'package:pikkup/screens/page_screens/settings_page_screens/receiver_details_screen.dart';
-import 'package:pikkup/screens/page_screens/settings_page_screens/shipping_addresses_screen.dart';
+import 'package:pikkup/screens/auth/change_password_one_screen.dart';
+import 'package:pikkup/screens/auth/log_out_screen.dart';
+import 'package:pikkup/screens/profile/my_profile_screen.dart';
+import 'package:pikkup/screens/saved/payment_cards_list_screen.dart';
+import 'package:pikkup/screens/saved/receiver_details_screen.dart';
+import 'package:pikkup/screens/saved/shipping_addresses_screen.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class SettingsPage extends StatelessWidget {

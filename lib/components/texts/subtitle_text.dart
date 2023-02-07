@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/styles.dart';
 
-class BodyText extends StatelessWidget {
-  const BodyText({
+class SubtitleText extends StatelessWidget {
+  const SubtitleText({
     Key? key,
     required this.text,
-    this.color = app_colors.description,
+    this.color = app_colors.primaryBlack,
     this.isSmall = false,
     this.isCentered = false,
   }) : super(key: key);
@@ -21,8 +21,8 @@ class BodyText extends StatelessWidget {
     return Text(
       text,
       style: isSmall
-          ? interSmallText.copyWith(color: color)
-          : interNormalText.copyWith(color: color),
+          ? soraSmallSubtitleText.copyWith(color: color)
+          : soraSubtitleText.copyWith(color: color),
       textAlign: isCentered ? TextAlign.center : null,
     );
   }

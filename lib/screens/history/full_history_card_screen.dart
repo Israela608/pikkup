@@ -5,7 +5,7 @@ import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/product_status_box.dart';
 import 'package:pikkup/components/receiver_info_card.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/screens/page_screens/home_page_screens/pickup_to_destination_route_map_screen.dart';
+import 'package:pikkup/screens/send/pickup_to_destination_route_map_screen.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class FullHistoryCardScreen extends StatelessWidget {

@@ -1,14 +1,12 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/utils/unfocuser.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/destination_address_page.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/pickup_address_page.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/product_information_page.dart';
-import 'package:pikkup/screens/page_screens/home_page_screens/schedule_delivery_pages_and_widgets/receiver_information_page.dart';
+import 'package:pikkup/screens/send/pages/destination_address_page.dart';
+import 'package:pikkup/screens/send/pages/pickup_address_page.dart';
+import 'package:pikkup/screens/send/pages/product_information_page.dart';
+import 'package:pikkup/screens/send/pages/receiver_information_page.dart';
 import 'package:pikkup/view_models/home_page_view_models/send_a_package_view_model.dart';
-import 'package:pikkup/widgets/standard_app_bar.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class SendAPackageScreen extends StatefulWidget {
@@ -38,41 +36,36 @@ class _SendAPackageScreenState extends State<SendAPackageScreen> {
   Widget build(BuildContext context) {
     final model = Provider.of<SendAPackageViewModel>(context);
 
-    return Unfocuser(
-      child: Scaffold(
-        backgroundColor: app_colors.background,
-        appBar: StandardAppBar(
-          title: 'Send a package',
-          onBackPressed: () {
-            model.currentPosition == 0
-                ? Navigator.pop(context)
-                : model.previousPage();
-          },
-        ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 24),
-              const PageIndicator(),
-              const SizedBox(height: 24),
-              Expanded(
-                child: PageView.builder(
-                    //controller: PageController(),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: model.totalPages,
-                    itemBuilder: (_, index) {
-                      return IndexedStack(
-                        //This will keep the state of the individual screens while switched
-                        index: model.currentPosition.toInt(),
-                        children: pages,
-                      );
-                    }),
-              ),
-            ],
+    return StandardScaffold(
+      title: 'Send a package',
+      isScrollable: false,
+      onBackPressed: () {
+        model.currentPosition == 0
+            ? Navigator.pop(context)
+            : model.previousPage();
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 24),
+          const PageIndicator(),
+          const SizedBox(height: 24),
+          Expanded(
+            child: PageView.builder(
+                //controller: PageController(),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: model.totalPages,
+                itemBuilder: (_, index) {
+                  return SingleChildScrollView(
+                    child: IndexedStack(
+                      //This will keep the state of the individual screens while switched
+                      index: model.currentPosition.toInt(),
+                      children: pages,
+                    ),
+                  );
+                }),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -4,9 +4,8 @@ import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/view_models/home_page_view_models/promo_view_model.dart';
-import 'package:pikkup/widgets/standard_app_bar.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class PromoScreen extends StatefulWidget {
@@ -27,21 +26,18 @@ class _PromoScreenState extends State<PromoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: StandardAppBar(title: 'Promos & Special offers'),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
-            SizedBox(height: 32),
-            Expanded(child: PromoList()),
-            SizedBox(height: 38),
-            ApplyOfferButton(),
-            SizedBox(height: 17),
-          ],
-        ),
+    return StandardScaffold(
+      title: 'Promos & Special Offers',
+      isScrollable: false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          SizedBox(height: 32),
+          Expanded(child: PromoList()),
+          SizedBox(height: 38),
+          ApplyOfferButton(),
+          SizedBox(height: 17),
+        ],
       ),
     );
   }

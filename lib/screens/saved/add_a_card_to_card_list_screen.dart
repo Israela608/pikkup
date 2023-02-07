@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/text_field_boxes/card_cvv_box.dart';
@@ -7,9 +6,8 @@ import 'package:pikkup/components/text_field_boxes/card_expiry_date_box.dart';
 import 'package:pikkup/components/text_field_boxes/card_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
 import 'package:pikkup/components/texts/header_text.dart';
-import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/view_models/settings_page_view_models/add_a_card_to_card_list_view_model.dart';
-import 'package:pikkup/widgets/standard_app_bar.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class AddACardToCardListScreen extends StatefulWidget {
@@ -44,51 +42,39 @@ class _AddACardToCardListScreenState extends State<AddACardToCardListScreen> {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<AddACardToCardListViewModel>(context);
-    return Unfocuser(
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: app_colors.background,
-          appBar: StandardAppBar(title: 'Payment cards'),
-          body: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: SingleChildScrollView(
-              child: Form(
-                key: model.formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(height: 29),
-                    const HeaderText(
-                      text: 'Add card',
-                      headerTextSize: HeaderTextSize.verySmall,
-                    ),
-                    const SizedBox(height: 32),
-                    CardNameBoxWidget(textController: _cardNameController),
-                    const SizedBox(height: 24),
-                    CardNumberBoxWidget(textController: _cardNumberController),
-                    const SizedBox(height: 24),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ExpiryDateBoxWidget(
-                              textController: _expiryDateController),
-                        ),
-                        const SizedBox(width: 20),
-                        Expanded(
-                            child:
-                                CvvBoxWidget(textController: _cvvController)),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    //ErrorMessage(errorMessage: model.errorMessage),
-                    const SizedBox(height: 205),
-                    AddToMyCardsButton(isCompleted: model.isCompleted),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              ),
+    return StandardScaffold(
+      title: 'Payment cards',
+      child: Form(
+        key: model.formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 29),
+            const HeaderText(
+              text: 'Add card',
+              headerTextSize: HeaderTextSize.verySmall,
             ),
-          ),
+            const SizedBox(height: 32),
+            CardNameBoxWidget(textController: _cardNameController),
+            const SizedBox(height: 24),
+            CardNumberBoxWidget(textController: _cardNumberController),
+            const SizedBox(height: 24),
+            Row(
+              children: [
+                Expanded(
+                  child: ExpiryDateBoxWidget(
+                      textController: _expiryDateController),
+                ),
+                const SizedBox(width: 20),
+                Expanded(child: CvvBoxWidget(textController: _cvvController)),
+              ],
+            ),
+            const SizedBox(height: 10),
+            //ErrorMessage(errorMessage: model.errorMessage),
+            const SizedBox(height: 205),
+            AddToMyCardsButton(isCompleted: model.isCompleted),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );

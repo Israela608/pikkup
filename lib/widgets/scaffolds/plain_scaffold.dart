@@ -27,7 +27,7 @@ class PlainScaffold extends StatelessWidget {
       child: Scaffold(
         backgroundColor: app_colors.background,
         appBar: isBackButtonPresent
-            ? BlendedAppBar(
+            ? PlainAppBar(
                 onBackPressed: onBackPressed,
               )
             : null,
@@ -47,8 +47,8 @@ class PlainScaffold extends StatelessWidget {
   }
 }
 
-class BlendedAppBar extends StatelessWidget with PreferredSizeWidget {
-  BlendedAppBar({Key? key, this.onBackPressed}) : super(key: key);
+class PlainAppBar extends StatelessWidget with PreferredSizeWidget {
+  PlainAppBar({Key? key, this.onBackPressed}) : super(key: key);
   final dynamic onBackPressed;
 
   @override

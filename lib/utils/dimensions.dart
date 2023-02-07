@@ -19,6 +19,8 @@ class Dimensions {
   //Text
   static double standardTextSize = d16;
   static double smallTextSize = d12;
+  static double verySmallTextSize = d10;
+  static double extremelySmallTextSize = d8;
   static double headerTextSize = d25;
   static double headerTextSmallSize = d20;
 

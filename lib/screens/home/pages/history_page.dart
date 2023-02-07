@@ -7,7 +7,7 @@ import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
-import 'package:pikkup/screens/page_screens/history_page_screens/full_history_card_screen.dart';
+import 'package:pikkup/screens/history/full_history_card_screen.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 enum CardType { pending, completed }

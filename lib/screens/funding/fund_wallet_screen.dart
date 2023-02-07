@@ -6,12 +6,11 @@ import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/money_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/models/fund_wallet_options_model.dart';
-import 'package:pikkup/screens/page_screens/wallet_page_screens/enter_amount_screen.dart';
+import 'package:pikkup/screens/funding/enter_amount_screen.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/fund_wallet_view_model.dart';
-import 'package:pikkup/widgets/standard_app_bar_blue.dart';
+import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
 
 class FundWalletScreen extends StatefulWidget {
@@ -32,32 +31,27 @@ class _FundWalletScreenState extends State<FundWalletScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: app_colors.background,
-      appBar: StandardAppBarBlue(label: 'Wallet'),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              SizedBox(height: 40),
-              FundBalanceBox(),
-              SizedBox(height: 44),
-              HeaderText(
-                text: 'Fund wallet with',
-                headerTextSize: HeaderTextSize.verySmall,
-              ),
-              SizedBox(height: 39),
-              FundingOptionList(),
-              SizedBox(height: 169),
-              // const SizedBox(height: 21),
-              // SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
-              ContinueButton(),
-              SizedBox(height: 31),
-            ],
+    return StandardScaffold(
+      title: 'Wallet',
+      isBlueAppBar: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: const [
+          SizedBox(height: 40),
+          FundBalanceBox(),
+          SizedBox(height: 44),
+          HeaderText(
+            text: 'Fund wallet with',
+            headerTextSize: HeaderTextSize.verySmall,
           ),
-        ),
+          SizedBox(height: 39),
+          FundingOptionList(),
+          SizedBox(height: 169),
+          // const SizedBox(height: 21),
+          // SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
+          ContinueButton(),
+          SizedBox(height: 31),
+        ],
       ),
     );
   }

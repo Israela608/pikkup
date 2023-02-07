@@ -4,7 +4,7 @@ import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/money_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/screens/page_screens/wallet_page_screens/fund_wallet_screen.dart';
+import 'package:pikkup/screens/funding/fund_wallet_screen.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class WalletPage extends StatelessWidget {
@@ -12,8 +12,6 @@ class WalletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final screenHeight = MediaQuery.of(context).size.height;
-
     return StandardScaffold(
       isBackButtonPresent: false,
       isBlueAppBar: true,
