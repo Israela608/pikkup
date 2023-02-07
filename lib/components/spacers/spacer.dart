@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/utils/dimensions.dart';
 
-class SpacerTitleBox extends StatelessWidget {
-  const SpacerTitleBox({Key? key}) : super(key: key);
+class TitleBoxSpacer extends StatelessWidget {
+  const TitleBoxSpacer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +10,8 @@ class SpacerTitleBox extends StatelessWidget {
   }
 }
 
-class SpacerTextFieldBox extends StatelessWidget {
-  const SpacerTextFieldBox({Key? key}) : super(key: key);
+class StandardSpacer extends StatelessWidget {
+  const StandardSpacer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

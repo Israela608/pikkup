@@ -25,7 +25,7 @@ class NumberBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlainText(text: text),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         TextFormField(
             controller: textController,
             keyboardType: TextInputType.number,

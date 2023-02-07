@@ -28,7 +28,7 @@ class CardNumberBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Card Number'),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         TextFormField(
           controller: textController,
           keyboardType: TextInputType.phone,

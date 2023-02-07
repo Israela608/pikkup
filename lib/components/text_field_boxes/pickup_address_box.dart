@@ -29,7 +29,7 @@ class PickupAddressBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlainText(text: text),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         TextFormField(
           controller: addressController,
           keyboardType: TextInputType.text,

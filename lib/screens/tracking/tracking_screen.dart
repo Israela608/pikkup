@@ -5,9 +5,9 @@ import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/time_date_circle.dart';
 import 'package:pikkup/components/tracking_progress_line.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/tracking/dispatcher_panel.dart';
 import 'package:pikkup/screens/tracking/tracking_map_screen.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/view_models/home_page_view_models/tracking_view_model.dart';
 import 'package:pikkup/widgets/standard_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +35,7 @@ class BodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
+      padding: UIParameters.screenHorizontalPadding,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -127,7 +127,7 @@ class ViewOnMapButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: app_colors.primaryBlue.withOpacity(0.05),
+        backgroundColor: app_colors.primaryBlue.withOpacity(0.05),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         side: const BorderSide(color: app_colors.primaryBlue, width: 1),
         minimumSize: Size.zero,

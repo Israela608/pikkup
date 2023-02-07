@@ -27,7 +27,7 @@ class PhoneNumberBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Phone number'),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         InternationalPhoneNumberInput(
             onInputChanged: onChangedCallback,
             onInputValidated: onValidatedCallback,

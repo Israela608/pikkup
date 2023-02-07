@@ -6,7 +6,6 @@ import 'package:pikkup/components/product_status_box.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
-import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/screens/history/full_history_card_screen.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
@@ -21,10 +20,7 @@ class HistoryPage extends StatelessWidget {
       title: 'History',
       isScrollable: false,
       isBackButtonPresent: false,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: kStandardPaddingSize),
-        child: History(history: true),
-      ),
+      child: History(history: true),
     );
   }
 }

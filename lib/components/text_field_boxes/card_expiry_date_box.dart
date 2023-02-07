@@ -24,7 +24,7 @@ class CardExpiryDateBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Expiry Date'),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         TextFormField(
             controller: textController,
             keyboardType: TextInputType.phone,

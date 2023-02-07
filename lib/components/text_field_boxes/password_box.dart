@@ -29,7 +29,7 @@ class PasswordBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlainText(text: text),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         TextFormField(
             //expands: true,
             //minLines: null,

@@ -24,7 +24,7 @@ class CardCvvBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'CVV'),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         TextFormField(
             controller: textController,
             keyboardType: TextInputType.phone,

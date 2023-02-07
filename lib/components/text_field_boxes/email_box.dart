@@ -23,7 +23,7 @@ class EmailBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Email'),
-        const SpacerTitleBox(),
+        const TitleBoxSpacer(),
         TextFormField(
             controller: emailController,
             keyboardType: TextInputType.emailAddress,

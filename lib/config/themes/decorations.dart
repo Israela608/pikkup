@@ -3,13 +3,6 @@ import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/utils/dimensions.dart';
 
-const double kStandardAppBarHeight = 68;
-const double kBlendedAppBarHeight = 96;
-const double kStandardPaddingSize = 16;
-
-EdgeInsetsGeometry get kScreenHorizontalPadding =>
-    const EdgeInsets.symmetric(horizontal: 16);
-
 /*
 TextInputDecorations
 */
