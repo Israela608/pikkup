@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/location_ring.dart';
-import 'package:pikkup/components/spacers/spacer.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
@@ -29,7 +29,7 @@ class PickupAddressBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlainText(text: text),
-        const TitleBoxSpacer(),
+        const TitleBodySpacer(),
         TextFormField(
           controller: addressController,
           keyboardType: TextInputType.text,

@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 class ChangePasswordTwoScreen extends StatefulWidget {
   const ChangePasswordTwoScreen({Key? key}) : super(key: key);
 
-  static const String id = 'change_password_two_screen';
+  static const String id = '/change_password_two_screen';
 
   @override
   State<ChangePasswordTwoScreen> createState() =>
@@ -52,34 +52,35 @@ class _ChangePasswordTwoScreenState extends State<ChangePasswordTwoScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: Dimensions.d40),
             Center(
               child: Container(
-                height: 150,
-                width: 150,
+                height: Dimensions.d150,
+                width: Dimensions.d150,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: app_colors.tileBlue,
                 ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 43, vertical: 37),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Dimensions.d40 + Dimensions.d3,
+                    vertical: Dimensions.d30 + Dimensions.d7),
                 child: const Image(
                     image: AssetImage('images/lock_picture.png'),
                     fit: BoxFit.contain),
               ),
             ),
-            const SizedBox(height: 46),
+            SizedBox(height: Dimensions.d40 + Dimensions.d6),
             const BodyText(
                 text:
                     'Enter your new password you would like to use for your account'),
-            const SizedBox(height: 20),
+            SizedBox(height: Dimensions.d20),
             NewPasswordBoxWidget(textController: _newPasswordController),
             SizedBox(height: Dimensions.standardSpacing),
             ConfirmPasswordBoxWidget(
                 textController: _confirmPasswordController),
-            const SizedBox(height: 10),
+            SizedBox(height: Dimensions.d10),
             ErrorMessage(errorMessage: model.errorMessage),
-            const SizedBox(height: 80),
+            SizedBox(height: Dimensions.d80),
             const ChangePasswordButton(),
           ],
         ),

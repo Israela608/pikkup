@@ -1,13 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/money_text.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/models/fund_wallet_options_model.dart';
 import 'package:pikkup/screens/funding/enter_amount_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/fund_wallet_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
@@ -16,7 +20,7 @@ import 'package:provider/provider.dart';
 class FundWalletScreen extends StatefulWidget {
   const FundWalletScreen({Key? key}) : super(key: key);
 
-  static const String id = 'fund_wallet_screen';
+  static const String id = '/fund_wallet_screen';
 
   @override
   State<FundWalletScreen> createState() => _FundWalletScreenState();
@@ -36,21 +40,19 @@ class _FundWalletScreenState extends State<FundWalletScreen> {
       isBlueAppBar: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 40),
-          FundBalanceBox(),
-          SizedBox(height: 44),
-          HeaderText(
+        children: [
+          SizedBox(height: Dimensions.d40),
+          const FundBalanceBox(),
+          SizedBox(height: Dimensions.d40 + Dimensions.d4),
+          const HeaderText(
             text: 'Fund wallet with',
             headerTextSize: HeaderTextSize.verySmall,
           ),
-          SizedBox(height: 39),
-          FundingOptionList(),
-          SizedBox(height: 169),
-          // const SizedBox(height: 21),
-          // SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
-          ContinueButton(),
-          SizedBox(height: 31),
+          SizedBox(height: Dimensions.d30 + Dimensions.d9),
+          const FundingOptionList(),
+          SizedBox(height: Dimensions.d160 + Dimensions.d9),
+          const ContinueButton(),
+          SizedBox(height: Dimensions.d30 + Dimensions.d1),
         ],
       ),
     );
@@ -63,12 +65,10 @@ class FundBalanceBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: app_colors.primaryBlue,
-      ),
+      decoration: cardDecoration.copyWith(color: app_colors.primaryBlue),
       child: Container(
-          padding: const EdgeInsets.only(top: 32, bottom: 35),
+          padding: EdgeInsets.only(
+              top: Dimensions.d32, bottom: Dimensions.d30 + Dimensions.d5),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -79,12 +79,10 @@ class FundBalanceBox extends StatelessWidget {
                     isSmall: true,
                     color: app_colors.white,
                   ),
-                  SizedBox(height: 8),
+                  TitleBodySpacer(),
                   MoneyText(amount: '1,700'),
                 ],
               ),
-              // const SizedBox(height: 33),
-              // const FundWalletButton(),
             ],
           )),
     );
@@ -100,19 +98,23 @@ class FundingOptionList extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.only(bottom: 16),
+            margin: EdgeInsets.only(bottom: Dimensions.standardPaddingSize),
             child: Material(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: UIParameters.smallBorderRadius,
               color: model.isSelected(index: index)
                   ? app_colors.fillAsh
                   : app_colors.cardBlue,
               child: InkWell(
                 onTap: () => model.setSelectedOption(index: index),
                 child: Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 16, top: 20, bottom: 20),
+                  padding: EdgeInsets.only(
+                    left: Dimensions.d24,
+                    right: Dimensions.d16,
+                    top: Dimensions.d20,
+                    bottom: Dimensions.d20,
+                  ),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: UIParameters.smallBorderRadius,
                     color: Colors.transparent,
                     border: Border.all(
                       width: 1.5,
@@ -153,14 +155,10 @@ class FundingOptionList extends StatelessWidget {
           AssetImage(iconImage),
           color: app_colors.primaryBlue,
         ),
-        const SizedBox(width: 16),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 12,
-            fontFamily: 'Sora',
-            color: app_colors.primaryBlack,
-          ),
+        SizedBox(width: Dimensions.standardPaddingSize),
+        PlainText(
+          text: label,
+          isBlackColor: true,
         ),
       ],
     );

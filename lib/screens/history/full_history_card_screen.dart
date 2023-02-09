@@ -4,8 +4,14 @@ import 'package:pikkup/components/address_progress_line.dart';
 import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/product_status_box.dart';
 import 'package:pikkup/components/receiver_info_card.dart';
+import 'package:pikkup/components/spacer.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/send/pickup_to_destination_route_map_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class FullHistoryCardScreen extends StatelessWidget {
@@ -20,7 +26,7 @@ class FullHistoryCardScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
@@ -28,18 +34,18 @@ class FullHistoryCardScreen extends StatelessWidget {
               ProductStatusBox(),
             ],
           ),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const AddressBox(),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const HistoryHeader(text: 'Product Info'),
           const ProductInfoCard(),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const HistoryHeader(text: 'Receiver Info'),
           const ReceiverInfoCard(
               name: 'Adamu James', phoneNumber: '09061870986'),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const DeliveryPriceCard(),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
         ],
       ),
     );
@@ -62,41 +68,35 @@ class AddressBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
-                children: const [
-                  LocationRing(
+                children: [
+                  const LocationRing(
                     locationRingType: LocationRingType.pickup,
                     locationRingSize: LocationRingSize.normal,
                   ),
-                  SizedBox(height: 2),
-                  AddressProgressLine()
+                  SizedBox(height: Dimensions.d2),
+                  const AddressProgressLine()
                 ],
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: Dimensions.d12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'Pickup address',
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontFamily: 'Sora',
+                    style: soraSmallSubtitleText.copyWith(
                       color: app_colors.textGrey,
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    '36, Idris Jibowu Street, Ajah',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      color: app_colors.primaryBlack,
-                    ),
+                  const TitleBodySpacer(),
+                  const PlainText(
+                    text: '36, Idris Jibowu Street, Ajah',
+                    isBlackColor: true,
                   ),
                 ],
               )
             ],
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: Dimensions.d2),
 
           //Destination Section
           Row(
@@ -106,26 +106,20 @@ class AddressBox extends StatelessWidget {
                 locationRingType: LocationRingType.destination,
                 locationRingSize: LocationRingSize.normal,
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: Dimensions.d12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'Destination',
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontFamily: 'Sora',
+                    style: soraSmallSubtitleText.copyWith(
                       color: app_colors.textGrey,
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    '93 Ofada Rd, Mowe 110113, Loburo',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Inter',
-                      color: app_colors.primaryBlack,
-                    ),
+                  const TitleBodySpacer(),
+                  const PlainText(
+                    text: '93 Ofada Rd, Mowe 110113, Loburo',
+                    isBlackColor: true,
                   ),
                 ],
               )
@@ -143,21 +137,16 @@ class ProductInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: app_colors.tileBlue,
-        border: Border.all(
-            width: 1, color: app_colors.primaryBlue.withOpacity(0.15)),
-      ),
+      padding: UIParameters.standardPadding,
+      decoration: smallBorderedCardDecoration,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          TitleValueBox(title: 'Sending?', value: 'Samsung TV'),
-          SizedBox(height: 21),
-          TitleValueBox(title: 'Weight', value: '0.5 - 1kg'),
-          SizedBox(height: 21),
-          TitleValueBox(title: 'Quantity', value: '2 (Two)')
+        children: [
+          const TitleValueBox(title: 'Sending?', value: 'Samsung TV'),
+          SizedBox(height: Dimensions.d20 + Dimensions.d1),
+          const TitleValueBox(title: 'Weight', value: '0.5 - 1kg'),
+          SizedBox(height: Dimensions.d20 + Dimensions.d1),
+          const TitleValueBox(title: 'Quantity', value: '2 (Two)')
         ],
       ),
     );
@@ -177,21 +166,12 @@ class TitleValueBox extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 10,
-            fontFamily: 'Sora',
-            color: app_colors.textGrey,
-          ),
+          style: soraSmallSubtitleText.copyWith(color: app_colors.textGrey),
         ),
-        const SizedBox(height: 8),
+        const TitleBodySpacer(),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 13,
-            fontFamily: 'Inter',
-            fontWeight: FontWeight.w600,
-            color: app_colors.primaryBlack,
-          ),
+          style: interNormalText.copyWith(fontWeight: FontWeight.w500),
         ),
       ],
     );
@@ -206,16 +186,11 @@ class HistoryHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.only(bottom: Dimensions.smallPaddingSize),
       alignment: Alignment.bottomLeft,
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Sora',
-          color: app_colors.primaryBlack,
-        ),
+        style: soraNormalText.copyWith(fontSize: Dimensions.d14),
       ),
     );
   }
@@ -227,49 +202,38 @@ class DeliveryPriceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: app_colors.primaryBlue.withOpacity(0.05),
+      padding: EdgeInsets.symmetric(
+        vertical: Dimensions.smallPaddingSize,
+        horizontal: Dimensions.standardPaddingSize,
       ),
+      decoration: smallCardDecoration.copyWith(
+          color: app_colors.primaryBlue.withOpacity(0.05)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Delivery Price',
-            style: TextStyle(
-              fontSize: 10,
-              fontFamily: 'Sora',
-              color: app_colors.textGrey,
-            ),
+            style: soraSmallSubtitleText.copyWith(color: app_colors.textGrey),
           ),
-          const SizedBox(height: 8),
+          const TitleBodySpacer(),
           RichText(
-            text: const TextSpan(
+            text: TextSpan(
               children: [
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   child: Text(
                     '₦',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      //fontFamily: 'Inter',
-                      color: app_colors.primaryBlue,
-                    ),
+                    style: currencySmallText,
                   ),
                 ),
-                WidgetSpan(child: SizedBox(width: 2.31)),
+                WidgetSpan(
+                    child: SizedBox(
+                        width: Dimensions.d2 + (Dimensions.d1 * 0.31))),
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   child: Text(
                     '2,300',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Sora',
-                      color: app_colors.primaryBlue,
-                    ),
+                    style: moneySmallText,
                   ),
                 ),
               ],

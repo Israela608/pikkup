@@ -1,11 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
+import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/funding/add_a_card_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/payment_cards_view_model.dart';
 import 'package:pikkup/widgets/payment_card_tile.dart';
@@ -15,7 +18,7 @@ import 'package:provider/provider.dart';
 class PaymentCardsScreen extends StatefulWidget {
   const PaymentCardsScreen({Key? key}) : super(key: key);
 
-  static const String id = 'payment_cards_screen';
+  static const String id = '/payment_cards_screen';
 
   @override
   State<PaymentCardsScreen> createState() => _PaymentCardsScreenState();
@@ -49,28 +52,24 @@ class NoCardsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const SizedBox(height: 72),
-        const Image(
-          height: 187,
-          image: AssetImage('images/cards_image.png'),
+        SizedBox(height: Dimensions.d72),
+        Image(
+          height: Dimensions.d180 + Dimensions.d7,
+          image: const AssetImage('images/cards_image.png'),
         ),
-        const SizedBox(height: 41),
+        SizedBox(height: Dimensions.d41),
         const HeaderText(
           text: 'No cards have been added',
           headerTextSize: HeaderTextSize.small,
           isCentered: true,
         ),
-        const SizedBox(height: 8),
-        const Text(
-          'Add cards now for smooth and easy transaction ',
-          style: TextStyle(
-            fontSize: 12,
-            fontFamily: 'Inter',
-            color: app_colors.primaryBlack,
-          ),
-          textAlign: TextAlign.center,
+        const TitleBodySpacer(),
+        const BodyText(
+          text: 'Add cards now for smooth and easy transaction ',
+          color: app_colors.primaryBlack,
+          isCentered: true,
         ),
-        const SizedBox(height: 36),
+        SizedBox(height: Dimensions.d36),
         const Spacer(),
         WideButton(
           label: 'Add a card',
@@ -78,7 +77,7 @@ class NoCardsWidget extends StatelessWidget {
             Navigator.pushNamed(context, AddACardScreen.id);
           },
         ),
-        const SizedBox(height: 52),
+        SizedBox(height: Dimensions.d50 + Dimensions.d2),
       ],
     );
   }
@@ -111,10 +110,6 @@ class PaymentCardsWidget extends StatelessWidget {
               AddNewCardWidget()
             ],
           ),
-          // const SizedBox(height: 21),
-          SizedBox(height: 0.4 * MediaQuery.of(context).size.height),
-          const PayButton(),
-          const SizedBox(height: 31),
         ],
       );
     }
@@ -131,18 +126,18 @@ class CardList extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.only(bottom: 16),
+            margin: EdgeInsets.only(bottom: Dimensions.standardPaddingSize),
             child: Material(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: UIParameters.smallBorderRadius,
               color: model.isSelected(index: index)
                   ? app_colors.fillAsh
                   : app_colors.cardBlue,
               child: InkWell(
                 onTap: () => model.setSelectedCard(index: index),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: UIParameters.screenHorizontalPadding,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: UIParameters.smallBorderRadius,
                     color: Colors.transparent,
                     border: Border.all(
                       width: 1.5,
@@ -179,14 +174,15 @@ class AddNewCardWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            height: 43.2,
-            width: 43.2,
+            height: Dimensions.d40 + Dimensions.d3 + (Dimensions.d1 * 0.2),
+            width: Dimensions.d40 + Dimensions.d3 + (Dimensions.d1 * 0.2),
             //padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7.6),
+              borderRadius:
+                  BorderRadius.circular(Dimensions.d7 + (Dimensions.d1 * 0.6)),
               color: Colors.transparent,
               border: Border.all(
-                width: 1.9,
+                width: Dimensions.d1 + (Dimensions.d1 * 0.9),
                 color: app_colors.cardAsh,
               ),
             ),
@@ -195,7 +191,7 @@ class AddNewCardWidget extends StatelessWidget {
               color: app_colors.primaryBlue,
             ),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: Dimensions.standardPaddingSize),
           const PlainText(
             text: 'Add new card',
             isBlackColor: true,

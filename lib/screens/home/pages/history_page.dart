@@ -1,12 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/address_progress_line.dart';
 import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/product_status_box.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/history/full_history_card_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 enum CardType { pending, completed }
@@ -30,25 +35,23 @@ class NoHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 0.12 * screenHeight),
+        SizedBox(height: 0.12 * Dimensions.screenHeight),
         Flexible(
           child: Image(
-            height: 0.218 * screenHeight,
+            height: 0.218 * Dimensions.screenHeight,
             image: const AssetImage('images/no_transactions.png'),
           ),
         ),
-        SizedBox(height: 0.0403 * screenHeight),
+        SizedBox(height: 0.0403 * Dimensions.screenHeight),
         const HeaderText(
           text: 'You haven’t made any delivery yet',
           headerTextSize: HeaderTextSize.small,
           isCentered: true,
         ),
-        SizedBox(height: 0.005924 * screenHeight),
+        SizedBox(height: 0.005924 * Dimensions.screenHeight),
         const BodyText(
           text: 'Send a package, your orders will appear here..',
           isCentered: true,
@@ -101,33 +104,36 @@ class _HistoryState extends State<History> with SingleTickerProviderStateMixin {
               backgroundColor: app_colors.background,
               bottom: PreferredSize(
                 //preferredSize: const Size.fromHeight(50),
-                preferredSize: const Size.fromHeight(37),
+                preferredSize: Size.fromHeight(Dimensions.d30 + Dimensions.d7),
                 child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 24),
+                  margin: EdgeInsets.symmetric(
+                      vertical: Dimensions.standardSpacing),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    border:
-                        Border.all(color: app_colors.primaryBlueDark, width: 1),
+                    borderRadius: UIParameters.smallBorderRadius,
+                    border: Border.all(
+                        color: app_colors.primaryBlueDark,
+                        width: Dimensions.d1),
                   ),
                   child: TabBar(
                     //indicatorPadding: const EdgeInsets.symmetric(vertical: 12),
-                    labelPadding: const EdgeInsets.symmetric(vertical: 11),
+                    labelPadding:
+                        EdgeInsets.symmetric(vertical: Dimensions.d10),
                     indicatorSize: TabBarIndicatorSize.tab,
                     labelColor: app_colors.primaryWhite,
-                    labelStyle: const TextStyle(
-                      fontSize: 12,
+                    labelStyle: TextStyle(
+                      fontSize: Dimensions.standardTextSize,
                       fontFamily: 'Inter',
                     ),
                     unselectedLabelColor: app_colors.textAsh,
-                    unselectedLabelStyle: const TextStyle(
-                      fontSize: 12,
+                    unselectedLabelStyle: TextStyle(
+                      fontSize: Dimensions.standardTextSize,
                       fontFamily: 'Inter',
                     ),
                     controller: _tabController,
                     isScrollable: false,
                     indicator: BoxDecoration(
                       color: app_colors.primaryBlue,
-                      borderRadius: BorderRadius.circular(3),
+                      borderRadius: BorderRadius.circular(Dimensions.d3),
                     ),
                     //The items of the tab
                     tabs: const [
@@ -196,20 +202,9 @@ class HistoryCard extends StatelessWidget {
         Navigator.pushNamed(context, FullHistoryCardScreen.id);
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 24),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: app_colors.tileBlue,
-            border: Border.all(
-                width: 1, color: app_colors.primaryBlue.withOpacity(0.15)),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 5,
-                offset: const Offset(0, 0),
-                color: Colors.grey.withOpacity(0.3),
-              )
-            ]),
+        margin: EdgeInsets.only(bottom: Dimensions.standardSpacing),
+        padding: UIParameters.standardPadding,
+        decoration: smallShadowedBorderedCardDecoration,
         child: Column(
           children: [
             Row(
@@ -225,13 +220,13 @@ class HistoryCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: Dimensions.standardPaddingSize),
             const SendingToBox(goods: 'Samsung TV', receiver: 'Adamu James'),
-            const SizedBox(height: 24),
+            const StandardSpacer(),
             const AddressBox(
                 pickupAddress: '36, Idris Jibowu Street, Ajah',
                 destinationAddress: '93 Ofada Rd, Mowe 110113, Loburo'),
-            const SizedBox(height: 24),
+            const StandardSpacer(),
             const DeliveryPriceBox(currencySymbol: '₦', deliveryPrice: '2,300'),
           ],
         ),
@@ -251,7 +246,7 @@ class SendingToBox extends StatelessWidget {
     return Row(
       children: [
         TitleValueBox(title: 'Sending?', value: goods),
-        SizedBox(width: 0.185 * MediaQuery.of(context).size.width),
+        SizedBox(width: 0.185 * Dimensions.screenWidth),
         TitleValueBox(title: 'To', value: receiver),
       ],
     );
@@ -271,21 +266,12 @@ class TitleValueBox extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 10,
-            fontFamily: 'Sora',
-            color: app_colors.textGrey,
-          ),
+          style: soraSmallSubtitleText.copyWith(color: app_colors.textGrey),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: Dimensions.d4),
         Text(
           value,
-          style: const TextStyle(
-            fontSize: 13,
-            fontFamily: 'Inter',
-            fontWeight: FontWeight.w600,
-            color: app_colors.primaryBlack,
-          ),
+          style: interNormalText.copyWith(fontWeight: FontWeight.w500),
         ),
       ],
     );
@@ -308,41 +294,34 @@ class AddressBox extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
-              children: const [
-                LocationRing(
+              children: [
+                const LocationRing(
                   locationRingType: LocationRingType.pickup,
                   locationRingSize: LocationRingSize.normal,
                 ),
-                SizedBox(height: 2),
-                AddressProgressLine(),
+                SizedBox(height: Dimensions.d2),
+                const AddressProgressLine()
               ],
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: Dimensions.d12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Pickup address',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: 'Sora',
-                    color: app_colors.textGrey,
-                  ),
-                ),
-                const SizedBox(height: 8),
                 Text(
-                  pickupAddress,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Inter',
-                    color: app_colors.primaryBlack,
-                  ),
+                  'Pickup address',
+                  style: soraSmallSubtitleText.copyWith(
+                      color: app_colors.textGrey),
+                ),
+                const TitleBodySpacer(),
+                PlainText(
+                  text: pickupAddress,
+                  isBlackColor: true,
                 ),
               ],
             )
           ],
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: Dimensions.d2),
 
         //Destination Section
         Row(
@@ -352,26 +331,19 @@ class AddressBox extends StatelessWidget {
               locationRingType: LocationRingType.destination,
               locationRingSize: LocationRingSize.normal,
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: Dimensions.d12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Destination',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontFamily: 'Sora',
-                    color: app_colors.textGrey,
-                  ),
-                ),
-                const SizedBox(height: 8),
                 Text(
-                  destinationAddress,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Inter',
-                    color: app_colors.primaryBlack,
-                  ),
+                  'Destination',
+                  style: soraSmallSubtitleText.copyWith(
+                      color: app_colors.textGrey),
+                ),
+                const TitleBodySpacer(),
+                PlainText(
+                  text: destinationAddress,
+                  isBlackColor: true,
                 ),
               ],
             )
@@ -392,20 +364,18 @@ class DeliveryPriceBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5.7),
+      padding:
+          EdgeInsets.symmetric(vertical: Dimensions.d5 + (Dimensions.d1 * 0.7)),
       alignment: Alignment.centerLeft,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Delivery Price',
-            style: TextStyle(
-              fontSize: 8.5,
-              fontFamily: 'Sora',
-              color: app_colors.textGrey,
-            ),
-          ),
-          const SizedBox(height: 8),
+          Text('Delivery Price',
+              style: soraSmallSubtitleText.copyWith(
+                color: app_colors.textGrey,
+                fontSize: Dimensions.d10 + (Dimensions.d1 * 0.46),
+              )),
+          const TitleBodySpacer(),
           RichText(
             text: TextSpan(
               children: [
@@ -413,25 +383,18 @@ class DeliveryPriceBox extends StatelessWidget {
                   alignment: PlaceholderAlignment.middle,
                   child: Text(
                     currencySymbol,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      //fontFamily: 'Inter',
-                      color: app_colors.primaryBlue,
-                    ),
+                    style: currencyVerSmallText,
                   ),
                 ),
                 const WidgetSpan(child: SizedBox(width: 2.01)),
                 WidgetSpan(
+                    child: SizedBox(
+                        width: Dimensions.d2 + (Dimensions.d1 * 0.01))),
+                WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   child: Text(
                     deliveryPrice,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Sora',
-                      color: app_colors.primaryBlue,
-                    ),
+                    style: moneyVerSmallText,
                   ),
                 ),
               ],

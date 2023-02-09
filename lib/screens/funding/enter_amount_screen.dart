@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/models/fund_wallet_options_model.dart';
 import 'package:pikkup/screens/funding/bank_transfer_screen.dart';
 import 'package:pikkup/screens/funding/payment_cards_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +16,7 @@ import 'package:provider/provider.dart';
 class EnterAmountScreen extends StatefulWidget {
   EnterAmountScreen({Key? key}) : super(key: key);
 
-  static const String id = 'enter_amount_screen';
+  static const String id = '/enter_amount_screen';
 
   final TextEditingController _textController = TextEditingController();
 
@@ -36,13 +39,13 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 32),
+          SizedBox(height: Dimensions.d32),
           const DescriptionBox(),
-          const SizedBox(height: 32),
+          SizedBox(height: Dimensions.d32),
           AmountBox(
             textController: widget._textController,
           ),
-          const SizedBox(height: 158),
+          SizedBox(height: Dimensions.d150 + Dimensions.d8),
           const ContinueButton(),
         ],
       ),
@@ -56,20 +59,16 @@ class DescriptionBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: app_colors.fillAsh,
-      ),
+      decoration: smallCardDecoration.copyWith(color: app_colors.fillAsh),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 13),
-        child: const Text(
-          'Enter the amount you want to fund wallet in your wallet',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 12,
-            fontFamily: 'Inter',
-            color: app_colors.primaryBlack,
-          ),
+        padding: EdgeInsets.symmetric(
+          horizontal: Dimensions.d20 + Dimensions.d1,
+          vertical: Dimensions.d13,
+        ),
+        child: const BodyText(
+          text: 'Enter the amount you want to fund wallet in your wallet',
+          color: app_colors.primaryBlack,
+          isCentered: true,
         ),
       ),
     );
@@ -87,8 +86,8 @@ class AmountBox extends StatelessWidget {
     return Center(
       child: IntrinsicWidth(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            minWidth: 216,
+          constraints: BoxConstraints(
+            minWidth: Dimensions.d200 + Dimensions.d16,
           ),
           child: MoneyTextField(
             textController: textController,
@@ -133,12 +132,7 @@ class MoneyTextField extends StatelessWidget {
       //cursorHeight: 23,
       maxLength: 8,
       textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontSize: 27,
-        fontWeight: FontWeight.bold,
-        fontFamily: 'Inter',
-        color: app_colors.primaryBlue,
-      ),
+      style: moneyTextFieldText,
       inputFormatters: [
         /*MoneyInputFormatter(
           mantissaLength: 2,

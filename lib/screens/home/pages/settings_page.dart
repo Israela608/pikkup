@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/auth/change_password_one_screen.dart';
 import 'package:pikkup/screens/auth/log_out_screen.dart';
 import 'package:pikkup/screens/profile/my_profile_screen.dart';
 import 'package:pikkup/screens/saved/payment_cards_list_screen.dart';
 import 'package:pikkup/screens/saved/receiver_details_screen.dart';
 import 'package:pikkup/screens/saved/shipping_addresses_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -77,17 +80,14 @@ class SettingsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
-      height: 51,
-      padding: const EdgeInsets.only(left: 16, bottom: 8),
+      height: Dimensions.d50 + Dimensions.d1,
+      padding: EdgeInsets.only(
+          left: Dimensions.standardPaddingSize,
+          bottom: Dimensions.smallPaddingSize),
       alignment: Alignment.bottomLeft,
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          fontFamily: 'Inter',
-          color: app_colors.primaryBlack,
-        ),
+        style: interNormalText.copyWith(fontWeight: FontWeight.w500),
       ),
     );
   }
@@ -113,8 +113,8 @@ class SettingsTile extends StatelessWidget {
         //splashColor: Colors.blue,
         child: Container(
           color: Colors.transparent,
-          height: 56,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          height: Dimensions.d56,
+          padding: UIParameters.screenHorizontalPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -122,7 +122,7 @@ class SettingsTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ImageIcon(AssetImage('images/$icon')),
-                  const SizedBox(width: 16),
+                  SizedBox(width: Dimensions.standardPaddingSize),
                   BodyText(text: text)
                 ],
               ),

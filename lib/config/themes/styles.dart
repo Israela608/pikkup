@@ -26,15 +26,19 @@ final soraSubtitleText = TextStyle(
   color: app_colors.primaryBlack,
 );
 
+final soraSubtitleBoldText = soraSubtitleText.copyWith(
+  fontWeight: FontWeight.w600,
+);
+
+final soraSmallSubtitleText = soraSubtitleText.copyWith(
+  fontSize: Dimensions.smallTextSize,
+);
+
 final soraSmallText = TextStyle(
   fontSize: Dimensions.verySmallTextSize,
   fontWeight: FontWeight.w700,
   fontFamily: 'Sora',
   color: app_colors.primaryBlack,
-);
-
-final soraSmallSubtitleText = soraSubtitleText.copyWith(
-  fontSize: Dimensions.smallTextSize,
 );
 
 final soraExtremelySmallText = soraSmallText.copyWith(
@@ -65,14 +69,36 @@ final moneyText = TextStyle(
   color: app_colors.primaryWhite,
 );
 
+final moneySmallText = moneyText.copyWith(
+  fontSize: Dimensions.d20 + Dimensions.d1 + (Dimensions.d1 * 0.69),
+  color: app_colors.primaryBlue,
+);
+
+final moneyVerSmallText = moneySmallText.copyWith(
+  fontSize: Dimensions.d18 + (Dimensions.d1 * 0.9),
+);
+
+final currencySmallText = moneySmallText.copyWith(
+  fontFamily: 'Roboto',
+  fontSize: Dimensions.d20 + Dimensions.d2 + (Dimensions.d1 * 0.69),
+);
+
+final currencyVerSmallText = moneyVerSmallText.copyWith(
+  fontFamily: 'Roboto',
+  fontSize: Dimensions.d10 + Dimensions.d9 + (Dimensions.d1 * 0.9),
+);
+
+final moneyTextFieldText = moneyText.copyWith(
+  fontFamily: 'Inter',
+  color: app_colors.primaryBlue,
+);
+
 final textFieldText = interNormalText.copyWith(color: app_colors.primaryBlack);
 
 final textFieldHintText = interNormalText.copyWith(color: app_colors.hintAsh);
 
-final moneyFieldHintText = textFieldHintText.copyWith(
-  fontSize: Dimensions.d27,
-  fontWeight: FontWeight.bold,
-);
+final moneyFieldHintText =
+    moneyTextFieldText.copyWith(color: app_colors.hintAsh);
 
 /*
 Button Styles

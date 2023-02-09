@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/screens/dialog/reset_password_successful_dialog_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/reset_password_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +15,7 @@ import '../../components/text_field_boxes/password_box.dart';
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
 
-  static const String id = 'reset_password_screen';
+  static const String id = '/reset_password_screen';
 
   @override
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
@@ -48,18 +50,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 24),
+            const StandardSpacer(),
             const HeaderText(text: 'Reset Password'),
-            const SizedBox(height: 8),
+            const TitleBodySpacer(),
             const BodyText(
                 text:
                     'Enter your new password you would like to use for your account'),
-            const SizedBox(height: 26),
+            SizedBox(height: Dimensions.d26),
             NewPasswordBoxWidget(textController: _newPasswordController),
-            const SizedBox(height: 24),
+            const StandardSpacer(),
             ConfirmPasswordBoxWidget(
                 textController: _confirmPasswordController),
-            const SizedBox(height: 72),
+            SizedBox(height: Dimensions.d72),
             const ResetPasswordButton(),
           ],
         ),

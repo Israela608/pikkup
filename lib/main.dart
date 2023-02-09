@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pikkup/routes/app_routes.dart';
 import 'package:pikkup/routes/providers.dart';
-import 'package:pikkup/screens/home/home_screen.dart';
+import 'package:pikkup/screens/tracking/tracking_screen.dart';
 import 'package:pikkup/utils/dimensions.dart';
 import 'package:provider/provider.dart';
 
@@ -62,13 +62,17 @@ class MyApp extends StatelessWidget {
           );
         },
 
-        initialRoute: HomeScreen.id,
+        //initialRoute: HomeScreen.id,
         //initialRoute: ResetPasswordSuccessfulDialogScreen.id,
         //initialRoute: OpenMailDialogScreen.id,
         //initialRoute: BankTransferScreen.id,
+        //initialRoute: ChooseLocationOnMapScreen.id,
+        //initialRoute: DeliveryOptionScreen.id,
+        //initialRoute: SummaryInfoScreen.id,
+        initialRoute: TrackingScreen.id,
         //initialRoute: PaymentOptionScreen.id,
         //initialRoute: PromoScreen.id,
-        //initialRoute: AddACardScreen.id,
+        //initialRoute: FundWalletScreen.id,
         //initialRoute: EnterAmountScreen.id,
         //initialRoute: OnboardingScreen.id,
         //initialRoute: WelcomeScreen.id,

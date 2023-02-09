@@ -3,7 +3,7 @@ import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/utils/dimensions.dart';
 
-enum HeaderTextSize { normal, small, verySmall }
+enum HeaderTextSize { big, normal, small, verySmall }
 
 class HeaderText extends StatelessWidget {
   const HeaderText({
@@ -24,6 +24,10 @@ class HeaderText extends StatelessWidget {
     late double _fontSize;
 
     switch (headerTextSize) {
+      case HeaderTextSize.big:
+        _fontSize = Dimensions.headerTextBigSize;
+        break;
+
       case HeaderTextSize.normal:
         _fontSize = Dimensions.headerTextSize;
         break;

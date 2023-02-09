@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 
 class StandardBottomSheet extends StatelessWidget {
   const StandardBottomSheet(
@@ -15,17 +18,20 @@ class StandardBottomSheet extends StatelessWidget {
       //Make the parent container same color as the grey background
       child: Container(
         //This os the real container we are building on
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+        decoration: BoxDecoration(
+            borderRadius: UIParameters.bottomSheetBorderRadius,
             color: app_colors.background),
-        padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
-        height: MediaQuery.of(context).size.height * 0.724,
+        padding: EdgeInsets.only(
+          top: Dimensions.d20,
+          left: Dimensions.standardPaddingSize,
+          right: Dimensions.standardPaddingSize,
+        ),
+        height: Dimensions.screenHeight * 0.724,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             BottomSheetAppBar(title: title),
-            const SizedBox(height: 20),
+            SizedBox(height: Dimensions.d20),
             Expanded(child: widget)
           ],
         ),
@@ -45,20 +51,15 @@ class BottomSheetAppBar extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 12,
-            fontFamily: 'Sora',
-            fontWeight: FontWeight.w600,
-            color: app_colors.primaryBlack,
-          ),
+          style: soraSubtitleText.copyWith(fontWeight: FontWeight.w600),
         ),
         IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.close,
-            size: 32,
+            size: Dimensions.d32,
           ),
           //iconSize: 32,
         )

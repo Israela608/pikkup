@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:pikkup/components/spacers/spacer.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
 import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
 
 class PhoneNumberBox extends StatelessWidget {
   const PhoneNumberBox({
@@ -27,7 +28,7 @@ class PhoneNumberBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Phone number'),
-        const TitleBoxSpacer(),
+        const TitleBodySpacer(),
         InternationalPhoneNumberInput(
             onInputChanged: onChangedCallback,
             onInputValidated: onValidatedCallback,
@@ -45,10 +46,10 @@ class PhoneNumberBox extends StatelessWidget {
               }*/
               return 'Invalid number';
             },
-            selectorConfig: const SelectorConfig(
+            selectorConfig: SelectorConfig(
               selectorType: PhoneInputSelectorType.DIALOG,
               setSelectorButtonAsPrefixIcon: true,
-              leadingPadding: 20,
+              leadingPadding: Dimensions.d20,
             ),
             ignoreBlank: false,
             autoValidateMode: AutovalidateMode.onUserInteraction,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pikkup/components/spacers/spacer.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
@@ -26,7 +26,7 @@ class ParcelIdBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlainText(text: text),
-        const TitleBoxSpacer(),
+        const TitleBodySpacer(),
         TextFormField(
           controller: textController,
           keyboardType: TextInputType.name,

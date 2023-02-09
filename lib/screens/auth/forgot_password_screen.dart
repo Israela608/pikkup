@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/text_field_boxes/email_box.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/screens/dialog/open_mail_dialog_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/forgot_password_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +14,7 @@ import 'package:provider/provider.dart';
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
-  static const String id = 'forgot_password_screen';
+  static const String id = '/forgot_password_screen';
 
   @override
   State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
@@ -41,15 +43,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const SizedBox(height: 24),
+        const StandardSpacer(),
         const HeaderText(text: 'Forgot Password'),
-        const SizedBox(height: 8),
+        const TitleBodySpacer(),
         const BodyText(
             text:
                 'Enter the email used in registration to reset your password, we will send you instructions'),
-        const SizedBox(height: 26),
+        SizedBox(height: Dimensions.d26),
         EmailBoxWidget(textController: _emailController),
-        const SizedBox(height: 80),
+        SizedBox(height: Dimensions.d80),
         const ConfirmEmailButton(),
       ],
     ));

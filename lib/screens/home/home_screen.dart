@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  static const String id = 'home_screen';
+  static const String id = '/home_screen';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

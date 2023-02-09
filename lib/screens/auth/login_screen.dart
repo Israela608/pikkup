@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/clickable_texts/clickable_text.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/screens/auth/create_account_screen.dart';
 import 'package:pikkup/screens/auth/forgot_password_screen.dart';
 import 'package:pikkup/screens/home/home_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +21,7 @@ import '../../view_models/login_view_model.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
-  static const String id = 'login_screen';
+  static const String id = '/login_screen';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -54,22 +56,22 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const HeaderText(text: 'Log in to your account'),
-          const SizedBox(height: 8),
+          const TitleBodySpacer(),
           const BodyText(
               text: 'You are one step away from accessing your pikkup account'),
-          const SizedBox(height: 26),
+          SizedBox(height: Dimensions.d26),
           EmailBoxWidget(textController: _emailController),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           PasswordBoxWidget(textController: _passwordController),
-          const SizedBox(height: 20),
+          SizedBox(height: Dimensions.d20),
           ErrorMessage(errorMessage: model.errorMessage),
-          const SizedBox(height: 4),
+          SizedBox(height: Dimensions.d4),
           const ForgotPassword(),
-          const SizedBox(height: 32),
+          SizedBox(height: Dimensions.d32),
           const LoginButton(),
-          const SizedBox(height: 48),
+          SizedBox(height: Dimensions.d48),
           const MixedText(),
         ],
       ),

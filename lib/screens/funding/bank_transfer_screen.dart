@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/view_models/wallet_page_view_models/enter_amount_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +15,7 @@ import 'package:provider/provider.dart';
 class BankTransferScreen extends StatelessWidget {
   const BankTransferScreen({Key? key}) : super(key: key);
 
-  static const String id = 'bank_transfer_screen';
+  static const String id = '/bank_transfer_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +26,17 @@ class BankTransferScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 32),
+          SizedBox(height: Dimensions.d32),
           const PaymentDescriptionCard(),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const BankDetailsCard(),
           const Spacer(),
-          //SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
           WideButton(
             label: 'I’ve sent the money',
             onPressedCallback: () {},
             isOutlined: true,
           ),
-          const SizedBox(height: 62),
+          SizedBox(height: Dimensions.d60 + Dimensions.d2),
         ],
       ),
     );
@@ -45,38 +49,25 @@ class PaymentDescriptionCard extends StatelessWidget {
   TextSpan cardText({required String text}) {
     return TextSpan(
       text: text,
-      style: const TextStyle(
-        fontSize:
-            16, //TextSpan fontSize is different from normal text fontSize, since it does not follow the device textSize configuration
-        fontFamily: 'Inter',
-        fontWeight: FontWeight.w500,
-        color: app_colors.primaryBlack,
-      ),
+      style: interNormalText.copyWith(fontWeight: FontWeight.w500),
     );
   }
 
   TextSpan cardTextBold({required String text}) {
     return TextSpan(
       text: text,
-      style: const TextStyle(
-        fontSize:
-            16, //TextSpan fontSize is different from normal text fontSize, since it does not follow the device textSize configuration
-        fontWeight: FontWeight.bold,
-        fontFamily: 'Sora',
-        color: app_colors.primaryBlack,
-      ),
+      style: soraSubtitleText.copyWith(fontWeight: FontWeight.w600),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: app_colors.fillAsh,
-      ),
+      decoration: smallCardDecoration.copyWith(color: app_colors.fillAsh),
       child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 8),
+          padding: EdgeInsets.symmetric(
+              vertical: Dimensions.d7 + (Dimensions.d1 * 0.5),
+              horizontal: Dimensions.d8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +82,7 @@ class PaymentDescriptionCard extends StatelessWidget {
                   cardText(text: ' to the account details below'),
                 ]),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: Dimensions.d10),
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(children: [
@@ -112,12 +103,9 @@ class BankDetailsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: app_colors.primaryBlue,
-        borderRadius: BorderRadius.circular(4),
-      ),
+      decoration: smallCardDecoration.copyWith(color: app_colors.primaryBlue),
       child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: UIParameters.standardPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,7 +115,7 @@ class BankDetailsCard extends StatelessWidget {
                 isSmall: true,
                 color: app_colors.white,
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: Dimensions.d12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -138,7 +126,7 @@ class BankDetailsCard extends StatelessWidget {
                   copyAccountNumber(),
                 ],
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: Dimensions.d12),
               const BodyText(
                 text: 'DANIEL OSAKWE',
                 isSmall: true,
@@ -151,24 +139,19 @@ class BankDetailsCard extends StatelessWidget {
 
   Widget copyAccountNumber() {
     return Material(
-      borderRadius: BorderRadius.circular(4),
+      borderRadius: UIParameters.smallBorderRadius,
       color: app_colors.background,
       child: InkWell(
         onTap: () {},
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: Colors.transparent,
-          ),
+          decoration: smallCardDecoration.copyWith(color: Colors.transparent),
           child: Container(
-            padding: const EdgeInsets.all(8),
-            child: const Text(
+            padding: UIParameters.smallPadding,
+            child: Text(
               'COPY',
-              style: TextStyle(
-                fontSize: 10,
-                fontFamily: 'Sora',
-                fontWeight: FontWeight.bold,
+              style: soraSmallSubtitleText.copyWith(
                 color: app_colors.primaryBlueDarker,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),

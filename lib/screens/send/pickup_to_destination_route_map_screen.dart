@@ -3,20 +3,25 @@ import 'package:pikkup/components/address_progress_line.dart';
 import 'package:pikkup/components/buttons/back_circular.dart';
 import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/pin.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PickupToDestinationRouteMapScreen extends StatelessWidget {
   PickupToDestinationRouteMapScreen({Key? key}) : super(key: key);
 
-  static const String id = 'pickup_to_destination_route_map_screen';
+  static const String id = '/pickup_to_destination_route_map_screen';
 
   final panelController = PanelController();
 
   @override
   Widget build(BuildContext context) {
-    double _panelHeightOpen = 284;
-    double _panelHeightClosed = 284;
+    double _panelHeightOpen = Dimensions.d200 + Dimensions.d84;
+    double _panelHeightClosed = Dimensions.d200 + Dimensions.d84;
 
     return Scaffold(
       backgroundColor: app_colors.background,
@@ -31,9 +36,7 @@ class PickupToDestinationRouteMapScreen extends StatelessWidget {
             body: const MapWidget(),
             panel: PanelWidget(panelController: panelController),
             color: app_colors.background,
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(16.0),
-                topRight: Radius.circular(16.0)),
+            borderRadius: UIParameters.bottomSheetBorderRadius,
             //onPanelSlide: (double pos) => setState(() {}),
           ),
           // const DispatcherPanel(
@@ -93,25 +96,20 @@ class PanelWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: UIParameters.screenHorizontalPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 24),
+        children: [
+          const StandardSpacer(),
           Text(
             'Locations',
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Sora',
-              color: app_colors.primaryBlack,
-            ),
+            style: soraNormalText.copyWith(fontSize: Dimensions.d14),
           ),
-          SizedBox(height: 23),
-          AddressBox(),
-          SizedBox(height: 8),
-          DistanceBox(),
-          SizedBox(height: 19),
+          SizedBox(height: Dimensions.d23),
+          const AddressBox(),
+          SizedBox(height: Dimensions.smallPaddingSize),
+          const DistanceBox(),
+          SizedBox(height: Dimensions.d10 + Dimensions.d9),
         ],
       ),
     );
@@ -163,17 +161,17 @@ class DragHandle extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        height: 32,
+        height: Dimensions.bigSpacing,
         width: double.infinity,
-        padding: const EdgeInsets.only(top: 12, bottom: 15),
+        padding: EdgeInsets.only(top: Dimensions.d12, bottom: Dimensions.d15),
         child: FittedBox(
           child: Container(
-            width: 30,
-            height: 5,
+            width: Dimensions.d30,
+            height: Dimensions.d5,
             decoration: BoxDecoration(
                 color: Colors.grey[300],
                 //color: app_colors.buttonAsh,
-                borderRadius: const BorderRadius.all(Radius.circular(12.0))),
+                borderRadius: BorderRadius.circular(Dimensions.d12)),
           ),
         ),
       ),
@@ -187,11 +185,11 @@ class AddressBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 17),
-      decoration: BoxDecoration(
+      padding: EdgeInsets.symmetric(
+          horizontal: Dimensions.d27, vertical: Dimensions.d10 + Dimensions.d7),
+      decoration: borderedCardDecoration.copyWith(
         color: app_colors.cardBlue,
-        border: Border.all(
-            width: 1, color: app_colors.primaryBlue.withOpacity(0.15)),
+        borderRadius: BorderRadius.circular(0),
       ),
       child: Column(
         children: [
@@ -200,35 +198,31 @@ class AddressBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
-                children: const [
-                  LocationRing(
+                children: [
+                  const LocationRing(
                     locationRingType: LocationRingType.pickup,
                     locationRingSize: LocationRingSize.small,
                   ),
-                  SizedBox(height: 2),
-                  AddressProgressLine(isSmall: true, isCompleted: true)
+                  SizedBox(height: Dimensions.d2),
+                  const AddressProgressLine(isSmall: true, isCompleted: true)
                 ],
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: Dimensions.d10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Pickup address',
-                      style: TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Sora',
-                        color: app_colors.textGrey,
-                      ),
+                      style: soraSmallSubtitleText.copyWith(
+                          fontSize: Dimensions.d10 + Dimensions.d1 * 0.19,
+                          color: app_colors.textGrey),
                     ),
-                    SizedBox(height: 6.79),
+                    SizedBox(height: Dimensions.d6 + Dimensions.d1 * 0.79),
                     Text(
                       '36, Idris Jibowu Street, Ajah, Lagos State',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontFamily: 'Inter',
-                        color: app_colors.primaryBlack,
+                      style: interNormalText.copyWith(
+                        fontSize: Dimensions.d13 + Dimensions.d1 * 0.59,
                       ),
                     ),
                   ],
@@ -236,7 +230,7 @@ class AddressBox extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: Dimensions.d2),
 
           //Destination Section
           Row(
@@ -246,26 +240,22 @@ class AddressBox extends StatelessWidget {
                 locationRingType: LocationRingType.destination,
                 locationRingSize: LocationRingSize.small,
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: Dimensions.d10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Destination',
-                      style: TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Sora',
-                        color: app_colors.textGrey,
-                      ),
+                      style: soraSmallSubtitleText.copyWith(
+                          fontSize: Dimensions.d10 + Dimensions.d1 * 0.19,
+                          color: app_colors.textGrey),
                     ),
-                    SizedBox(height: 6.79),
+                    SizedBox(height: Dimensions.d6 + Dimensions.d1 * 0.79),
                     Text(
                       '93 Ofada Rd, Mowe 110113, Loburo',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontFamily: 'Inter',
-                        color: app_colors.primaryBlack,
+                      style: interNormalText.copyWith(
+                        fontSize: Dimensions.d13 + Dimensions.d1 * 0.59,
                       ),
                     ),
                   ],
@@ -285,31 +275,25 @@ class DistanceBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: EdgeInsets.symmetric(
+        horizontal: Dimensions.standardPaddingSize,
+        vertical: Dimensions.smallPaddingSize,
+      ),
       decoration: BoxDecoration(
         color: app_colors.cardBlue,
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: UIParameters.smallBorderRadius,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
             'Distance',
-            style: TextStyle(
-              fontSize: 10,
-              fontFamily: 'Sora',
-              color: app_colors.textGrey,
-            ),
+            style: soraSmallSubtitleText.copyWith(color: app_colors.textGrey),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: Dimensions.smallPaddingSize),
           Text(
             '69km',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Sora',
-              color: app_colors.primaryBlack,
-            ),
+            style: soraSubtitleText.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
       ),

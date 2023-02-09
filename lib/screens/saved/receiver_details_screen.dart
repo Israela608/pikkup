@@ -3,9 +3,11 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/receiver_info_card.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/text_field_boxes/phone_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/settings_page_view_models/receiver_details_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:pikkup/widgets/send_a_package_bottomsheet.dart';
@@ -14,7 +16,7 @@ import 'package:provider/provider.dart';
 class ReceiverDetailsScreen extends StatefulWidget {
   const ReceiverDetailsScreen({Key? key}) : super(key: key);
 
-  static const String id = 'receiver_details_screen';
+  static const String id = '/receiver_details_screen';
 
   @override
   State<ReceiverDetailsScreen> createState() => _ReceiverDetailsScreenState();
@@ -41,7 +43,7 @@ class _ReceiverDetailsScreenState extends State<ReceiverDetailsScreen> {
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           Consumer<ReceiverDetailsViewModel>(
             builder: (BuildContext context, model, Widget? child) {
               return ListView.builder(
@@ -83,15 +85,18 @@ class _ReceiverDetailsScreenState extends State<ReceiverDetailsScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  const SizedBox(height: 24),
+                                  const StandardSpacer(),
                                   NameBoxWidget(
                                       textController: _nameController),
-                                  const SizedBox(height: 24),
+                                  const StandardSpacer(),
                                   PhoneNumberBoxWidget(
                                       textController: _phoneNumberController),
-                                  const SizedBox(height: 116),
+                                  SizedBox(
+                                      height: Dimensions.d100 +
+                                          Dimensions.d10 +
+                                          Dimensions.d6),
                                   const SaveChangesButton(),
-                                  const SizedBox(height: 32),
+                                  SizedBox(height: Dimensions.d32),
                                 ],
                               ),
                             ),
@@ -100,7 +105,8 @@ class _ReceiverDetailsScreenState extends State<ReceiverDetailsScreen> {
                       );
                     },
                     child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      margin: EdgeInsets.symmetric(
+                          vertical: Dimensions.smallPaddingSize),
                       child: ReceiverInfoCard(
                         name: model.receiverDetails[index].name,
                         phoneNumber: model.receiverDetails[index].phoneNumber,
@@ -113,7 +119,7 @@ class _ReceiverDetailsScreenState extends State<ReceiverDetailsScreen> {
               );
             },
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: Dimensions.d32),
         ],
       ),
     );

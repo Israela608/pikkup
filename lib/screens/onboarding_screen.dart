@@ -8,12 +8,13 @@ import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/auth/welcome_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
 
-  static const String id = 'onboarding_screen';
+  static const String id = '/onboarding_screen';
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -26,12 +27,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const pageDecoration = PageDecoration(
+    final pageDecoration = PageDecoration(
       pageColor: app_colors.background,
       imagePadding: EdgeInsets.zero,
       imageFlex: 2,
       contentMargin: EdgeInsets.zero,
-      titlePadding: EdgeInsets.only(top: 24.0, bottom: 16.0),
+      titlePadding: EdgeInsets.only(
+        top: Dimensions.standardSpacing,
+        bottom: Dimensions.standardPaddingSize,
+      ),
     );
 
     return PlainScaffold(
@@ -40,7 +44,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 70),
+          SizedBox(height: Dimensions.d70),
           Expanded(
             child: IntroductionScreen(
               key: introKey,
@@ -90,26 +94,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               curve: Curves.fastLinearToSlowEaseIn,
-              dotsDecorator: const DotsDecorator(
-                size: Size(12.0, 5.0),
+              dotsDecorator: DotsDecorator(
+                size: Size(Dimensions.d12, Dimensions.d5),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  borderRadius: BorderRadius.circular(Dimensions.d25),
                 ),
-                color: Color(0xFFBDBDBD),
+                color: const Color(0xFFBDBDBD),
                 activeColor: app_colors.primaryBlue,
-                activeSize: Size(20.0, 5.0),
+                activeSize: Size(Dimensions.d20, Dimensions.d5),
                 activeShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  borderRadius: BorderRadius.circular(Dimensions.d25),
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: Dimensions.d40),
           wideButton(context: context),
-          const SizedBox(height: 20),
+          SizedBox(height: Dimensions.d20),
           Container(
-              alignment: Alignment.centerRight, height: 50, child: skipText()),
-          const SizedBox(height: 20),
+              alignment: Alignment.centerRight,
+              height: Dimensions.d50,
+              child: skipText()),
+          SizedBox(height: Dimensions.d20),
         ],
       ),
     );

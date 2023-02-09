@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/utils/dimensions.dart';
 
-class TitleBoxSpacer extends StatelessWidget {
-  const TitleBoxSpacer({Key? key}) : super(key: key);
+class TitleBodySpacer extends StatelessWidget {
+  const TitleBodySpacer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: Dimensions.titleBoxSpacing);
+    return SizedBox(height: Dimensions.titleBodySpacing);
   }
 }
 
@@ -16,5 +16,14 @@ class StandardSpacer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(height: Dimensions.standardSpacing);
+  }
+}
+
+class BigSpacer extends StatelessWidget {
+  const BigSpacer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: Dimensions.bigSpacing);
   }
 }

@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
-import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/profile/edit_profile_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 File? imageFile;
@@ -13,7 +16,7 @@ File? imageFile;
 class MyProfileScreen extends StatelessWidget {
   MyProfileScreen({Key? key}) : super(key: key);
 
-  static const String id = 'my_profile_screen';
+  static const String id = '/my_profile_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +25,16 @@ class MyProfileScreen extends StatelessWidget {
       title: 'My Profile',
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 32),
-          ProfileImage(),
-          SizedBox(height: 32),
-          ProfileName(),
-          SizedBox(height: 48),
-          EditProfileButton(),
-          SizedBox(height: 16),
-          DetailsBox(),
-          SizedBox(height: 32),
+        children: [
+          SizedBox(height: Dimensions.d32),
+          const ProfileImage(),
+          SizedBox(height: Dimensions.d32),
+          const ProfileName(),
+          SizedBox(height: Dimensions.d48),
+          const EditProfileButton(),
+          SizedBox(height: Dimensions.standardPaddingSize),
+          const DetailsBox(),
+          SizedBox(height: Dimensions.d32),
         ],
       ),
     );
@@ -54,8 +57,8 @@ class _ProfileImageState extends State<ProfileImage> {
           //Make the Profile picture fullscreen
         },
         child: Container(
-          height: 150,
-          width: 150,
+          height: Dimensions.d150,
+          width: Dimensions.d150,
           //width: MediaQuery.of(context).size.width * 0.313,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -68,7 +71,8 @@ class _ProfileImageState extends State<ProfileImage> {
             ),
           ),
           child: Container(
-            margin: const EdgeInsets.only(right: 5, bottom: 5),
+            margin:
+                EdgeInsets.only(right: Dimensions.d5, bottom: Dimensions.d5),
             alignment: Alignment.bottomRight,
             child: InkWell(
                 splashColor: app_colors.iconAsh,
@@ -93,8 +97,8 @@ class _ProfileImageState extends State<ProfileImage> {
                 },
                 child: Image.asset(
                   'images/camera.png',
-                  height: 38,
-                  width: 38,
+                  height: Dimensions.d30 + Dimensions.d8,
+                  width: Dimensions.d30 + Dimensions.d8,
                 )),
           ),
         ),
@@ -108,14 +112,9 @@ class ProfileName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
+    return Text(
       'Moses John',
-      style: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.bold,
-        fontFamily: 'Sora',
-        color: app_colors.primaryBlack,
-      ),
+      style: soraSubtitleText.copyWith(fontWeight: FontWeight.bold),
       textAlign: TextAlign.center,
     );
   }
@@ -133,19 +132,22 @@ class EditProfileButton extends StatelessWidget {
           Navigator.pushNamed(context, EditProfileScreen.id);
         },
         style: ElevatedButton.styleFrom(
-          primary: app_colors.primaryBlue,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(26)),
+          backgroundColor: app_colors.primaryBlue,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimensions.d26),
+          ),
           minimumSize: Size.zero,
           //tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          padding: EdgeInsets.symmetric(
+            vertical: Dimensions.smallPaddingSize,
+            horizontal: Dimensions.standardPaddingSize,
+          ),
         ),
-        child: const Text(
+        child: Text(
           'Edit profile',
-          style: TextStyle(
-            fontSize: 11,
-            fontFamily: 'Inter',
-            color: Colors.white,
+          style: interNormalText.copyWith(
+            fontSize: Dimensions.d14,
+            color: app_colors.white,
           ),
         ),
       ),
@@ -162,23 +164,25 @@ class DetailsBox extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: app_colors.tileBlue,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: UIParameters.standardBorderRadius,
         boxShadow: [
           BoxShadow(
-            blurRadius: 3,
+            blurRadius: Dimensions.d3,
             offset: const Offset(0, 0),
             color: Colors.grey.withOpacity(0.4),
           )
         ],
       ),
-      padding: const EdgeInsets.symmetric(vertical: 53, horizontal: 24),
+      padding: EdgeInsets.symmetric(
+          vertical: Dimensions.d50 + Dimensions.d3,
+          horizontal: Dimensions.standardSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           DetailsTile(title: 'Name', value: 'Moses Johnson'),
-          SizedBox(height: 24),
+          StandardSpacer(),
           DetailsTile(title: 'Email', value: 'mosesjhnson123@gmail.com'),
-          SizedBox(height: 24),
+          StandardSpacer(),
           DetailsTile(title: 'Phone number', value: '+234 79950 85960'),
         ],
       ),
@@ -198,8 +202,11 @@ class DetailsTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BodyText(text: title, isSmall: true),
-        const SizedBox(height: 8),
-        PlainText(text: value, isBlackColor: true, isBold: true),
+        SizedBox(height: Dimensions.smallPaddingSize),
+        Text(
+          value,
+          style: interNormalText.copyWith(fontWeight: FontWeight.w500),
+        )
       ],
     );
   }

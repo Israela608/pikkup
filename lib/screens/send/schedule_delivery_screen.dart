@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/home_page_view_models/delivery_option_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +14,7 @@ import 'package:provider/provider.dart';
 class ScheduleDeliveryScreen extends StatelessWidget {
   const ScheduleDeliveryScreen({Key? key}) : super(key: key);
 
-  static const String id = 'schedule_delivery_screen';
+  static const String id = '/schedule_delivery_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,12 @@ class ScheduleDeliveryScreen extends StatelessWidget {
       title: 'Schedule delivery',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 23),
+        children: [
+          StandardSpacer(),
           BodyText(
               text:
                   'Choose the specific date and time your package will be picked up for delivery.'),
-          SizedBox(height: 29),
+          SizedBox(height: Dimensions.d20 + Dimensions.d9),
 
           SizedBox(height: 32),
 

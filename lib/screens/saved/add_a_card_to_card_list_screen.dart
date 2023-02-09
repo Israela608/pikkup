@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/text_field_boxes/card_cvv_box.dart';
 import 'package:pikkup/components/text_field_boxes/card_expiry_date_box.dart';
 import 'package:pikkup/components/text_field_boxes/card_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
 import 'package:pikkup/components/texts/header_text.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/settings_page_view_models/add_a_card_to_card_list_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +15,7 @@ import 'package:provider/provider.dart';
 class AddACardToCardListScreen extends StatefulWidget {
   const AddACardToCardListScreen({Key? key}) : super(key: key);
 
-  static const String id = 'add_a_card_to_card_list_screen';
+  static const String id = '/add_a_card_to_card_list_screen';
 
   @override
   State<AddACardToCardListScreen> createState() =>
@@ -49,31 +51,31 @@ class _AddACardToCardListScreenState extends State<AddACardToCardListScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 29),
+            SizedBox(height: Dimensions.d20 + Dimensions.d9),
             const HeaderText(
               text: 'Add card',
               headerTextSize: HeaderTextSize.verySmall,
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: Dimensions.d32),
             CardNameBoxWidget(textController: _cardNameController),
-            const SizedBox(height: 24),
+            const StandardSpacer(),
             CardNumberBoxWidget(textController: _cardNumberController),
-            const SizedBox(height: 24),
+            const StandardSpacer(),
             Row(
               children: [
                 Expanded(
                   child: ExpiryDateBoxWidget(
                       textController: _expiryDateController),
                 ),
-                const SizedBox(width: 20),
+                SizedBox(width: Dimensions.d32),
                 Expanded(child: CvvBoxWidget(textController: _cvvController)),
               ],
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: Dimensions.d10),
             //ErrorMessage(errorMessage: model.errorMessage),
-            const SizedBox(height: 205),
+            SizedBox(height: Dimensions.d200 + Dimensions.d5),
             AddToMyCardsButton(isCompleted: model.isCompleted),
-            const SizedBox(height: 20),
+            SizedBox(height: Dimensions.d20),
           ],
         ),
       ),

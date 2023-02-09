@@ -4,6 +4,8 @@ import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/view_models/home_page_view_models/promo_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +13,7 @@ import 'package:provider/provider.dart';
 class PromoScreen extends StatefulWidget {
   const PromoScreen({Key? key}) : super(key: key);
 
-  static const String id = 'promo_screen';
+  static const String id = '/promo_screen';
 
   @override
   State<PromoScreen> createState() => _PromoScreenState();
@@ -31,12 +33,12 @@ class _PromoScreenState extends State<PromoScreen> {
       isScrollable: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 32),
-          Expanded(child: PromoList()),
-          SizedBox(height: 38),
-          ApplyOfferButton(),
-          SizedBox(height: 17),
+        children: [
+          SizedBox(height: Dimensions.d32),
+          const Expanded(child: PromoList()),
+          SizedBox(height: Dimensions.d30 + Dimensions.d8),
+          const ApplyOfferButton(),
+          SizedBox(height: Dimensions.d10 + Dimensions.d7),
         ],
       ),
     );
@@ -53,7 +55,7 @@ class PromoList extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Container(
-          margin: const EdgeInsets.only(bottom: 32),
+          margin: EdgeInsets.only(bottom: Dimensions.d32),
           child: PromoCard(
             unlocked: model.promos[index].isUnlocked,
             onPressed: () => model.setSelectedPromo(index: index),
@@ -87,12 +89,12 @@ class PromoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: app_colors.primaryWhite,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: UIParameters.standardBorderRadius,
       child: InkWell(
         onTap: onPressed,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: UIParameters.standardBorderRadius,
             color: Colors.transparent,
             border: Border.all(
                 width: 1,
@@ -103,12 +105,12 @@ class PromoCard extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                top: 16,
-                right: 16,
+                top: Dimensions.standardPaddingSize,
+                right: Dimensions.standardPaddingSize,
                 child: isSelected
-                    ? const Image(
-                        height: 24,
-                        width: 24,
+                    ? Image(
+                        height: Dimensions.standardSpacing,
+                        width: Dimensions.standardSpacing,
                         image: AssetImage('images/success_checkbox.png'),
                       )
                     : Container(),
@@ -117,14 +119,15 @@ class PromoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(height: 28),
+                  SizedBox(height: Dimensions.d20 + Dimensions.d8),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 107),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Dimensions.d100 + Dimensions.d7),
                     child: const Image(image: AssetImage('images/promo.png')),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: Dimensions.d20),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 26),
+                    padding: EdgeInsets.symmetric(horizontal: Dimensions.d26),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -132,7 +135,7 @@ class PromoCard extends StatelessWidget {
                           text: label,
                           headerTextSize: HeaderTextSize.small,
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: Dimensions.smallPaddingSize),
                         BodyText(
                           text: description,
                           isSmall: true,
@@ -140,7 +143,7 @@ class PromoCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 36.32),
+                  SizedBox(height: Dimensions.d36 + (Dimensions.d1 * 0.32)),
                 ],
               ),
               !unlocked
@@ -151,12 +154,12 @@ class PromoCard extends StatelessWidget {
                       bottom: 0,
                       child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
+                            borderRadius: BorderRadius.circular(Dimensions.d7),
                             color:
                                 app_colors.primaryBlueDarker.withOpacity(0.7)),
-                        child: const Icon(
+                        child: Icon(
                           Icons.lock,
-                          size: 64,
+                          size: Dimensions.d60 + Dimensions.d4,
                           color: Colors.white,
                         ),
                       ),

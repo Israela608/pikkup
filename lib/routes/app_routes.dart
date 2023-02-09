@@ -52,7 +52,7 @@ class AppRoutes {
         OpenMailDialogScreen.id: (context) => const OpenMailDialogScreen(),
         CreateAccountScreen.id: (context) => const CreateAccountScreen(),
         VerifyNumberScreen.id: (context) => const VerifyNumberScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
+        HomeScreen.id: (context) => const HomeScreen(),
 
         //Home Page
         DeliveryOptionScreen.id: (context) => const DeliveryOptionScreen(),

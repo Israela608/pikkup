@@ -5,8 +5,10 @@ import 'package:pikkup/components/text_field_boxes/email_box.dart';
 import 'package:pikkup/components/text_field_boxes/phone_number_box.dart';
 import 'package:pikkup/components/text_field_boxes/text_box.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/profile/my_profile_screen.dart';
 import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/view_models/settings_page_view_models/edit_profile_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +16,7 @@ import 'package:provider/provider.dart';
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({Key? key}) : super(key: key);
 
-  static const String id = 'edit_profile_screen';
+  static const String id = '/edit_profile_screen';
 
   //TextController to read text entered in text field
   final TextEditingController _nameController = TextEditingController();
@@ -36,9 +38,9 @@ class EditProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 32),
+            SizedBox(height: Dimensions.d32),
             const ProfileImage(),
-            const SizedBox(height: 62),
+            SizedBox(height: Dimensions.d60 + Dimensions.d2),
             TextBox(
               text: 'Name',
               textController: _nameController,
@@ -77,9 +79,9 @@ class EditProfileScreen extends StatelessWidget {
                         .toString()); //number.phoneNumber converts number to a nullable String. toString converts it to a normal String
               },
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: Dimensions.d10),
             errorMessage(errorMessage: model.errorMessage),
-            const SizedBox(height: 70),
+            SizedBox(height: Dimensions.d70),
             WideButton(
               label: 'Save changes',
               onPressedCallback: () {
@@ -107,21 +109,17 @@ class EditProfileScreen extends StatelessWidget {
       return Container();
     } else {
       return Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: const EdgeInsets.all(15),
+        margin: EdgeInsets.symmetric(vertical: Dimensions.d10),
+        padding: UIParameters.standardPadding,
         alignment: Alignment.center,
         child: Text(
           errorMessage.toString(), //Convert String? to String
-          style: const TextStyle(
-            fontSize: 12,
-            fontFamily: 'Sora',
-            color: Colors.white,
-          ),
+          style: soraSubtitleText.copyWith(color: app_colors.white),
           //textAlign: TextAlign.center,
         ),
         decoration: BoxDecoration(
           color: app_colors.error,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(Dimensions.d5),
         ),
       );
     }
@@ -139,8 +137,8 @@ class ProfileImage extends StatelessWidget {
           //Make the Profile picture fullscreen
         },
         child: Container(
-          height: 122,
-          width: 122,
+          height: Dimensions.d120 + Dimensions.d2,
+          width: Dimensions.d120 + Dimensions.d2,
           //width: MediaQuery.of(context).size.width * 0.313,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
@@ -148,7 +146,8 @@ class ProfileImage extends StatelessWidget {
                 image: AssetImage('images/mami.png'), fit: BoxFit.contain),
           ),
           child: Container(
-            margin: const EdgeInsets.only(right: 5, bottom: 5),
+            margin:
+                EdgeInsets.only(right: Dimensions.d5, bottom: Dimensions.d5),
             alignment: Alignment.bottomRight,
             child: InkWell(
                 splashColor: app_colors.iconAsh,
@@ -157,8 +156,8 @@ class ProfileImage extends StatelessWidget {
                 },
                 child: Image.asset(
                   'images/camera.png',
-                  height: 32,
-                  width: 32,
+                  height: Dimensions.d32,
+                  width: Dimensions.d32,
                 )),
           ),
         ),

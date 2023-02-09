@@ -1,11 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/send/schedule_delivery_screen.dart';
 import 'package:pikkup/screens/send/send_a_package_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/view_models/home_page_view_models/delivery_option_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +17,7 @@ import 'package:provider/provider.dart';
 class DeliveryOptionScreen extends StatefulWidget {
   const DeliveryOptionScreen({Key? key}) : super(key: key);
 
-  static const String id = 'delivery_option_screen';
+  static const String id = '/delivery_option_screen';
 
   @override
   State<DeliveryOptionScreen> createState() => _DeliveryOptionScreenState();
@@ -34,32 +38,26 @@ class _DeliveryOptionScreenState extends State<DeliveryOptionScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 32),
-          const Text(
+          const BigSpacer(),
+          Text(
             'Delivery option',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Sora',
-              color: app_colors.primaryBlack,
-            ),
+            style: soraSubtitleText.copyWith(fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 8),
-          const Text(
+          SizedBox(height: Dimensions.smallPaddingSize),
+          Text(
             'Choose the option that best fits what you need to deliver your package',
-            style: TextStyle(
-              fontSize: 11,
-              fontFamily: 'Inter',
+            style: interNormalText.copyWith(
+              fontSize: Dimensions.d14,
               color: app_colors.description,
             ),
           ),
-          const SizedBox(height: 21),
+          SizedBox(height: Dimensions.d20 + Dimensions.d1),
           const InstantDelivery(),
-          const SizedBox(height: 21),
+          SizedBox(height: Dimensions.d20 + Dimensions.d1),
           const ScheduledDelivery(),
-          SizedBox(height: 0.249 * MediaQuery.of(context).size.height),
+          SizedBox(height: 0.249 * Dimensions.screenHeight),
           const NextButton(),
-          const SizedBox(height: 31),
+          SizedBox(height: Dimensions.d30 + Dimensions.d1),
         ],
       ),
     );
@@ -125,28 +123,28 @@ class DeliveryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: isSelected ? app_colors.primaryBlue : app_colors.primaryWhite,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: UIParameters.standardBorderRadius,
       child: InkWell(
         onTap: onPressed,
         child: Container(
-          padding:
-              const EdgeInsets.only(left: 16, right: 37, top: 34, bottom: 34),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.transparent,
-            border: Border.all(
-                width: 1, color: app_colors.primaryBlue.withOpacity(0.15)),
+          padding: EdgeInsets.only(
+            left: Dimensions.standardPaddingSize,
+            right: Dimensions.d30 + Dimensions.d7,
+            top: Dimensions.d30 + Dimensions.d4,
+            bottom: Dimensions.d30 + Dimensions.d4,
           ),
+          decoration:
+              borderedCardDecoration.copyWith(color: Colors.transparent),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image(
-                height: 32,
-                width: 32,
+                height: Dimensions.bigSpacing,
+                width: Dimensions.bigSpacing,
                 image: AssetImage('images/$image'),
                 color: isSelected ? app_colors.white : app_colors.primaryBlack,
               ),
-              const SizedBox(width: 16),
+              SizedBox(width: Dimensions.standardPaddingSize),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,12 +160,10 @@ class DeliveryCard extends StatelessWidget {
                             text: label,
                             headerTextSize: HeaderTextSize.small,
                           ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: Dimensions.smallPaddingSize),
                     Text(
                       description,
-                      style: TextStyle(
-                        fontSize: 9,
-                        fontFamily: 'Inter',
+                      style: interSmallText.copyWith(
                         color: isSelected
                             ? app_colors.white
                             : app_colors.primaryBlack,

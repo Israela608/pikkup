@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
-import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/screens/auth/create_account_screen.dart';
 import 'package:pikkup/screens/auth/login_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
-  static const String id = 'welcome_screen';
+  static const String id = '/welcome_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -19,29 +21,27 @@ class WelcomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 43),
-          const Image(
-              width: 146, height: 38, image: AssetImage('images/pikkup.png')),
-          const SizedBox(height: 150),
-          const Text(
-            'Welcome',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Sora',
-              color: app_colors.primaryBlack,
-            ),
+          SizedBox(height: Dimensions.d40 + Dimensions.d3),
+          Image(
+            width: Dimensions.d140 + Dimensions.d6,
+            height: Dimensions.d30 + Dimensions.d8,
+            image: const AssetImage('images/pikkup.png'),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: Dimensions.d150 + Dimensions.d3),
+          const HeaderText(
+            text: 'Welcome',
+            headerTextSize: HeaderTextSize.big,
+          ),
+          SizedBox(height: Dimensions.d6),
           const BodyText(text: 'How do you wish to continue?'),
-          const SizedBox(height: 60),
+          SizedBox(height: Dimensions.d60 + Dimensions.d1),
           WideButton(
             label: 'Create an Account',
             onPressedCallback: () {
               Navigator.pushNamed(context, CreateAccountScreen.id);
             },
           ),
-          const SizedBox(height: 20),
+          const StandardSpacer(),
           WideButton(
             label: 'Log in',
             isOutlined: true,

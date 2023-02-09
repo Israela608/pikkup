@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/clickable_texts/clickable_text.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/auth/login_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/verify_number_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
@@ -17,7 +20,7 @@ import 'package:provider/provider.dart';
 class VerifyNumberScreen extends StatefulWidget {
   const VerifyNumberScreen({Key? key}) : super(key: key);
 
-  static const String id = 'verify_number_screen';
+  static const String id = '/verify_number_screen';
 
   @override
   State<VerifyNumberScreen> createState() => _VerifyNumberScreenState();
@@ -46,17 +49,17 @@ class _VerifyNumberScreenState extends State<VerifyNumberScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 30),
+          SizedBox(height: Dimensions.d30),
           const HeaderText(text: 'Verify your Email'),
-          const SizedBox(height: 8),
+          const TitleBodySpacer(),
           const MixedTextOne(),
-          const SizedBox(height: 37),
+          SizedBox(height: Dimensions.d30 + Dimensions.d7),
           PinCodeWidget(errorController: _errorController),
-          const SizedBox(height: 20),
+          SizedBox(height: Dimensions.d20),
           ErrorMessage(errorMessage: model.errorMessage),
-          const SizedBox(height: 20),
+          SizedBox(height: Dimensions.d20),
           const MixedTextTwo(),
-          const SizedBox(height: 125),
+          SizedBox(height: Dimensions.d120 + Dimensions.d5),
           CompletedWideButton(
             errorController: _errorController,
           ),
@@ -89,10 +92,10 @@ class PinCodeWidget extends StatelessWidget {
         // },
         pinTheme: PinTheme(
           shape: PinCodeFieldShape.box,
-          borderRadius: BorderRadius.circular(5),
-          fieldHeight: 56,
-          fieldWidth: 47,
-          borderWidth: 1,
+          borderRadius: BorderRadius.circular(Dimensions.d5),
+          fieldHeight: Dimensions.d56,
+          fieldWidth: Dimensions.d40 + Dimensions.d7,
+          borderWidth: Dimensions.d1,
           activeFillColor: model.hasError ? Colors.orange : app_colors.fillAsh,
           inactiveFillColor: Colors.transparent,
           selectedFillColor: Colors.transparent,
@@ -102,9 +105,9 @@ class PinCodeWidget extends StatelessWidget {
         ),
         cursorColor: app_colors.primaryBlack,
         animationDuration: const Duration(milliseconds: 200),
-        textStyle: const TextStyle(
-            fontSize: 20,
-            height: 1.5,
+        textStyle: TextStyle(
+            fontSize: Dimensions.d20,
+            height: Dimensions.d1 + (Dimensions.d1 * 0.5),
             fontWeight: FontWeight.w600,
             fontFamily: 'Sora'),
         backgroundColor: Colors.transparent,
@@ -145,9 +148,9 @@ class MixedTextOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      text: const TextSpan(
+      text: TextSpan(
         children: [
-          WidgetSpan(
+          const WidgetSpan(
             alignment: PlaceholderAlignment.middle,
             child: BodyText(text: 'Enter the code sent to '),
           ),
@@ -156,11 +159,8 @@ class MixedTextOne extends StatelessWidget {
             child: Text(
               'dav****pe@gmail.com',
               //'+234 **** 3456',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Inter',
-                color: app_colors.primaryBlack,
+              style: interNormalText.copyWith(
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

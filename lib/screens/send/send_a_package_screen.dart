@@ -1,10 +1,12 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/send/pages/destination_address_page.dart';
 import 'package:pikkup/screens/send/pages/pickup_address_page.dart';
 import 'package:pikkup/screens/send/pages/product_information_page.dart';
 import 'package:pikkup/screens/send/pages/receiver_information_page.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/home_page_view_models/send_a_package_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +14,7 @@ import 'package:provider/provider.dart';
 class SendAPackageScreen extends StatefulWidget {
   const SendAPackageScreen({Key? key}) : super(key: key);
 
-  static const String id = 'send_a_package_screen';
+  static const String id = '/send_a_package_screen';
 
   @override
   State<SendAPackageScreen> createState() => _SendAPackageScreenState();
@@ -47,9 +49,9 @@ class _SendAPackageScreenState extends State<SendAPackageScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const PageIndicator(),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           Expanded(
             child: PageView.builder(
                 //controller: PageController(),
@@ -78,18 +80,18 @@ class PageIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<SendAPackageViewModel>(context);
 
-    const decorator = DotsDecorator(
-      size: Size(71.0, 7.0),
+    final decorator = DotsDecorator(
+      size: Size(Dimensions.d70 + Dimensions.d1, Dimensions.d7),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+        borderRadius: BorderRadius.circular(Dimensions.d12),
       ),
       color: app_colors.borderAsh,
       activeColor: app_colors.primaryBlue,
-      activeSize: Size(71.0, 7.0),
+      activeSize: Size(Dimensions.d70 + Dimensions.d1, Dimensions.d7),
       activeShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+        borderRadius: BorderRadius.circular(Dimensions.d12),
       ),
-      spacing: EdgeInsets.all(0),
+      spacing: const EdgeInsets.all(0),
     );
 
     return DotsIndicator(

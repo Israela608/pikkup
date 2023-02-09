@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
@@ -7,6 +8,8 @@ import 'package:pikkup/screens/funding/fund_wallet_screen.dart';
 import 'package:pikkup/screens/promos/promo_screen.dart';
 import 'package:pikkup/screens/send/delivery_option_screen.dart';
 import 'package:pikkup/screens/tracking/track_shipment_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,14 +21,14 @@ class HomePage extends StatelessWidget {
       isBackButtonPresent: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 34),
-          NameCard(),
-          SizedBox(height: 24),
-          SendPackageCard(),
-          SizedBox(height: 24),
-          Others(),
-          SizedBox(height: 24),
+        children: [
+          SizedBox(height: Dimensions.d30 + Dimensions.d4),
+          const NameCard(),
+          const StandardSpacer(),
+          const SendPackageCard(),
+          const StandardSpacer(),
+          const Others(),
+          const StandardSpacer(),
         ],
       ),
     );
@@ -41,18 +44,18 @@ class NameCard extends StatelessWidget {
       onTap: () {},
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: UIParameters.standardBorderRadius,
             color: app_colors.background,
             boxShadow: [
               BoxShadow(
-                blurRadius: 2,
+                blurRadius: Dimensions.d2,
                 offset: const Offset(0, 0),
                 color: Colors.grey.withOpacity(0.6),
               )
             ]),
         child: Container(
-            height: 87,
-            padding: const EdgeInsets.all(16),
+            height: Dimensions.d80 + Dimensions.d7,
+            padding: UIParameters.standardPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,14 +79,14 @@ class SendPackageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: app_colors.primaryBlue,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: UIParameters.standardBorderRadius,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, DeliveryOptionScreen.id);
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: UIParameters.standardBorderRadius,
             color: Colors.transparent,
             image: const DecorationImage(
               image: AssetImage('images/send_a_package_vector.png'),
@@ -91,15 +94,17 @@ class SendPackageCard extends StatelessWidget {
             ),
           ),
           child: Container(
-              height: 172,
-              padding: const EdgeInsets.symmetric(vertical: 27, horizontal: 19),
+              height: Dimensions.d170 + Dimensions.d2,
+              padding: EdgeInsets.symmetric(
+                  vertical: Dimensions.d27,
+                  horizontal: Dimensions.d10 + Dimensions.d9),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset(
                     'images/delivery_bus.png',
-                    width: 55,
+                    width: Dimensions.d50 + Dimensions.d5,
                   ),
                   const HeaderText(
                     text: 'Send a package',
@@ -126,8 +131,8 @@ class Others extends StatelessWidget {
   Widget build(BuildContext context) {
     return StaggeredGrid.count(
       crossAxisCount: 2,
-      mainAxisSpacing: 24,
-      crossAxisSpacing: 24,
+      mainAxisSpacing: Dimensions.standardSpacing,
+      crossAxisSpacing: Dimensions.standardSpacing,
       children: [
         //StaggeredGridTile.count() - If you want the child to have equal height and width
         //StaggeredGridTile.fit() - If you want the child to fit it's own height
@@ -187,37 +192,39 @@ class OthersCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //We need container because of it's BoxShadow property
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(8), boxShadow: [
-        BoxShadow(
-          blurRadius: 3,
-          offset: const Offset(0, 0),
-          color: Colors.grey.withOpacity(0.4),
-        )
-      ]),
+      decoration: BoxDecoration(
+        borderRadius: UIParameters.standardBorderRadius,
+        boxShadow: [
+          BoxShadow(
+            blurRadius: Dimensions.d3,
+            offset: const Offset(0, 0),
+            color: Colors.grey.withOpacity(0.4),
+          )
+        ],
+      ),
       child: Material(
         //We need Material because it brings out the ripple effect in InkWell
         color: app_colors.background,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: UIParameters.standardBorderRadius,
         child: InkWell(
           onTap: onPressed,
           child: Container(
-              height: 193,
-              padding: const EdgeInsets.all(16),
+              height: Dimensions.d180 + Dimensions.d10 + Dimensions.d3,
+              padding: UIParameters.standardPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
                     'images/$icon',
-                    width: 24,
+                    width: Dimensions.standardSpacing,
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: Dimensions.standardPaddingSize),
                   HeaderText(
                     text: label,
                     headerTextSize: HeaderTextSize.small,
                     color: app_colors.primaryBlue,
                   ),
-                  const SizedBox(height: 8),
+                  const TitleBodySpacer(),
                   BodyText(text: description, isSmall: true),
                 ],
               )),

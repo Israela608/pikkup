@@ -3,20 +3,25 @@ import 'package:pikkup/components/buttons/back_circular.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/location_ring.dart';
 import 'package:pikkup/components/pin.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/decorations.dart';
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ChooseLocationOnMapScreen extends StatelessWidget {
   ChooseLocationOnMapScreen({Key? key}) : super(key: key);
 
-  static const String id = 'choose_location_on_map_screen';
+  static const String id = '/choose_location_on_map_screen';
 
   final panelController = PanelController();
 
   @override
   Widget build(BuildContext context) {
-    double _panelHeightOpen = 275;
-    double _panelHeightClosed = 275;
+    double _panelHeightOpen = Dimensions.d200 + Dimensions.d75;
+    double _panelHeightClosed = Dimensions.d200 + Dimensions.d75;
 
     return Scaffold(
       backgroundColor: app_colors.background,
@@ -31,9 +36,7 @@ class ChooseLocationOnMapScreen extends StatelessWidget {
             body: const MapWidget(),
             panel: PanelWidget(panelController: panelController),
             color: app_colors.background,
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(16.0),
-                topRight: Radius.circular(16.0)),
+            borderRadius: UIParameters.bottomSheetBorderRadius,
             //onPanelSlide: (double pos) => setState(() {}),
           ),
           // const DispatcherPanel(
@@ -93,23 +96,18 @@ class PanelWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: UIParameters.screenHorizontalPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 37),
-          const Text(
+          SizedBox(height: Dimensions.d30 + Dimensions.d7),
+          Text(
             'Destination',
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Sora',
-              color: app_colors.primaryBlack,
-            ),
+            style: soraNormalText.copyWith(fontSize: Dimensions.d14),
           ),
-          const SizedBox(height: 24),
+          const StandardSpacer(),
           const AddressTextBox(),
-          const SizedBox(height: 48),
+          SizedBox(height: Dimensions.d48),
           WideButton(label: 'Confirm Location', onPressedCallback: () {})
           //const SizedBox(height: 19),
         ],
@@ -163,17 +161,17 @@ class DragHandle extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        height: 32,
+        height: Dimensions.bigSpacing,
         width: double.infinity,
-        padding: const EdgeInsets.only(top: 12, bottom: 15),
+        padding: EdgeInsets.only(top: Dimensions.d12, bottom: Dimensions.d15),
         child: FittedBox(
           child: Container(
-            width: 30,
-            height: 5,
+            width: Dimensions.d30,
+            height: Dimensions.d5,
             decoration: BoxDecoration(
                 color: Colors.grey[300],
                 //color: app_colors.buttonAsh,
-                borderRadius: const BorderRadius.all(Radius.circular(12.0))),
+                borderRadius: BorderRadius.circular(Dimensions.d12)),
           ),
         ),
       ),
@@ -203,28 +201,13 @@ class AddressTextBox extends StatelessWidget {
         // //model.destinationPageFormKey.currentState!.validate();
         // model.updateDestinationPageNextButton();
       },
-      decoration: InputDecoration(
+      decoration: textFieldDecoration.copyWith(
         prefixIcon: const FittedBox(
           fit: BoxFit.none,
           child: LocationRing(
             locationRingType: LocationRingType.destination,
             locationRingSize: LocationRingSize.big,
           ),
-        ),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide:
-              const BorderSide(color: app_colors.primaryBlueDark, width: 1.0),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide:
-              const BorderSide(color: app_colors.primaryBlueDark, width: 2.0),
-          borderRadius: BorderRadius.circular(10.0),
         ),
       ),
       // .copyWith(

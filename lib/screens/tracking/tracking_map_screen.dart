@@ -9,7 +9,7 @@ import 'package:pikkup/screens/tracking/dispatcher_panel.dart';
 class TrackingMapScreen extends StatelessWidget {
   const TrackingMapScreen({Key? key}) : super(key: key);
 
-  static const String id = 'tracking_map_screen';
+  static const String id = '/tracking_map_screen';
 
   @override
   Widget build(BuildContext context) {

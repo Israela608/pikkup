@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
+import 'package:pikkup/utils/dimensions.dart';
 
 class PaymentCardTile extends StatelessWidget {
   const PaymentCardTile({
@@ -19,16 +21,16 @@ class PaymentCardTile extends StatelessWidget {
     Widget iconWidget;
 
     if (cardType == 'mastercard') {
-      iconWidget = const Image(
-        image: AssetImage('images/mastercard.png'),
-        width: 32.63,
-        height: 20,
+      iconWidget = Image(
+        image: const AssetImage('images/mastercard.png'),
+        width: Dimensions.d32 + Dimensions.d1 * 0.63,
+        height: Dimensions.d20,
       );
     } else if (cardType == 'visa') {
-      iconWidget = const Image(
-        image: AssetImage('images/visa.png'),
-        width: 36,
-        height: 23,
+      iconWidget = Image(
+        image: const AssetImage('images/visa.png'),
+        width: Dimensions.d36,
+        height: Dimensions.d23,
       );
     } else {
       iconWidget = const ImageIcon(
@@ -41,25 +43,22 @@ class PaymentCardTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding:
+              EdgeInsets.symmetric(vertical: Dimensions.standardPaddingSize),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PlainText(text: cardNumber, isBlackColor: true),
-              const SizedBox(height: 8),
+              SizedBox(height: Dimensions.smallPaddingSize),
               Text(
                 expiryDate,
-                style: const TextStyle(
-                  fontSize: 10,
-                  fontFamily: 'Inter',
-                  color: app_colors.hintAsh,
-                ),
+                style: interSmallText.copyWith(color: app_colors.hintAsh),
               ),
             ],
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 27),
+          padding: EdgeInsets.symmetric(vertical: Dimensions.d27),
           child: iconWidget,
         ),
       ],

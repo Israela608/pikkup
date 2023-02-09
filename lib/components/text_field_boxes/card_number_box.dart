@@ -1,7 +1,7 @@
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-import 'package:pikkup/components/spacers/spacer.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/decorations.dart';
@@ -28,7 +28,7 @@ class CardNumberBox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const PlainText(text: 'Card Number'),
-        const TitleBoxSpacer(),
+        const TitleBodySpacer(),
         TextFormField(
           controller: textController,
           keyboardType: TextInputType.phone,

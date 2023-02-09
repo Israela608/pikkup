@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/address_card.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/settings_page_view_models/shipping_addresses_view_model.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +8,7 @@ import 'package:provider/provider.dart';
 class ShippingAddressesScreen extends StatelessWidget {
   ShippingAddressesScreen({Key? key}) : super(key: key);
 
-  static const String id = 'shipping_addresses_screen';
+  static const String id = '/shipping_addresses_screen';
 
   final ScrollController scrollController = ScrollController();
 
@@ -18,7 +19,7 @@ class ShippingAddressesScreen extends StatelessWidget {
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 20),
+          SizedBox(height: Dimensions.d20),
           Consumer<ShippingAddressesViewModel>(
             builder: (BuildContext context, model, Widget? child) {
               return ListView.builder(
@@ -26,7 +27,7 @@ class ShippingAddressesScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    margin: EdgeInsets.symmetric(vertical: Dimensions.d4),
                     child: AddressCard(
                       text: model.shippingAddresses[index],
                       onPressed: () {},
@@ -37,7 +38,7 @@ class ShippingAddressesScreen extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: Dimensions.d32),
         ],
       ),
     );

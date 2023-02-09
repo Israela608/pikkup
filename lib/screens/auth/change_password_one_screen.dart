@@ -4,6 +4,7 @@ import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/text_field_boxes/password_box.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/screens/auth/change_password_two_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/settings_page_view_models/change_password_one_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
@@ -12,7 +13,7 @@ import 'package:provider/provider.dart';
 class ChangePasswordOneScreen extends StatefulWidget {
   const ChangePasswordOneScreen({Key? key}) : super(key: key);
 
-  static const String id = 'change_password_one_screen';
+  static const String id = '/change_password_one_screen';
 
   @override
   State<ChangePasswordOneScreen> createState() =>
@@ -45,26 +46,28 @@ class _ChangePasswordOneScreenState extends State<ChangePasswordOneScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 40),
+          SizedBox(height: Dimensions.d40),
           Center(
             child: Container(
-              height: 150,
-              width: 150,
+              height: Dimensions.d150,
+              width: Dimensions.d150,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: app_colors.tileBlue,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 43, vertical: 37),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.d40 + Dimensions.d3,
+                  vertical: Dimensions.d30 + Dimensions.d7),
               child: const Image(
                   image: AssetImage('images/lock_picture.png'),
                   fit: BoxFit.contain),
             ),
           ),
-          const SizedBox(height: 46),
+          SizedBox(height: Dimensions.d40 + Dimensions.d6),
           OldPasswordBoxWidget(textController: _oldPasswordController),
-          const SizedBox(height: 20),
+          SizedBox(height: Dimensions.d20),
           ErrorMessage(errorMessage: model.errorMessage),
-          const SizedBox(height: 80),
+          SizedBox(height: Dimensions.d80),
           const CompletedWideButton(),
         ],
       ),

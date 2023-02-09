@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 
 /*
 TextInputDecorations
@@ -29,10 +30,7 @@ final moneyTextFieldDecoration = InputDecoration(
   fillColor: app_colors.fillAsh,
   counter: const Offstage(), //Prevents the counter from showing
   hintText: '\u{20A6}0.00',
-  hintStyle: textFieldHintText.copyWith(
-    fontSize: Dimensions.d27,
-    fontWeight: FontWeight.bold,
-  ),
+  hintStyle: moneyFieldHintText,
   /* hintStyle: TextStyle(
     fontSize: Dimensions.d27,
     fontWeight: FontWeight.bold,
@@ -99,6 +97,15 @@ final moneyTextFieldDecoration = InputDecoration(
 BoxDecorations
 */
 
+final cardDecoration = BoxDecoration(
+  borderRadius: UIParameters.standardBorderRadius,
+  color: app_colors.fillAsh,
+);
+
+final smallCardDecoration = cardDecoration.copyWith(
+  borderRadius: UIParameters.smallBorderRadius,
+);
+
 final borderedCardDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(Dimensions.d8),
   color: app_colors.tileBlue,
@@ -108,6 +115,17 @@ final borderedCardDecoration = BoxDecoration(
 
 final smallBorderedCardDecoration = borderedCardDecoration.copyWith(
   borderRadius: BorderRadius.circular(Dimensions.d4),
+);
+
+final smallShadowedBorderedCardDecoration =
+    smallBorderedCardDecoration.copyWith(
+  boxShadow: [
+    BoxShadow(
+      blurRadius: 5,
+      offset: const Offset(0, 0),
+      color: Colors.grey.withOpacity(0.3),
+    )
+  ],
 );
 
 final progressLineDecoration = BoxDecoration(

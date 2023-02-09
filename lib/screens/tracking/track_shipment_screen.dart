@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/text_field_boxes/parcel_id_box.dart';
 import 'package:pikkup/components/texts/header_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/screens/tracking/tracking_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/home_page_view_models/track_shipment_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
@@ -13,7 +15,7 @@ import 'package:provider/provider.dart';
 class TrackShipmentScreen extends StatefulWidget {
   const TrackShipmentScreen({Key? key}) : super(key: key);
 
-  static const String id = 'track_shipment_screen';
+  static const String id = '/track_shipment_screen';
 
   @override
   State<TrackShipmentScreen> createState() => _TrackShipmentScreenState();
@@ -41,24 +43,24 @@ class _TrackShipmentScreenState extends State<TrackShipmentScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 32),
+          const BigSpacer(),
           const HeaderText(
             text: 'Enter your Parcel ID',
             headerTextSize: HeaderTextSize.verySmall,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: Dimensions.smallPaddingSize),
           const PlainText(
             text: 'Input the parcel ID of the shipment you wish to track',
             isBlackColor: true,
           ),
-          const SizedBox(height: 26),
+          SizedBox(height: Dimensions.d26),
           ParcelIDBoxWidget(textController: _parcelIdController),
-          const SizedBox(height: 10),
+          SizedBox(height: Dimensions.d10),
           Consumer<TrackShipmentViewModel>(
               builder: (BuildContext context, model, Widget? child) {
             return ErrorMessage(errorMessage: model.errorMessage);
           }),
-          const SizedBox(height: 129),
+          SizedBox(height: Dimensions.d120 + Dimensions.d9),
           const TrackShipmentButton(),
         ],
       ),

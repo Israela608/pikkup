@@ -3,6 +3,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pikkup/components/buttons/wide_button.dart';
 import 'package:pikkup/components/buttons/wide_button_ash.dart';
 import 'package:pikkup/components/clickable_texts/clickable_text.dart';
+import 'package:pikkup/components/spacer.dart';
 import 'package:pikkup/components/text_field_boxes/email_box.dart';
 import 'package:pikkup/components/text_field_boxes/password_box.dart';
 import 'package:pikkup/components/text_field_boxes/phone_number_box.dart';
@@ -14,6 +15,7 @@ import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
 import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/auth/login_screen.dart';
 import 'package:pikkup/screens/auth/verify_number_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
 import 'package:pikkup/view_models/create_account_view_model.dart';
 import 'package:pikkup/widgets/error_message.dart';
 import 'package:pikkup/widgets/scaffolds/plain_scaffold.dart';
@@ -22,7 +24,7 @@ import 'package:provider/provider.dart';
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({Key? key}) : super(key: key);
 
-  static const String id = 'create_account_screen';
+  static const String id = '/create_account_screen';
 
   @override
   State<CreateAccountScreen> createState() => _CreateAccountScreenState();
@@ -68,30 +70,30 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const HeaderText(text: 'Create an account'),
-              const SizedBox(height: 8),
+              const TitleBodySpacer(),
               const BodyText(
                   text:
                       'Enter your personal details to help setup your account'),
-              const SizedBox(height: 26),
+              SizedBox(height: Dimensions.d26),
               NameBoxWidget(textController: _nameController),
-              const SizedBox(height: 24),
+              const StandardSpacer(),
               EmailBoxWidget(textController: _emailController),
-              const SizedBox(height: 24),
+              const StandardSpacer(),
               PhoneNumberBoxWidget(textController: _phoneNumberController),
-              const SizedBox(height: 24),
+              const StandardSpacer(),
               PasswordBoxWidget(textController: _passwordController),
-              const SizedBox(height: 24),
+              const StandardSpacer(),
               ConfirmPasswordBoxWidget(
                   textController: _confirmPasswordController),
-              const SizedBox(height: 20),
+              SizedBox(height: Dimensions.d20),
               ErrorMessage(errorMessage: model.errorMessage),
-              const SizedBox(height: 20),
+              SizedBox(height: Dimensions.d20),
               const MixedTextFirst(),
-              const SizedBox(height: 48),
+              SizedBox(height: Dimensions.d48),
               const CreateAccountButton(),
-              const SizedBox(height: 32),
+              SizedBox(height: Dimensions.d32),
               const MixedTextSecond(),
-              const SizedBox(height: 42),
+              SizedBox(height: Dimensions.d40 + Dimensions.d2),
             ],
           ),
         );

@@ -4,7 +4,10 @@ import 'package:pikkup/components/texts/body_text.dart';
 import 'package:pikkup/components/texts/money_text.dart';
 import 'package:pikkup/components/texts/plain_text.dart';
 import 'package:pikkup/config/themes/app_colors.dart' as app_colors;
+import 'package:pikkup/config/themes/styles.dart';
 import 'package:pikkup/screens/funding/fund_wallet_screen.dart';
+import 'package:pikkup/utils/dimensions.dart';
+import 'package:pikkup/utils/ui_parameters.dart';
 import 'package:pikkup/widgets/scaffolds/standard_scaffold.dart';
 
 class WalletPage extends StatelessWidget {
@@ -18,11 +21,11 @@ class WalletPage extends StatelessWidget {
       title: 'Wallet',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 40),
-          FundBox(),
-          SizedBox(height: 32),
-          FundingHistory(history: true),
+        children: [
+          SizedBox(height: Dimensions.d40),
+          const FundBox(),
+          SizedBox(height: Dimensions.d32),
+          const FundingHistory(history: true),
         ],
       ),
     );
@@ -36,26 +39,29 @@ class FundBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: UIParameters.standardBorderRadius,
         color: app_colors.primaryBlue,
       ),
       child: Container(
-          padding: const EdgeInsets.only(top: 32, bottom: 35),
+          padding: EdgeInsets.only(
+            top: Dimensions.d32,
+            bottom: Dimensions.d30 + Dimensions.d5,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                children: const [
-                  BodyText(
+                children: [
+                  const BodyText(
                     text: 'Balance',
                     isSmall: true,
                     color: app_colors.white,
                   ),
-                  SizedBox(height: 8),
-                  MoneyText(amount: '1,700'),
+                  SizedBox(height: Dimensions.smallPaddingSize),
+                  const MoneyText(amount: '1,700'),
                 ],
               ),
-              const SizedBox(height: 33),
+              SizedBox(height: Dimensions.d30 + Dimensions.d3),
               const FundWalletButton(),
             ],
           )),
@@ -69,15 +75,11 @@ class FundWalletButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 41,
+      height: Dimensions.d41,
       child: OutlinedButton(
-        child: const Text(
+        child: Text(
           'Fund wallet',
-          style: TextStyle(
-            fontSize: 13,
-            fontFamily: 'Sora',
-            color: app_colors.primaryWhite,
-          ),
+          style: soraSubtitleText.copyWith(color: app_colors.primaryWhite),
         ),
         style: OutlinedButton.styleFrom(
             shape:
@@ -101,24 +103,20 @@ class FundingHistory extends StatelessWidget {
     if (!history) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(height: 6),
+        children: [
+          SizedBox(height: Dimensions.d6),
           Text(
             'Funding History',
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Sora',
-              color: app_colors.primaryBlack,
-            ),
+            style:
+                soraNormalText.copyWith(fontSize: Dimensions.standardTextSize),
           ),
-          SizedBox(height: 58),
+          SizedBox(height: Dimensions.d50 + Dimensions.d8),
           Image(
-            height: 125,
-            image: AssetImage('images/no_transactions.png'),
+            height: Dimensions.d120 + Dimensions.d5,
+            image: const AssetImage('images/no_transactions.png'),
           ),
-          SizedBox(height: 36),
-          BodyText(
+          SizedBox(height: Dimensions.d36),
+          const BodyText(
             text: 'You haven’t made any transactions yet',
             isCentered: true,
           ),
@@ -131,21 +129,17 @@ class FundingHistory extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Funding History',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Sora',
-                  color: app_colors.primaryBlack,
-                ),
+                style: soraNormalText.copyWith(
+                    fontSize: Dimensions.standardTextSize),
               ),
               ViewAllButton(
                 onPressed: () {},
               ),
             ],
           ),
-          const SizedBox(height: 19),
+          SizedBox(height: Dimensions.d10 + Dimensions.d9),
           const FundingHistoryTile(),
           const FundingHistoryTile(),
           const FundingHistoryTile(),
@@ -163,20 +157,21 @@ class FundingHistoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: EdgeInsets.only(bottom: Dimensions.standardPaddingSize),
       child: Material(
         color: app_colors.tileBlue,
         child: InkWell(
           onTap: () {},
           child: Container(
             color: Colors.transparent,
-            height: 74,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: Dimensions.d70 + Dimensions.d4,
+            padding: UIParameters.screenHorizontalPadding,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.symmetric(
+                      vertical: Dimensions.standardPaddingSize),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -194,32 +189,32 @@ class FundingHistoryTile extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 17.33),
+                  padding: EdgeInsets.symmetric(
+                    vertical:
+                        Dimensions.d10 + Dimensions.d7 + (Dimensions.d1 * 0.33),
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       RichText(
-                        text: const TextSpan(
+                        text: TextSpan(
                           children: [
                             WidgetSpan(
                               alignment: PlaceholderAlignment.middle,
                               child: Image(
-                                image: AssetImage('images/naira_small.png'),
-                                height: 18.04,
+                                image:
+                                    const AssetImage('images/naira_small.png'),
+                                height: Dimensions.d18 + (Dimensions.d1 * 0.04),
                               ),
                             ),
-                            WidgetSpan(child: SizedBox(width: 2)),
+                            WidgetSpan(child: SizedBox(width: Dimensions.d2)),
                             WidgetSpan(
                               alignment: PlaceholderAlignment.middle,
                               child: Text(
                                 '1,700',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Sora',
-                                  color: app_colors.primaryBlack,
-                                ),
+                                style: soraNormalText.copyWith(
+                                    fontSize: Dimensions.standardTextSize),
                               ),
                             ),
                           ],
