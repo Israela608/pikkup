@@ -118,7 +118,7 @@ class SendAPackageViewModel extends ChangeNotifier {
     }
 
     //Calls notify listener when the validating process is complete to prevent errors or interference
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }
@@ -252,6 +252,17 @@ class SendAPackageViewModel extends ChangeNotifier {
     _phoneNumber = ph;
   }
 
+  //e.g If phone number is '09061870986', then it returns '9061870986', so it can be displayed in the phoneNumber textfield
+  String textFieldPhoneNumber({required String phoneNumber}) {
+    late String ph;
+
+    //If the number starts with zero, replace with nothing (Remove the first Zero)
+    ph = phoneNumber.startsWith('0')
+        ? phoneNumber.replaceFirst('0', '')
+        : phoneNumber;
+    return ph;
+  }
+
   setIsReceiverPageCompleted({required bool isCompleted}) {
     _isReceiverPageCompleted = isCompleted;
   }
@@ -285,7 +296,7 @@ class SendAPackageViewModel extends ChangeNotifier {
     }
 
     //Calls notify listener when the validating process is complete to prevent errors or interference
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }

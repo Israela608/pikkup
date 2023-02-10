@@ -51,9 +51,11 @@ class NoCardsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(height: Dimensions.d72),
-        Image(
-          height: Dimensions.d180 + Dimensions.d7,
-          image: const AssetImage('images/cards_image.png'),
+        Flexible(
+          child: Image(
+            height: Dimensions.d180 + Dimensions.d7,
+            image: const AssetImage('images/cards_image.png'),
+          ),
         ),
         SizedBox(height: Dimensions.d41),
         const HeaderText(

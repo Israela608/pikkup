@@ -36,6 +36,7 @@ class _PaymentCardsScreenState extends State<PaymentCardsScreen> {
     return StandardScaffold(
       title: 'Payment',
       isBlueAppBar: true,
+      isScrollable: false,
       child: PaymentCardsWidget(
           isCardPresent:
               Provider.of<PaymentCardsViewModel>(context, listen: false)
@@ -53,9 +54,11 @@ class NoCardsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(height: Dimensions.d72),
-        Image(
-          height: Dimensions.d180 + Dimensions.d7,
-          image: const AssetImage('images/cards_image.png'),
+        Flexible(
+          child: Image(
+            height: Dimensions.d180 + Dimensions.d7,
+            image: const AssetImage('images/cards_image.png'),
+          ),
         ),
         SizedBox(height: Dimensions.d41),
         const HeaderText(
@@ -110,6 +113,9 @@ class PaymentCardsWidget extends StatelessWidget {
               AddNewCardWidget()
             ],
           ),
+          const Spacer(),
+          const PayButton(),
+          SizedBox(height: Dimensions.d52),
         ],
       );
     }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pikkup/routes/app_routes.dart';
 import 'package:pikkup/routes/providers.dart';
-import 'package:pikkup/screens/tracking/tracking_screen.dart';
+import 'package:pikkup/screens/onboarding_screen.dart';
 import 'package:pikkup/utils/dimensions.dart';
 import 'package:provider/provider.dart';
 
@@ -69,12 +69,13 @@ class MyApp extends StatelessWidget {
         //initialRoute: ChooseLocationOnMapScreen.id,
         //initialRoute: DeliveryOptionScreen.id,
         //initialRoute: SummaryInfoScreen.id,
-        initialRoute: TrackingScreen.id,
+
+        //initialRoute: TrackingScreen.id,
         //initialRoute: PaymentOptionScreen.id,
         //initialRoute: PromoScreen.id,
         //initialRoute: FundWalletScreen.id,
         //initialRoute: EnterAmountScreen.id,
-        //initialRoute: OnboardingScreen.id,
+        initialRoute: OnboardingScreen.id,
         //initialRoute: WelcomeScreen.id,
         //initialRoute: SendAPackageScreen.id,
         //initialRoute: ResetPasswordScreen.id,
